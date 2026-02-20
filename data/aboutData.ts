@@ -33,7 +33,7 @@ export const workExperience = [
 
 export const education = [
   {
-    title: "BSc in Software Engineering",
+    title: "BSc (Hons) in Software Engineering",
     institution: "Cardiff Metropolitan University",
     duration: "2024 -2025",
     badge: "2025",

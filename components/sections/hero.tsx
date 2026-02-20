@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import {
   IconBrandTwitter,
@@ -10,88 +11,182 @@ import {
   IconBrandGithub,
   IconBrandFacebook,
   IconArrowRight,
+  IconCircleFilled,
+  IconWorld,
+  IconClock,
+  IconSearch,
 } from "@tabler/icons-react";
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 1,
         ease: [0.16, 1, 0.3, 1] as any,
       },
     },
   };
 
-  const floatingTags = [
-    { text: "Scalable Apps", top: "15%", right: "10%" },
-    { text: "+5 Years Experience", top: "10%", right: "-5%" },
-    { text: "Infrastructure", bottom: "15%", right: "15%" },
-    { text: "Full Stack", bottom: "25%", right: "-5%" },
-  ];
-
   return (
     <section
       id="home"
-      className="pt-32 pb-16 md:pt-48 md:pb-24 flex flex-col items-center justify-center min-h-screen relative overflow-hidden bg-background"
+      ref={containerRef}
+      className="min-h-screen pt-24 pb-20 md:pt-32 flex items-center justify-center relative overflow-hidden bg-background selection:bg-primary selection:text-primary-foreground"
     >
-      {/* Background Section Title - Unified positioning */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[19vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-5">
-          BHATHIYA
-        </h2>
+      {/* 2030 Architectural Background Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(128,128,128,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+
+        <motion.div
+          style={{ y: y1, opacity }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center select-none"
+        >
+          <h2 className="text-[20vw] font-black text-foreground/[0.02] tracking-tighter leading-none whitespace-nowrap uppercase italic">
+            BHATHIYA
+          </h2>
+        </motion.div>
+
+        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-foreground/[0.05] to-transparent mr-12 hidden lg:block" />
+        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-foreground/[0.05] to-transparent mb-12 hidden lg:block" />
       </div>
 
-      {/* Background Orbs - Neutralized */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-foreground/[0.03] blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-foreground/[0.02] blur-[100px] rounded-full pointer-events-none" />
-
-      <div className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10">
+      <div className="container px-4 md:px-8 max-w-8xl mx-auto relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-center"
+          className="relative grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-y-0 items-center justify-items-center lg:justify-items-start"
         >
-          {/* Left Content */}
-          <div className="flex flex-col justify-center space-y-10 text-center lg:text-left items-center lg:items-start">
-            <div className="space-y-6">
-              <motion.h1
-                variants={itemVariants}
-                className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight leading-[1.05] uppercase"
-              >
-                I&apos;m a{" "}
-                <span className="text-highlight">Full Stack Engineer</span> that
-                your system needs
-              </motion.h1>
-              <motion.p
-                variants={itemVariants}
-                className="text-muted-foreground text-xl md:text-2xl font-medium max-w-[500px] mx-auto lg:mx-0 uppercase tracking-tight opacity-70"
-              >
-                Hi, I&apos;m Bhathiya Lakshan. I architect and build resilient
-                digital solutions for growth-focused companies
-              </motion.p>
+          {/* MOBILE STATUS HUD (Order 1 on mobile) */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col items-center lg:items-start gap-2 lg:hidden order-1 w-full"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
+                System Active
+              </span>
             </div>
+            <div className="flex items-center gap-3">
+              <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
+              <span className="text-[7px] font-mono opacity-20 tracking-[0.2em] leading-tight text-left">
+                01000010 01001000 01000001 01010100
+                <br />
+                01001000 01001001 01011001 01000001
+              </span>
+            </div>
+          </motion.div>
+
+          {/* TITLE BLOCK (Order 2 on mobile, Top-Left on desktop) */}
+          <div className="lg:col-span-7 order-2 flex flex-col space-y-6 lg:space-y-8 w-full">
+            <motion.div
+              variants={itemVariants}
+              className="hidden lg:flex items-center gap-6 mb-4"
+            >
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
+                    System Online
+                  </span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-24 bg-gradient-to-r from-primary to-transparent" />
+                  <span className="text-[8px] font-mono opacity-20 tracking-[0.3em]">
+                    01000010 01001000 01000001 01010100 01001000 01001001
+                    01011001 01000001
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col md:flex-row gap-6 justify-center lg:justify-start items-center w-full md:w-auto"
+              className="space-y-3 text-center lg:text-left"
+            >
+              <h1 className="text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-[9rem] font-black tracking-[-0.05em] leading-[0.85] uppercase flex flex-col">
+                <span>Full Stack</span>
+                <span className="text-highlight italic">Engineer</span>
+              </h1>
+            </motion.div>
+          </div>
+
+          {/* IMAGE BLOCK (Order 3 on mobile, Right side on desktop) */}
+          <div className="lg:col-span-5 order-3 lg:row-span-2 relative w-full max-w-[450px] lg:max-w-none px-4 lg:px-0 my-8 lg:my-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
+              className="relative aspect-square sm:aspect-[4/5] lg:aspect-square"
+            >
+              <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-foreground/10 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-black/20">
+                <div className="absolute inset-0 grayscale contrast-125 opacity-100 mix-blend-normal transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
+                  <Image
+                    src="/bhathiya-lakshan-2.png"
+                    alt="Bhathiya Lakshan"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 z-20 flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-foreground/40">
+                      BL-ARCH-26
+                    </span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#00FF85]">
+                      Verified
+                    </span>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-black uppercase tracking-tighter leading-none border-t border-foreground/10 pt-4">
+                    Bhathiya Lakshan
+                  </h3>
+                </div>
+
+                <div className="absolute top-6 left-6 lg:top-8 lg:left-8 w-6 h-6 lg:w-8 lg:h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl" />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* DESCRIPTION BLOCK (Order 4 on mobile, Bottom-Left on desktop) */}
+          <div className="lg:col-span-7 order-4 flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start text-center lg:text-left">
+            <motion.p
+              variants={itemVariants}
+              className="text-muted-foreground text-lg sm:text-xl lg:text-2xl font-medium max-w-xl mx-auto lg:mx-0 uppercase tracking-tighter opacity-80 leading-tight"
+            >
+              Engineering high-performance software and architecting resilient
+              digital ecosystems for the next generation of global innovation.
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center flex-wrap justify-center lg:justify-start"
             >
               <Button
                 size="lg"
-                className="w-full md:w-auto rounded-full h-14 px-10 text-[11px] font-black uppercase tracking-[0.3em] bg-foreground text-background hover:opacity-90 transition-all shadow-2xl shadow-foreground/10 border-0"
+                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[280px] rounded-full h-14 md:h-16 px-8 md:px-12 text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl group border-none"
                 onClick={() => {
                   const el = document.getElementById("contact");
                   if (el)
@@ -101,148 +196,62 @@ export function HeroSection() {
                     });
                 }}
               >
-                Let&apos;s Connect
+                Initiate Project{" "}
+                <IconArrowRight className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <div className="w-[90%] md:w-auto flex items-center justify-center gap-4 px-6 h-14 rounded-full border border-foreground/10 bg-foreground/[0.01] backdrop-blur-sm transition-all hover:bg-foreground/[0.03] hover:border-foreground/20 relative z-20 shadow-2xl shadow-foreground/5">
-                <a
-                  href="https://github.com/smbhathiya"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground/40 hover:text-foreground transition-all hover:scale-110"
-                  aria-label="GitHub"
-                >
-                  <IconBrandGithub className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/bhathiya-lakshan-91579722a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground/40 hover:text-foreground transition-all hover:scale-110"
-                  aria-label="LinkedIn"
-                >
-                  <IconBrandLinkedin className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://x.com/smbhathiya"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground/40 hover:text-foreground transition-all hover:scale-110"
-                  aria-label="Twitter"
-                >
-                  <IconBrandTwitter className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://www.facebook.com/smbhathiya/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 text-foreground/40 hover:text-foreground transition-all hover:scale-110"
-                  aria-label="Facebook"
-                >
-                  <IconBrandFacebook className="h-6 w-6" />
-                </a>
+
+              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-foreground/[0.02] backdrop-blur-xl">
+                {[
+                  {
+                    icon: <IconBrandGithub className="w-5 h-5" />,
+                    href: "https://github.com/smbhathiya",
+                  },
+                  {
+                    icon: <IconBrandLinkedin className="w-5 h-5" />,
+                    href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                  },
+                  {
+                    icon: <IconBrandTwitter className="w-5 h-5" />,
+                    href: "https://x.com/smbhathiya",
+                  },
+                  {
+                    icon: <IconBrandFacebook className="w-5 h-5" />,
+                    href: "https://www.facebook.com/smbhathiya/",
+                  },
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition-all duration-300"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
             </motion.div>
           </div>
-
-          {/* Right Content - Glowing Orb */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
-            className="relative flex items-center justify-center lg:justify-end"
-          >
-            <div className="relative w-[300px] h-[300px] md:w-[480px] md:h-[480px] flex items-center justify-center group">
-              {/* Animated Ring Waves */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{
-                    opacity: [0, 0.15, 0],
-                    scale: [0.8, 1.8 + i * 0.2],
-                  }}
-                  transition={{
-                    duration: 4,
-                    delay: i * 1.3,
-                    repeat: Infinity,
-                    ease: "easeOut",
-                  }}
-                  className={cn(
-                    "absolute inset-0 rounded-full border border-foreground/20 shadow-[0_0_80px_rgba(255,255,255,0.05)] transition-opacity duration-1000",
-                    "group-hover:opacity-40 group-hover:scale-110",
-                  )}
-                />
-              ))}
-
-              {/* Central Photo Container */}
-              <div className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px] rounded-full flex items-center justify-center transition-transform duration-700 group-hover:scale-[1.02]">
-                {/* Main Glowing Border - Silver */}
-                <div className="absolute inset-0 rounded-full border-2 md:border-4 border-foreground/10 bg-foreground/[0.02] backdrop-blur-3xl shadow-[0_0_60px_rgba(255,255,255,0.05)] group-hover:border-foreground/20 transition-colors duration-700" />
-
-                {/* Image Container */}
-                <div className="absolute inset-4 rounded-full overflow-hidden border border-foreground/10 bg-black/40 z-10">
-                  <Image
-                    src="/bhathiya-lakshan-2.png"
-                    alt="Bhathiya Lakshan"
-                    fill
-                    className="object-cover transition-all duration-1000 brightness-100 hover:scale-105"
-                    priority
-                  />
-                </div>
-
-                {/* Name Label */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.5, duration: 0.8 }}
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20"
-                >
-                  <div className="px-6 py-2 rounded-full glass-card border border-foreground/20 bg-background/80 backdrop-blur-xl text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] text-foreground shadow-2xl whitespace-nowrap">
-                    Bhathiya Lakshan
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Floating Tags - Realigned to match new design */}
-              {[
-                { text: "Scalable Apps", top: "15%", right: "8%" },
-                { text: "+2 Years Experience", top: "8%", right: "-8%" },
-                { text: "Infrastructure", bottom: "12%", right: "12%" },
-                { text: "Full Stack", bottom: "22%", right: "-8%" },
-              ].map((tag, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    delay: 1 + i * 0.1,
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1] as any,
-                  }}
-                  style={{ top: tag.top, right: tag.right, bottom: tag.bottom }}
-                  className="absolute z-20 pointer-events-none hidden md:block"
-                >
-                  <div className="px-5 py-2.5 rounded-full glass-card border border-foreground/10 bg-foreground/[0.02] text-[10px] font-black uppercase tracking-[0.25em] text-foreground/80 shadow-2xl">
-                    {tag.text}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       </div>
 
-      {/* Hero Scroll indicator - Refined */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+        style={{ opacity }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-4"
       >
-        <p className="text-[9px] font-black uppercase tracking-[0.6em] text-foreground/20 rotate-90 origin-left translate-x-[5px]">
-          SCROLL
-        </p>
-        <div className="w-px h-16 bg-gradient-to-b from-foreground/20 via-foreground/10 to-transparent" />
+        <div className="flex items-center gap-3">
+          <span className="text-[8px] font-black uppercase tracking-[0.5em] opacity-20">
+            System Scroll
+          </span>
+          <div className="w-8 h-px bg-foreground/10" />
+        </div>
+        <div className="w-5 h-8 border border-foreground/10 rounded-full flex justify-center p-1 backdrop-blur-sm">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-1 bg-primary rounded-full"
+          />
+        </div>
       </motion.div>
     </section>
   );

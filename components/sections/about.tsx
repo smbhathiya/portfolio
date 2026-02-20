@@ -107,7 +107,7 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
         ease: [0.16, 1, 0.3, 1] as any,
       }}
     >
-      <div className="group relative glass-card p-1 items-center rounded-[3rem] transition-all duration-700 hover:scale-[1.01] hover:bg-white/[0.04]">
+      <div className="group relative backdrop-blur-3xl border border-black/10 bg-black/[0.02] dark:border-white/[0.08] dark:bg-white/[0.03] p-1 items-center rounded-[3rem] transition-all duration-700 hover:scale-[1.01] hover:bg-primary/[0.03] dark:hover:bg-white/[0.04] shadow-sm dark:shadow-none">
         <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
           {/* Year Tag */}
           <div className="flex-shrink-0 w-full md:w-48">
