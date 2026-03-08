@@ -135,12 +135,13 @@ export function HeroSection() {
                 </div>
 
                 <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-8 lg:right-8 z-20 flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-background bg-foreground px-3 py-1.5 rounded-full shadow-lg">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-background bg-foreground px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
                       SOFTWARE ENGINEER
                     </span>
-                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
-                      <IconWorld className="w-4 h-4 text-primary" /> SRI LANKA
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                      <IconWorld className="w-4 h-4 text-primary flex-shrink-0" />{" "}
+                      SRI LANKA
                     </span>
                   </div>
                   <h3 className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2">
@@ -153,15 +154,17 @@ export function HeroSection() {
 
           {/* DESCRIPTION BLOCK (Order 4 on mobile, Bottom-Left on desktop) */}
           <div className="lg:col-span-7 order-4 flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start text-center lg:text-left">
-            <motion.p
+            <motion.div
               variants={itemVariants}
-              className="text-muted-foreground uppercase text-justify text-lg sm:text-xl lg:text-2xl font-light max-w-xl mx-auto lg:mx-0 tracking-wide opacity-90 leading-relaxed"
+              className="p-6 md:p-8 lg:p-0 rounded-[2rem] lg:rounded-none border border-foreground/10 lg:border-transparent bg-foreground/[0.02] lg:bg-transparent shadow-sm lg:shadow-none dark:shadow-none w-full max-w-xl mx-auto lg:mx-0 backdrop-blur-3xl lg:backdrop-blur-none"
             >
-              Lead Software Engineer architecting scalable web applications and
-              managing robust cloud ecosystems. Currently driving digital
-              innovation at IMOS and building high-performance enterprise
-              solutions at Digi Pro Solutions.
-            </motion.p>
+              <p className="text-muted-foreground uppercase text-justify lg:text-left text-xs md:text-sm lg:text-lg font-light tracking-wide opacity-90 leading-relaxed">
+                Lead Software Engineer architecting scalable web applications
+                and managing robust cloud ecosystems. Currently driving digital
+                innovation at IMOS and building high-performance enterprise
+                solutions at Digi Pro Solutions.
+              </p>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
