@@ -37,7 +37,10 @@ export function ContactSection() {
       id="contact"
       className="py-24 md:py-32 relative overflow-hidden bg-background"
     >
-      {/* Background Section Title - Unified positioning */}
+      {/* Background Section Title & Glows */}
+      <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <h2 className="text-[16vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-1">
           CONNECT
@@ -52,8 +55,11 @@ export function ContactSection() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           className="flex flex-col items-center mb-32"
         >
-          <h2 className="font-black text-5xl md:text-8xl tracking-tighter uppercase text-center leading-none">
-            Let&apos;s <span className="text-highlight">Connect</span>
+          <h2 className="font-bold text-4xl md:text-6xl tracking-widest uppercase text-center leading-tight">
+            LET&apos;S{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+              CONNECT
+            </span>
           </h2>
         </motion.div>
 
@@ -62,9 +68,9 @@ export function ContactSection() {
           <div className="flex flex-col justify-between py-4">
             <div className="space-y-16">
               <div className="space-y-6">
-                <h3 className="text-4xl font-black tracking-tighter uppercase leading-tight">
-                  Available for new <br />
-                  <span className="opacity-40 italic">opportunities</span>
+                <h3 className="text-3xl font-black tracking-widest uppercase leading-tight">
+                  AVAILABLE FOR NEW <br />
+                  <span className="opacity-40 italic">OPPORTUNITIES</span>
                 </h3>
                 <p className="text-muted-foreground text-xl font-medium max-w-md uppercase tracking-tight opacity-70">
                   I&apos;m always interested in hearing about new projects and

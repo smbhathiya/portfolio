@@ -88,7 +88,7 @@ export function SkillsSection() {
               className="flex items-center gap-4 px-8 py-5 rounded-[2rem] glass-card border border-foreground/20 bg-foreground/[0.03] shadow-sm dark:shadow-none transition-all duration-300 hover:scale-105"
             >
               <span className="text-foreground/70">{skill.icon}</span>
-              <span className="text-sm font-black tracking-[0.2em] uppercase">
+              <span className="text-sm font-semibold tracking-normal text-foreground/80">
                 {skill.name}
               </span>
             </div>
@@ -103,9 +103,12 @@ export function SkillsSection() {
       id="skills"
       className="py-24 md:py-32 relative overflow-hidden bg-background"
     >
-      {/* Background large text "STACK" */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[18vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-0">
+      {/* Background large text & Glows */}
+      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30">
+        <h2 className="text-[18vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-0">
           TEC STACK
         </h2>
       </div>
@@ -118,11 +121,11 @@ export function SkillsSection() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           className="flex flex-col items-center mb-32"
         >
-          {/* <Badge className="mb-6 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em]">
-            My Capabilities
-          </Badge> */}
-          <h2 className="font-black text-5xl md:text-8xl tracking-tighter uppercase text-center leading-none">
-            Technical Stack
+          <h2 className="font-bold text-4xl md:text-6xl tracking-widest text-center leading-tight uppercase">
+            TECHNICAL{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+              STACK
+            </span>
           </h2>
         </motion.div>
 
@@ -154,7 +157,7 @@ export function SkillsSection() {
               transition={{ delay: catIndex * 0.1 }}
               className="space-y-6"
             >
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/50 ml-2">
+              <h3 className="text-sm font-medium tracking-wider text-muted-foreground/60 ml-2 mb-2">
                 {category.title}
               </h3>
               <div className="grid grid-cols-2 gap-4">
@@ -165,12 +168,12 @@ export function SkillsSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3 p-4 rounded-2xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none"
+                    className="flex items-center gap-3 p-4 rounded-2xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-colors hover:bg-foreground/[0.04]"
                   >
                     <span className="text-foreground/60 scale-90">
                       {skill.icon}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest truncate">
+                    <span className="text-xs font-semibold tracking-wide truncate">
                       {skill.name}
                     </span>
                   </motion.div>

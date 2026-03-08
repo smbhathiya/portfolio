@@ -37,8 +37,8 @@ export function AboutSection() {
       ref={containerRef}
     >
       {/* Background decoration */}
-      <div className="absolute top-1/4 left-0 w-[40vw] h-[40vw] bg-primary/[0.02] blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-[30vw] h-[30vw] bg-primary/[0.02] blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-1/4 right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
 
       <div className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -48,8 +48,11 @@ export function AboutSection() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           className="flex flex-col items-center mb-32"
         >
-          <h2 className="font-black text-5xl md:text-8xl tracking-tighter uppercase text-center leading-none">
-            Professional Journey
+          <h2 className="font-bold text-4xl md:text-6xl tracking-widest text-center leading-tight uppercase">
+            PROFESSIONAL{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+              JOURNEY
+            </span>
           </h2>
         </motion.div>
 
@@ -57,11 +60,11 @@ export function AboutSection() {
           {/* Work Experience Section */}
           <div className="mb-40">
             <div className="flex items-center gap-4 mb-16 px-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20 shadow-sm shadow-primary/5">
                 <IconBriefcase className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-3xl font-black uppercase tracking-tighter">
-                Experience
+              <h3 className="text-2xl md:text-3xl font-bold tracking-widest uppercase">
+                EXPERIENCE
               </h3>
             </div>
 
@@ -75,11 +78,11 @@ export function AboutSection() {
           {/* Education Section */}
           <div className="mb-20">
             <div className="flex items-center gap-4 mb-16 px-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20 shadow-sm shadow-primary/5">
                 <IconSchool className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-3xl font-black uppercase tracking-tighter">
-                Education
+              <h3 className="text-2xl md:text-3xl font-bold tracking-widest uppercase">
+                EDUCATION
               </h3>
             </div>
 
@@ -107,34 +110,34 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
         ease: [0.16, 1, 0.3, 1] as any,
       }}
     >
-      <div className="group relative backdrop-blur-3xl border border-black/10 bg-black/[0.02] dark:border-white/[0.08] dark:bg-white/[0.03] p-1 items-center rounded-[3rem] transition-all duration-700 hover:scale-[1.01] hover:bg-primary/[0.03] dark:hover:bg-white/[0.04] shadow-sm dark:shadow-none">
-        <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
+      <div className="group relative glass-card p-[1px] rounded-[3rem] transition-all duration-700 hover:scale-[1.01] shadow-sm dark:shadow-none mb-4">
+        <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/50 backdrop-blur-3xl rounded-[3rem] transition-colors group-hover:bg-background/40">
           {/* Year Tag */}
           <div className="flex-shrink-0 w-full md:w-48">
-            <span className="text-primary text-xs font-black uppercase tracking-[0.4em]">
+            <span className="text-primary text-sm font-semibold tracking-wide">
               {exp.duration}
             </span>
           </div>
 
           {/* Content */}
           <div className="flex-grow space-y-3">
-            <div className="flex flex-wrap items-center gap-4">
-              <h4 className="text-2xl md:text-3xl font-black tracking-tight uppercase group-hover:text-primary transition-colors">
+            <div className="flex flex-wrap items-center gap-3">
+              <h4 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
                 {exp.title}
               </h4>
               {exp.badge && (
-                <Badge className="bg-primary text-primary-foreground text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border-0">
+                <Badge className="bg-primary/10 text-primary text-xs font-semibold tracking-wide px-3 py-1 rounded-full border border-primary/20">
                   {exp.badge}
                 </Badge>
               )}
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground/80 font-bold uppercase tracking-widest text-xs">
-              <span className="text-primary/60">
+            <div className="flex items-center gap-2 text-muted-foreground font-medium text-sm">
+              <span className="text-foreground/80 font-semibold">
                 {exp.company || exp.institution}
               </span>
               {exp.location && <span>• {exp.location}</span>}
             </div>
-            <p className="max-w-2xl text-muted-foreground font-medium leading-relaxed">
+            <p className="max-w-2xl text-muted-foreground/90 font-light leading-relaxed">
               {exp.description}
             </p>
           </div>

@@ -78,14 +78,14 @@ export function NavBar() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className={cn(
-            "pointer-events-auto flex items-center gap-2 group cursor-pointer transition-all duration-500",
+            "pointer-events-auto flex items-center gap-2 group cursor-pointer transition-all duration-500 px-6 py-3 rounded-full border border-transparent",
             isScrolled &&
-              "glass px-6 py-3 rounded-full border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl",
+              "glass border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl",
           )}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-xl font-black tracking-tighter text-foreground uppercase">
-            Bhathiya<span className="text-primary font-black">.</span>
+          <span className="text-base font-black tracking-tighter text-foreground uppercase">
+            Bhathiya<span className="text-primary font-black">.DEV</span>
           </span>
         </motion.div>
 
@@ -132,8 +132,7 @@ export function NavBar() {
           >
             <Button
               className={cn(
-                "rounded-full px-8 bg-foreground text-background font-black uppercase tracking-widest text-[10px] hover:bg-foreground/90 transition-all shadow-xl shadow-foreground/5 border-0",
-                isScrolled ? "h-10 px-6" : "h-12 px-8",
+                "rounded-full bg-foreground text-background font-black uppercase tracking-widest text-[10px] hover:bg-foreground/90 transition-all shadow-xl shadow-foreground/5 border-0 h-10 px-6 lg:h-12 lg:px-8",
               )}
               asChild
             >
@@ -153,10 +152,10 @@ export function NavBar() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className={cn(
-              "flex items-center gap-0.5 p-1 transition-all duration-500",
+              "flex items-center gap-0.5 p-1 transition-all duration-500 rounded-full border border-transparent",
               (isScrolled ||
                 (typeof window !== "undefined" && window.innerWidth < 768)) &&
-                "glass rounded-full border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl",
+                "glass border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl",
             )}
           >
             <ModeToggle
