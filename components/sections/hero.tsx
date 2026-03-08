@@ -155,7 +155,7 @@ export function HeroSection() {
           <div className="lg:col-span-7 order-4 flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start text-center lg:text-left">
             <motion.p
               variants={itemVariants}
-              className="text-muted-foreground text-lg sm:text-xl lg:text-2xl font-light max-w-xl mx-auto lg:mx-0 tracking-wide opacity-90 leading-relaxed"
+              className="text-muted-foreground uppercase text-justify text-lg sm:text-xl lg:text-2xl font-light max-w-xl mx-auto lg:mx-0 tracking-wide opacity-90 leading-relaxed"
             >
               Lead Software Engineer architecting scalable web applications and
               managing robust cloud ecosystems. Currently driving digital
@@ -169,7 +169,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] rounded-full h-14 md:h-16 px-8 md:px-10 text-xs md:text-sm uppercase font-bold tracking-[0.2em] bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl shadow-primary/10 group border-none"
+                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] rounded-full h-14 md:h-16 px-8 md:px-10 text-xs md:text-sm uppercase font-bold tracking-[0.2em]  text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl shadow-primary/10 group border-none"
                 onClick={() => {
                   const el = document.getElementById("contact");
                   if (el)
@@ -183,7 +183,7 @@ export function HeroSection() {
                 <IconArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1.5 transition-transform" />
               </Button>
 
-              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-foreground/[0.02] backdrop-blur-xl">
+              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-primary/[0.02] backdrop-blur-xl">
                 {[
                   {
                     icon: <IconBrandGithub className="w-5 h-5" />,
@@ -207,7 +207,7 @@ export function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition-all duration-300"
+                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-300"
                   >
                     {social.icon}
                   </a>

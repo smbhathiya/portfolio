@@ -112,9 +112,8 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
     >
       <div className="group relative glass-card p-[1px] rounded-[3rem] transition-all duration-700 hover:scale-[1.01] shadow-sm dark:shadow-none mb-4">
         <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/50 backdrop-blur-3xl rounded-[3rem] transition-colors group-hover:bg-background/40">
-          {/* Year Tag */}
           <div className="flex-shrink-0 w-full md:w-48">
-            <span className="text-primary text-sm font-semibold tracking-wide">
+            <span className="text-primary text-sm font-semibold tracking-wide uppercase">
               {exp.duration}
             </span>
           </div>
@@ -122,7 +121,7 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
           {/* Content */}
           <div className="flex-grow space-y-3">
             <div className="flex flex-wrap items-center gap-3">
-              <h4 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+              <h4 className="text-xl md:text-2xl font-bold tracking-tight uppercase group-hover:text-primary transition-colors">
                 {exp.title}
               </h4>
               {exp.badge && (
@@ -132,7 +131,7 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
               )}
             </div>
             <div className="flex items-center gap-2 text-muted-foreground font-medium text-sm">
-              <span className="text-foreground/80 font-semibold">
+              <span className="text-foreground/80 font-semibold uppercase">
                 {exp.company || exp.institution}
               </span>
               {exp.location && <span>• {exp.location}</span>}
