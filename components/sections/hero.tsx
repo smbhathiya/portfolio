@@ -136,10 +136,10 @@ export function HeroSection() {
 
                 <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-8 lg:right-8 z-20 flex flex-col gap-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-background bg-foreground px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground md:text-background bg-background/20 md:bg-foreground backdrop-blur-md md:backdrop-blur-none border border-foreground/10 md:border-transparent px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
                       SOFTWARE ENGINEER
                     </span>
-                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground bg-background/20 md:bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap border border-foreground/10 md:border-transparent">
                       <IconWorld className="w-4 h-4 text-primary flex-shrink-0" />{" "}
                       SRI LANKA
                     </span>
