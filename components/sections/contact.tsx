@@ -89,8 +89,8 @@ export function ContactSection() {
                   {
                     icon: <IconBrandWhatsapp className="h-6 w-6" />,
                     label: "WhatsApp",
-                    value: "+94 72 309 5865",
-                    href: "https://wa.me/94723095865",
+                    value: "+94 75 804 1606",
+                    href: "https://wa.me/94758041606",
                   },
                   {
                     icon: <IconMapPin className="h-6 w-6" />,

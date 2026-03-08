@@ -120,7 +120,7 @@ export function ProjectsSection() {
                   )}
 
                 <div className="px-2 md:px-4 flex flex-col flex-grow">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight uppercase mb-4 leading-tight">
                     {project.title}
                   </h3>
 
@@ -134,7 +134,7 @@ export function ProjectsSection() {
                         href={project.gitUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs font-semibold tracking-wide hover:text-primary transition-colors group/link"
+                        className="flex items-center gap-2 text-xs uppercase font-semibold tracking-wide hover:text-primary transition-colors group/link"
                       >
                         <IconBrandGithub className="h-5 w-5 transition-transform group-hover/link:-translate-y-1" />
                         Source
@@ -145,14 +145,14 @@ export function ProjectsSection() {
                         href={project.previewUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs font-semibold tracking-wide px-6 py-3 bg-foreground text-background rounded-full hover:bg-primary transition-all shadow-lg"
+                        className="flex items-center gap-2 text-xs uppercase font-semibold tracking-wide px-6 py-3 bg-foreground text-background rounded-full hover:bg-primary transition-all shadow-lg"
                       >
                         <IconExternalLink className="h-4 w-4" />
                         Live Demo
                       </a>
                     )}
                     {project.isInternal && (
-                      <span className="text-xs font-semibold tracking-wide opacity-50">
+                      <span className="text-xs font-semibold uppercase tracking-wide opacity-50">
                         Internal System
                       </span>
                     )}
@@ -207,7 +207,7 @@ export function ProjectsSection() {
                     )}
 
                   <div className="px-2 flex flex-col flex-grow">
-                    <h4 className="text-lg font-bold tracking-tight mb-2 transition-colors">
+                    <h4 className="text-lg font-bold tracking-tight uppercase mb-2 transition-colors">
                       {project.title}
                     </h4>
                     <p className="line-clamp-3 text-muted-foreground/90 font-light text-sm leading-relaxed mb-6 flex-grow">
@@ -236,8 +236,8 @@ export function ProjectsSection() {
                         </a>
                       )}
                       {project.isInternal && (
-                        <span className="text-[10px] font-semibold tracking-wider opacity-40 ml-auto">
-                          Internal
+                        <span className="text-[10px] uppercase font-semibold tracking-wider opacity-40 ml-auto">
+                          INTERNAL
                         </span>
                       )}
                     </div>
