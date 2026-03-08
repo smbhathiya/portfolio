@@ -52,21 +52,13 @@ export function HeroSection() {
       ref={containerRef}
       className="min-h-screen pt-24 pb-20 md:pt-32 flex items-center justify-center relative overflow-hidden bg-background selection:bg-primary selection:text-primary-foreground"
     >
-      {/* 2030 Architectural Background Elements */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(128,128,128,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+      {/* Soft, Modern Gradient Background Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-background">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[150px] rounded-full mix-blend-normal opacity-50 dark:opacity-30" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[150px] rounded-full mix-blend-normal opacity-50 dark:opacity-30" />
 
-        <motion.div
-          style={{ y: y1, opacity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center select-none"
-        >
-          <h2 className="text-[20vw] font-black text-foreground/[0.02] tracking-tighter leading-none whitespace-nowrap uppercase italic">
-            BHATHIYA
-          </h2>
-        </motion.div>
-
-        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-foreground/[0.05] to-transparent mr-12 hidden lg:block" />
-        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-foreground/[0.05] to-transparent mb-12 hidden lg:block" />
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-primary)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-primary)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.03] dark:opacity-[0.05]" />
       </div>
 
       <div className="container px-4 md:px-8 max-w-8xl mx-auto relative z-10">
@@ -77,56 +69,47 @@ export function HeroSection() {
           className="relative grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-y-0 items-center justify-items-center lg:justify-items-start"
         >
           {/* MOBILE STATUS HUD (Order 1 on mobile) */}
-          <motion.div
+          {/* <motion.div
             variants={itemVariants}
-            className="flex flex-col items-center lg:items-start gap-2 lg:hidden order-1 w-full"
+            className="flex flex-col items-center lg:items-start gap-3 lg:hidden order-1 w-full mb-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
-                System Active
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+              </span>
+              <span className="text-xs uppercase font-semibold tracking-[0.2em] text-foreground/80">
+                AVAILABLE FOR WORK
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
-              <span className="text-[7px] font-mono opacity-20 tracking-[0.2em] leading-tight text-left">
-                01000010 01001000 01000001 01010100
-                <br />
-                01001000 01001001 01011001 01000001
-              </span>
-            </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* TITLE BLOCK (Order 2 on mobile, Top-Left on desktop) */}
-          <div className="lg:col-span-7 order-2 flex flex-col space-y-6 lg:space-y-8 w-full">
-            <motion.div
+          <div className="lg:col-span-7 order-2 flex flex-col space-y-6 lg:space-y-8 w-full z-10">
+            {/* <motion.div
               variants={itemVariants}
-              className="hidden lg:flex items-center gap-6 mb-4"
+              className="hidden lg:flex items-center mb-6"
             >
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85] animate-pulse shadow-[0_0_10px_#00FF85]" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
-                    System Online
-                  </span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="h-px w-24 bg-gradient-to-r from-primary to-transparent" />
-                  <span className="text-[8px] font-mono opacity-20 tracking-[0.3em]">
-                    01000010 01001000 01000001 01010100 01001000 01001001
-                    01011001 01000001
-                  </span>
-                </div>
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-lg shadow-primary/5 hover:bg-background/80 transition-all cursor-default group">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 group-hover:opacity-100 transition-opacity"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                </span>
+                <span className="text-sm uppercase font-semibold tracking-[0.2em] text-foreground/80">
+                  AVAILABLE FOR NEW OPPORTUNITIES
+                </span>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               variants={itemVariants}
-              className="space-y-3 text-center lg:text-left"
+              className="space-y-4 text-center lg:text-left"
             >
-              <h1 className="text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl 2xl:text-[9rem] font-black tracking-[-0.05em] leading-[0.85] uppercase flex flex-col">
-                <span>Full Stack</span>
-                <span className="text-highlight italic">Engineer</span>
+              <h1 className="text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-[1.1] flex flex-col">
+                <span className="text-primary">BHATHIYA</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 drop-shadow-sm pb-2">
+                  LAKSHAN
+                </span>
               </h1>
             </motion.div>
           </div>
@@ -140,32 +123,30 @@ export function HeroSection() {
               className="relative aspect-square sm:aspect-[4/5] lg:aspect-square"
             >
               <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-foreground/10 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-black/20">
-                <div className="absolute inset-0 grayscale contrast-125 opacity-100 mix-blend-normal transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
+                <div className="absolute inset-0 bg-transparent opacity-100 transition-all duration-1000 group-hover:scale-[1.03]">
                   <Image
                     src="/bhathiya-lakshan-2.png"
                     alt="Bhathiya Lakshan"
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-center transform transition-transform duration-700"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
                 </div>
 
-                <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 z-20 flex flex-col gap-2">
+                <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-8 lg:right-8 z-20 flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-foreground/40">
-                      BL-ARCH-26
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-background bg-foreground px-3 py-1.5 rounded-full shadow-lg">
+                      SOFTWARE ENGINEER
                     </span>
-                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#00FF85]">
-                      Verified
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-foreground bg-background/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                      <IconWorld className="w-4 h-4 text-primary" /> SRI LANKA
                     </span>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-black uppercase tracking-tighter leading-none border-t border-foreground/10 pt-4">
-                    Bhathiya Lakshan
+                  <h3 className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2">
+                    BHATHIYA LAKSHAN
                   </h3>
                 </div>
-
-                <div className="absolute top-6 left-6 lg:top-8 lg:left-8 w-6 h-6 lg:w-8 lg:h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl" />
               </div>
             </motion.div>
           </div>
@@ -174,19 +155,21 @@ export function HeroSection() {
           <div className="lg:col-span-7 order-4 flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start text-center lg:text-left">
             <motion.p
               variants={itemVariants}
-              className="text-muted-foreground text-lg sm:text-xl lg:text-2xl font-medium max-w-xl mx-auto lg:mx-0 uppercase tracking-tighter opacity-80 leading-tight"
+              className="text-muted-foreground uppercase text-justify text-lg sm:text-xl lg:text-2xl font-light max-w-xl mx-auto lg:mx-0 tracking-wide opacity-90 leading-relaxed"
             >
-              Engineering high-performance software and architecting resilient
-              digital ecosystems for the next generation of global innovation.
+              Lead Software Engineer architecting scalable web applications and
+              managing robust cloud ecosystems. Currently driving digital
+              innovation at IMOS and building high-performance enterprise
+              solutions at Digi Pro Solutions.
             </motion.p>
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center flex-wrap justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center flex-wrap justify-center lg:justify-start pt-4"
             >
               <Button
                 size="lg"
-                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[280px] rounded-full h-14 md:h-16 px-8 md:px-12 text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl group border-none"
+                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] rounded-full h-14 md:h-16 px-8 md:px-10 text-xs md:text-sm uppercase font-bold tracking-[0.2em]  text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl shadow-primary/10 group border-none"
                 onClick={() => {
                   const el = document.getElementById("contact");
                   if (el)
@@ -196,11 +179,11 @@ export function HeroSection() {
                     });
                 }}
               >
-                Initiate Project{" "}
-                <IconArrowRight className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                LET&apos;S TALK
+                <IconArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1.5 transition-transform" />
               </Button>
 
-              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-foreground/[0.02] backdrop-blur-xl">
+              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-primary/[0.02] backdrop-blur-xl">
                 {[
                   {
                     icon: <IconBrandGithub className="w-5 h-5" />,
@@ -224,7 +207,7 @@ export function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition-all duration-300"
+                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-300"
                   >
                     {social.icon}
                   </a>
@@ -237,19 +220,16 @@ export function HeroSection() {
 
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-4"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-3 z-20"
       >
-        <div className="flex items-center gap-3">
-          <span className="text-[8px] font-black uppercase tracking-[0.5em] opacity-20">
-            System Scroll
-          </span>
-          <div className="w-8 h-px bg-foreground/10" />
-        </div>
-        <div className="w-5 h-8 border border-foreground/10 rounded-full flex justify-center p-1 backdrop-blur-sm">
+        <span className="text-xs font-medium tracking-widest text-muted-foreground/60 uppercase">
+          Scroll
+        </span>
+        <div className="w-6 h-10 border-2 border-primary/20 rounded-full flex justify-center p-1.5 bg-background shadow-lg shadow-background/50">
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-1 bg-primary rounded-full"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_var(--color-primary)] opacity-80"
           />
         </div>
       </motion.div>

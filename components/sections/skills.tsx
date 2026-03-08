@@ -65,47 +65,17 @@ export function SkillsSection() {
     { name: "Figma", icon: <IconBrandFigma className="h-6 w-6" /> },
   ];
 
-  const MarqueeRow = ({
-    skills,
-    direction = "normal",
-  }: {
-    skills: any[];
-    direction?: "normal" | "reverse";
-  }) => {
-    return (
-      <div className="relative w-full overflow-hidden py-4">
-        <div
-          className={`flex items-center gap-6 px-4 whitespace-nowrap ${
-            direction === "normal"
-              ? "animate-marquee-infinite"
-              : "animate-marquee-infinite-reverse"
-          }`}
-        >
-          {/* Double the items for seamless loop */}
-          {[...skills, ...skills].map((skill, index) => (
-            <div
-              key={`${skill.name}-${index}`}
-              className="flex items-center gap-4 px-8 py-5 rounded-[2rem] glass-card border border-foreground/20 bg-foreground/[0.03] shadow-sm dark:shadow-none transition-all duration-300 hover:scale-105"
-            >
-              <span className="text-foreground/70">{skill.icon}</span>
-              <span className="text-sm font-black tracking-[0.2em] uppercase">
-                {skill.name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <section
       id="skills"
       className="py-24 md:py-32 relative overflow-hidden bg-background"
     >
-      {/* Background large text "STACK" */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[18vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-0">
+      {/* Background large text & Glows */}
+      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30">
+        <h2 className="text-[18vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-0">
           TEC STACK
         </h2>
       </div>
@@ -118,29 +88,16 @@ export function SkillsSection() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           className="flex flex-col items-center mb-32"
         >
-          {/* <Badge className="mb-6 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em]">
-            My Capabilities
-          </Badge> */}
-          <h2 className="font-black text-5xl md:text-8xl tracking-tighter uppercase text-center leading-none">
-            Technical Stack
+          <h2 className="font-bold text-4xl md:text-6xl tracking-widest text-center leading-tight uppercase">
+            TECHNICAL{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+              STACK
+            </span>
           </h2>
         </motion.div>
 
-        {/* Desktop View: Infinite scrolling marquee rows */}
-        <div className="hidden lg:block relative">
-          {/* Gradient masks for smooth fade */}
-          <div className="absolute left-0 top-0 z-20 h-full w-40 bg-gradient-to-r from-background via-background/80 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 z-20 h-full w-40 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none" />
-
-          <div className="space-y-10">
-            <MarqueeRow skills={row1} direction="normal" />
-            <MarqueeRow skills={row2} direction="reverse" />
-            <MarqueeRow skills={row3} direction="normal" />
-          </div>
-        </div>
-
-        {/* Mobile View: Organized Grid */}
-        <div className="lg:hidden space-y-12">
+        {/* Unified Responsive Grid View */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 max-w-7xl mx-auto">
           {[
             { title: "Frontend & Core", skills: row1 },
             { title: "Backend & Systems", skills: row2 },
@@ -154,23 +111,24 @@ export function SkillsSection() {
               transition={{ delay: catIndex * 0.1 }}
               className="space-y-6"
             >
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/50 ml-2">
+              <h3 className="text-lg font-bold tracking-widest uppercase mb-6 flex items-center gap-4">
+                <span className="text-primary/50 text-xs">0{catIndex + 1}</span>
                 {category.title}
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {category.skills.map((skill: any, i: number) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3 p-4 rounded-2xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none"
+                    transition={{ delay: i * 0.05 + catIndex * 0.1 }}
+                    className="flex flex-col items-center justify-center p-6 text-center rounded-[2rem] glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-all duration-500 hover:bg-foreground/[0.04] hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 group"
                   >
-                    <span className="text-foreground/60 scale-90">
+                    <div className="text-foreground/50 mb-3 group-hover:text-primary transition-colors duration-500 group-hover:scale-110 transform">
                       {skill.icon}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest truncate">
+                    </div>
+                    <span className="text-xs font-semibold tracking-wide uppercase">
                       {skill.name}
                     </span>
                   </motion.div>
