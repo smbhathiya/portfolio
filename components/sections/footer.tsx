@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ScrollToTopButton } from "../ui/scroll-to-top-button";
 import { WhatsAppMessageButton } from "../ui/whatsapp-message-button";
 import { motion } from "framer-motion";
+import { Card } from "../ui/card";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +14,7 @@ export function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-foreground/[0.02] blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10">
+      <Card className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10 bg-transparent">
         <div className="glass-card rounded-[2.5rem] p-8 md:p-20 border border-foreground/5 bg-foreground/[0.01] mb-12 md:mb-20">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
             <motion.div
@@ -136,7 +137,7 @@ export function Footer() {
             </a>
           </div>
         </div>
-      </div>
+      </Card>
 
       <ScrollToTopButton />
       <WhatsAppMessageButton />

@@ -225,7 +225,7 @@ export function ContactSection() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full h-20 rounded-[1.5rem] bg-foreground text-background font-black uppercase tracking-[0.4em] text-xs shadow-2xl shadow-foreground/10 hover:opacity-90 active:scale-[0.98] transition-all"
+                  className="w-full h-20 rounded-[1.5rem]  uppercase tracking-[0.4em] text-xs shadow-2xl cursor-pointer font-bold active:scale-[0.98] transition-all"
                 >
                   <span className="flex items-center gap-4">
                     Send Message <IconSend className="h-5 w-5" />
