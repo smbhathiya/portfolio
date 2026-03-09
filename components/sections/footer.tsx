@@ -23,7 +23,7 @@ export function Footer() {
               className="space-y-6 md:space-y-8 max-w-sm"
             >
               <h3 className="text-3xl font-black tracking-tighter uppercase">
-                Bhathiya<span className="text-primary">.</span>
+                Bhathiya<span className="text-primary">.DEV</span>
               </h3>
               <p className="text-muted-foreground text-sm md:text-lg font-medium leading-relaxed uppercase tracking-tight opacity-60">
                 Software Engineer building modern web applications with clean
@@ -73,7 +73,7 @@ export function Footer() {
                     className="text-xs text-muted-foreground hover:text-foreground transition-all duration-300 font-black uppercase tracking-[0.2em] w-fit group"
                   >
                     <span className="relative">
-                      Direct Email
+                      Email
                       <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
                     </span>
                   </a>
