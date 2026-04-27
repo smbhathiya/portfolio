@@ -15,7 +15,7 @@ export function Footer() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-foreground/[0.02] blur-[100px] rounded-full pointer-events-none" />
 
       <Card className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10 bg-transparent">
-        <div className="glass-card rounded-[2.5rem] p-8 md:p-20 border border-foreground/5 bg-foreground/[0.01] mb-12 md:mb-20">
+        <div className=" rounded-2xl p-8 md:p-20 border border-border/50 mb-12 md:mb-20">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

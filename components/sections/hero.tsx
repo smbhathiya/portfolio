@@ -156,7 +156,7 @@ export function HeroSection() {
           <div className="lg:col-span-7 order-4 flex flex-col space-y-8 lg:space-y-12 items-center lg:items-start text-center lg:text-left">
             <motion.div
               variants={itemVariants}
-              className="p-6 md:p-8 lg:p-0 rounded-[2rem] lg:rounded-none border border-foreground/10 lg:border-transparent bg-foreground/[0.02] lg:bg-transparent shadow-sm lg:shadow-none dark:shadow-none w-full max-w-xl mx-auto lg:mx-0 backdrop-blur-3xl lg:backdrop-blur-none"
+              className="p-6 md:p-8 lg:p-0 rounded-2xl lg:rounded-none border border-foreground/10 lg:border-transparent bg-foreground/[0.02] lg:bg-transparent shadow-sm lg:shadow-none dark:shadow-none w-full max-w-xl mx-auto lg:mx-0 backdrop-blur-3xl lg:backdrop-blur-none"
             >
               <p className="text-muted-foreground uppercase text-justify lg:text-left text-xs md:text-sm lg:text-lg font-light tracking-wide opacity-90 leading-relaxed">
                 Lead Software Engineer architecting scalable web applications
@@ -172,7 +172,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] rounded-full h-14 md:h-16 px-8 md:px-10 text-xs md:text-sm uppercase font-bold tracking-[0.2em]  text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl shadow-primary/10 group border-none"
+                className="w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] h-14 md:h-16 px-8 md:px-10 text-xs md:text-sm uppercase font-bold tracking-[0.2em]  text-background hover:bg-primary hover:text-primary-foreground transition-all duration-500 shadow-xl shadow-primary/10 group border-none"
                 onClick={() => {
                   const el = document.getElementById("contact");
                   if (el)
@@ -186,7 +186,7 @@ export function HeroSection() {
                 <IconArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1.5 transition-transform" />
               </Button>
 
-              <div className="flex items-center gap-1.5 p-1.5 rounded-full border border-foreground/5 bg-primary/[0.02] backdrop-blur-xl">
+              <div className="flex items-center gap-1.5 w-[90vw] sm:w-auto min-w-[200px] lg:min-w-[240px] justify-center lg:justify-start p-1.5 h-14 md:h-16 px-8 md:px-10 rounded-xl border border-foreground/5 bg-primary/[0.02] backdrop-blur-xl">
                 {[
                   {
                     icon: <IconBrandGithub className="w-5 h-5" />,
