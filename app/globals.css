@@ -153,7 +153,7 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-3xl bg-white/[0.03] border border-white/[0.08];
+    @apply backdrop-blur-3xl bg-background/40 border border-foreground/10 shadow-xl;
     background-image: linear-gradient(
       to bottom right,
       rgba(255, 255, 255, 0.05),

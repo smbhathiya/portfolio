@@ -110,8 +110,8 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
         ease: [0.16, 1, 0.3, 1] as any,
       }}
     >
-      <div className="group relative glass-card p-[1px] rounded-[3rem] transition-all duration-700 hover:scale-[1.01] shadow-sm dark:shadow-none mb-4">
-        <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/50 backdrop-blur-3xl rounded-[3rem] transition-colors group-hover:bg-background/40">
+      <div className="group relative glass-card rounded-2xl border border-primary/20 hover:border-primary/50 transition-all duration-700 hover:scale-[1.01] shadow-2xl shadow-primary/20 dark:shadow-primary/5 mb-6 overflow-hidden">
+        <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/20 backdrop-blur-2xl transition-colors group-hover:bg-background/30">
           <div className="flex-shrink-0 w-full md:w-48">
             <span className="text-primary text-sm font-semibold tracking-wide uppercase">
               {exp.duration}
@@ -136,17 +136,17 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
               </span>
               {exp.location && <span>• {exp.location}</span>}
             </div>
-            <p className="max-w-2xl text-muted-foreground/90 font-light leading-relaxed">
+            <p className="max-w-2xl text-muted-foreground font-light leading-relaxed">
               {exp.description}
             </p>
           </div>
 
-          {/* Icon/Arrow */}
-          <div className="flex-shrink-0 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-4 group-hover:translate-x-0">
+          {/* Icon */}
+          {/* <div className="flex-shrink-0 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-4 group-hover:translate-x-0">
             <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
               <IconBriefcase className="w-6 h-6 rotate-[-45deg] group-hover:rotate-0 transition-transform duration-500" />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.div>
