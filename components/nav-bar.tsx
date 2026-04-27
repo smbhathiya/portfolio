@@ -132,7 +132,7 @@ export function NavBar() {
           >
             <Button
               className={cn(
-                " text-background font-black uppercase tracking-widest text-[10px]  transition-all shadow-xl shadow-foreground/5 border-0 h-10 px-6 lg:h-12 lg:px-8",
+                " text-background font-black uppercase tracking-widest text-[10px]  transition-all shadow-none border-0 h-10 px-6 lg:h-10 lg:px-8",
               )}
               asChild
             >
