@@ -94,14 +94,14 @@ export function NavBar() {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="hidden md:flex items-center pointer-events-auto glass px-2 py-1.5 rounded-full border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl"
+          className="hidden md:flex items-center pointer-events-auto glass px-2 py-1.5 rounded-2xl border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl"
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "relative px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-full",
+                "relative px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-2xl",
                 activeSection === item.href
                   ? "text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground",
@@ -111,7 +111,7 @@ export function NavBar() {
                 {activeSection === item.href && (
                   <motion.div
                     layoutId="active-pill"
-                    className="absolute inset-0 bg-primary rounded-full -z-10 shadow-lg shadow-primary/20"
+                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/20"
                     transition={{ type: "spring", duration: 0.6 }}
                   />
                 )}
@@ -132,12 +132,12 @@ export function NavBar() {
           >
             <Button
               className={cn(
-                " text-background font-black uppercase tracking-widest text-[10px]  transition-all shadow-xl shadow-foreground/5 border-0 h-10 px-6 lg:h-12 lg:px-8",
+                " text-background font-black uppercase tracking-widest text-[10px]  transition-all shadow-none border-0 h-10 px-6 lg:h-10 lg:px-8",
               )}
               asChild
             >
               <a
-                href="https://wa.me/94723095865"
+                href="https://wa.me/94758041606"
                 target="_blank"
                 rel="noopener noreferrer"
               >

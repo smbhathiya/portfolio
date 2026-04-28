@@ -173,7 +173,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           >
-            <div className="p-8 md:p-14 glass-card rounded-[3rem] border border-foreground/10 bg-foreground/[0.01] shadow-2xl shadow-foreground/5 relative overflow-hidden">
+            <div className="p-8 md:p-14 glass-card rounded-3xl border border-foreground/10 bg-foreground/[0.01] shadow-2xl shadow-foreground/5 relative overflow-hidden">
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
@@ -184,7 +184,7 @@ export function ContactSection() {
                       required
                       name="name"
                       placeholder="e.g. John Doe"
-                      className="w-full h-16 px-8 rounded-[1.2rem] bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
+                      className="w-full h-16 px-8 rounded-xl bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
                     />
                   </div>
                   <div className="space-y-3">
@@ -196,7 +196,7 @@ export function ContactSection() {
                       name="email"
                       type="email"
                       placeholder="e.g. john@example.com"
-                      className="w-full h-16 px-8 rounded-[1.2rem] bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
+                      className="w-full h-16 px-8 rounded-xl bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
                     />
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export function ContactSection() {
                     required
                     name="subject"
                     placeholder="Project Inquiry"
-                    className="w-full h-16 px-8 rounded-[1.2rem] bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
+                    className="w-full h-16 px-8 rounded-xl bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider"
                   />
                 </div>
                 <div className="space-y-3">
@@ -220,12 +220,12 @@ export function ContactSection() {
                     name="message"
                     placeholder="Tell me about your project..."
                     rows={5}
-                    className="w-full p-8 rounded-[1.5rem] bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider resize-none"
+                    className="w-full p-8 rounded-xl bg-foreground/[0.03] border border-foreground/5 focus:border-foreground/20 outline-none transition-all placeholder:text-muted-foreground/20 font-black uppercase text-[11px] tracking-wider resize-none"
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full h-20 rounded-[1.5rem] bg-foreground text-background font-black uppercase tracking-[0.4em] text-xs shadow-2xl shadow-foreground/10 hover:opacity-90 active:scale-[0.98] transition-all"
+                  className="w-full h-20 rounded-xl  uppercase tracking-[0.4em] text-xs shadow-2xl cursor-pointer font-bold active:scale-[0.98] transition-all"
                 >
                   <span className="flex items-center gap-4">
                     Send Message <IconSend className="h-5 w-5" />

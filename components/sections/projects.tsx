@@ -103,12 +103,12 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-[2.5rem] glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-all duration-700 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
+              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-all duration-700 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
                 {/* Image Section */}
                 {!project.isInternal &&
                   project.images &&
                   project.images.length > 0 && (
-                    <div className="w-full aspect-[16/10] rounded-[1.8rem] overflow-hidden mb-8 border border-foreground/5 relative">
+                    <div className="w-full aspect-[16/10] rounded-xl overflow-hidden mb-8 border border-foreground/5 relative">
                       <Image
                         src={project.images[0]}
                         alt={project.title}
@@ -192,11 +192,11 @@ export function ProjectsSection() {
                 variants={itemVariants}
                 className="h-full"
               >
-                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-[2rem] border border-foreground/5 bg-foreground/[0.01] hover:border-foreground/20 p-4 shadow-sm dark:shadow-none hover:scale-[1.02]">
+                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-2xl border border-foreground/5 bg-foreground/[0.01] hover:border-foreground/20 p-4 shadow-sm dark:shadow-none hover:scale-[1.02]">
                   {!project.isInternal &&
                     project.images &&
                     project.images.length > 0 && (
-                      <div className="aspect-[16/10] relative overflow-hidden rounded-[1.2rem] mb-6">
+                      <div className="aspect-[16/10] relative overflow-hidden rounded-xl mb-6">
                         <Image
                           src={project.images[0]}
                           alt={project.title}
