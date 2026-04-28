@@ -192,11 +192,11 @@ export function ProjectsSection() {
                 variants={itemVariants}
                 className="h-full"
               >
-                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-[2rem] border border-foreground/5 bg-foreground/[0.01] hover:border-foreground/20 p-4 shadow-sm dark:shadow-none hover:scale-[1.02]">
+                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-2xl border border-foreground/5 bg-foreground/[0.01] hover:border-foreground/20 p-4 shadow-sm dark:shadow-none hover:scale-[1.02]">
                   {!project.isInternal &&
                     project.images &&
                     project.images.length > 0 && (
-                      <div className="aspect-[16/10] relative overflow-hidden rounded-[1.2rem] mb-6">
+                      <div className="aspect-[16/10] relative overflow-hidden rounded-xl mb-6">
                         <Image
                           src={project.images[0]}
                           alt={project.title}
