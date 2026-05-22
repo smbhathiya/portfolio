@@ -81,20 +81,23 @@ export function HeroSection() {
 
           {/* TITLE BLOCK (Order 2 on mobile, Top-Left on desktop) */}
           <div className="lg:col-span-7 order-2 flex flex-col space-y-6 lg:space-y-8 w-full z-10">
-            {/* <motion.div
+            <motion.div
               variants={itemVariants}
               className="hidden lg:flex items-center mb-6"
             >
-              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-lg shadow-primary/5 hover:bg-background/80 transition-all cursor-default group">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-lg shadow-primary/5 hover:bg-background/80 transition-all cursor-default group"
+              >
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
                 </span>
                 <span className="text-sm uppercase font-semibold tracking-[0.2em] text-foreground/80">
                   AVAILABLE FOR NEW OPPORTUNITIES
                 </span>
-              </div>
-            </motion.div> */}
+              </motion.div>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
@@ -206,16 +209,18 @@ export function HeroSection() {
                     label: "Facebook profile",
                   },
                 ].map((social, i) => (
-                  <a
+                  <motion.a
                     key={i}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-300"
+                    whileHover={{ scale: 1.15, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-colors duration-300"
                   >
                     {social.icon}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>

@@ -101,16 +101,20 @@ export function AboutSection() {
 function ExperienceItem({ exp, index }: { exp: any; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, x: -24 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{
-        duration: 0.8,
+        duration: 0.7,
         delay: index * 0.1,
         ease: [0.16, 1, 0.3, 1] as any,
       }}
     >
-      <div className="group relative glass-card rounded-2xl border-t border-r border-b border-primary/15 border-l-[3px] border-l-primary/50 hover:border-primary/30 hover:border-l-primary/80 transition-all duration-700 hover:scale-[1.01] shadow-lg hover:shadow-2xl hover:shadow-primary/15 dark:shadow-primary/5 mb-6 overflow-hidden">
+      <motion.div
+        whileHover={{ x: 4 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="group relative glass-card rounded-2xl border-t border-r border-b border-primary/15 border-l-[3px] border-l-primary/50 hover:border-primary/30 hover:border-l-primary/80 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-primary/15 mb-6 overflow-hidden"
+      >
         <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/20 backdrop-blur-2xl transition-colors group-hover:bg-background/30">
           <div className="flex-shrink-0 w-full md:w-48">
             <span className="text-primary text-sm font-semibold tracking-wide uppercase">
@@ -141,14 +145,8 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
             </p>
           </div>
 
-          {/* Icon */}
-          {/* <div className="flex-shrink-0 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-x-4 group-hover:translate-x-0">
-            <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-              <IconBriefcase className="w-6 h-6 rotate-[-45deg] group-hover:rotate-0 transition-transform duration-500" />
-            </div>
-          </div> */}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
