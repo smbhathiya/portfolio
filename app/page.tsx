@@ -1,4 +1,6 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Bhathiya Lakshan | Full Stack Engineer & Infrastructure Specialist",
   description:
     "Professional portfolio of Bhathiya Lakshan - Full Stack Engineer specializing in scalable web architectures, infrastructure management, and technical leadership at IMOS.",
@@ -20,12 +22,10 @@ export const metadata = {
     "Bhathiya",
     "Bhathiya Lakshan",
     "Bhathiya Lakshan Portfolio",
-    "Bhathiya",
     "IMOS",
     "Ishara Madhushan Online School",
     "ishara madhushan",
     "IMOS Lead Engineer",
-    "IMOS",
     "LMS Developer",
     "Online Academy Platform Architect",
     "Educational Technology Specialist",
@@ -36,7 +36,7 @@ export const metadata = {
     "Online Education Platform Specialist",
     "Teacher Portal Development",
     "who is bhathiya lakshan",
-    "what is bhathiya lakshan do",
+    "what does bhathiya lakshan do",
     "bhathiya lakshan software engineer",
     "bhathiya lakshan full stack developer",
     "bhathiya lakshan sri lanka",
@@ -55,7 +55,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "Bhathiya Lakshan - Full Stack Developer and Software Engineer Portfolio",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -63,17 +63,6 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://bhathiya.dev",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 

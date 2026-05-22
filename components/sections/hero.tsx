@@ -144,9 +144,9 @@ export function HeroSection() {
                       SRI LANKA
                     </span>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2">
+                  <p className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2" aria-hidden="true">
                     BHATHIYA LAKSHAN
-                  </h3>
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -191,18 +191,22 @@ export function HeroSection() {
                   {
                     icon: <IconBrandGithub className="w-5 h-5" />,
                     href: "https://github.com/smbhathiya",
+                    label: "GitHub profile",
                   },
                   {
                     icon: <IconBrandLinkedin className="w-5 h-5" />,
                     href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                    label: "LinkedIn profile",
                   },
                   {
                     icon: <IconBrandTwitter className="w-5 h-5" />,
                     href: "https://x.com/smbhathiya",
+                    label: "X (Twitter) profile",
                   },
                   {
                     icon: <IconBrandFacebook className="w-5 h-5" />,
                     href: "https://www.facebook.com/smbhathiya/",
+                    label: "Facebook profile",
                   },
                 ].map((social, i) => (
                   <a
@@ -210,6 +214,7 @@ export function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.label}
                     className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-300"
                   >
                     {social.icon}

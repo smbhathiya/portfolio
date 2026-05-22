@@ -41,10 +41,10 @@ export function ContactSection() {
       <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
 
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[16vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-1">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
+        <span className="text-[16vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-1">
           CONNECT
-        </h2>
+        </span>
       </div>
 
       <div className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10">
@@ -133,18 +133,22 @@ export function ContactSection() {
                 {
                   icon: <IconBrandLinkedin className="h-6 w-6" />,
                   href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                  label: "LinkedIn profile",
                 },
                 {
                   icon: <IconBrandGithub className="h-6 w-6" />,
                   href: "https://github.com/smbhathiya",
+                  label: "GitHub profile",
                 },
                 {
                   icon: <IconBrandTwitter className="h-6 w-6" />,
                   href: "https://x.com/smbhathiya",
+                  label: "X (Twitter) profile",
                 },
                 {
                   icon: <IconBrandFacebook className="h-6 w-6" />,
                   href: "https://www.facebook.com/smbhathiya/",
+                  label: "Facebook profile",
                 },
               ].map((social, i) => (
                 <Button
@@ -158,6 +162,7 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.label}
                   >
                     {social.icon}
                   </a>
@@ -177,10 +182,11 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                    <label htmlFor="contact-name" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                       Full Name
                     </label>
                     <input
+                      id="contact-name"
                       required
                       name="name"
                       placeholder="e.g. John Doe"
@@ -188,10 +194,11 @@ export function ContactSection() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                    <label htmlFor="contact-email" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                       Email Address
                     </label>
                     <input
+                      id="contact-email"
                       required
                       name="email"
                       type="email"
@@ -201,10 +208,11 @@ export function ContactSection() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                  <label htmlFor="contact-subject" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                     Subject
                   </label>
                   <input
+                    id="contact-subject"
                     required
                     name="subject"
                     placeholder="Project Inquiry"
@@ -212,10 +220,11 @@ export function ContactSection() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                  <label htmlFor="contact-message" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     name="message"
                     placeholder="Tell me about your project..."

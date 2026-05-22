@@ -49,10 +49,10 @@ export function ProjectsSection() {
       <div className="absolute top-[30%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
       <div className="absolute top-[70%] right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
 
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30">
-        <h2 className="text-[16vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-80">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30" aria-hidden="true">
+        <span className="text-[16vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-80">
           MY WORKS
-        </h2>
+        </span>
       </div>
 
       <div className="container px-4 md:px-6 max-w-8xl mx-auto relative z-10">
