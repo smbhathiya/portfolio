@@ -1,40 +1,15 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { useRef } from "react";
-import {
-  IconSchool,
-  IconBriefcase,
-  IconBuildingSkyscraper,
-} from "@tabler/icons-react";
+import { motion } from "framer-motion";
+import { IconSchool, IconBriefcase } from "@tabler/icons-react";
 import { workExperience, education } from "@/data/aboutData";
 
 export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 80%", "end 20%"],
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
     <section
       className="py-24 md:py-48 relative overflow-hidden bg-background"
       id="about"
-      ref={containerRef}
     >
       {/* Background decoration */}
       <div className="absolute top-1/4 left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
@@ -144,7 +119,6 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
               {exp.description}
             </p>
           </div>
-
         </div>
       </motion.div>
     </motion.div>
