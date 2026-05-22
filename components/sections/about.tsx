@@ -110,7 +110,7 @@ function ExperienceItem({ exp, index }: { exp: any; index: number }) {
         ease: [0.16, 1, 0.3, 1] as any,
       }}
     >
-      <div className="group relative glass-card rounded-2xl border border-primary/20 hover:border-primary/50 transition-all duration-700 hover:scale-[1.01] shadow-2xl shadow-primary/20 dark:shadow-primary/5 mb-6 overflow-hidden">
+      <div className="group relative glass-card rounded-2xl border-t border-r border-b border-primary/15 border-l-[3px] border-l-primary/50 hover:border-primary/30 hover:border-l-primary/80 transition-all duration-700 hover:scale-[1.01] shadow-lg hover:shadow-2xl hover:shadow-primary/15 dark:shadow-primary/5 mb-6 overflow-hidden">
         <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center bg-background/20 backdrop-blur-2xl transition-colors group-hover:bg-background/30">
           <div className="flex-shrink-0 w-full md:w-48">
             <span className="text-primary text-sm font-semibold tracking-wide uppercase">

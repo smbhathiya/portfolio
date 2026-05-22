@@ -94,31 +94,35 @@ export function NavBar() {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="hidden md:flex items-center pointer-events-auto glass px-2 py-1.5 rounded-2xl border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl"
+          className="hidden md:flex items-center pointer-events-auto glass px-2 py-1.5 rounded-2xl border-white/5 bg-white/[0.03] backdrop-blur-2xl shadow-2xl relative overflow-hidden"
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "relative px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-2xl",
-                activeSection === item.href
-                  ? "text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              <AnimatePresence>
-                {activeSection === item.href && (
-                  <motion.div
-                    layoutId="active-pill"
-                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/20"
-                    transition={{ type: "spring", duration: 0.6 }}
-                  />
+          {/* Top accent line */}
+          <div className="absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent pointer-events-none" />
+          <nav aria-label="Main navigation" className="flex items-center">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-2xl",
+                  activeSection === item.href
+                    ? "text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
-              </AnimatePresence>
-              {item.label}
-            </Link>
-          ))}
+              >
+                <AnimatePresence>
+                  {activeSection === item.href && (
+                    <motion.div
+                      layoutId="active-pill"
+                      className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/40"
+                      transition={{ type: "spring", duration: 0.6 }}
+                    />
+                  )}
+                </AnimatePresence>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </motion.div>
 
         {/* Right Actions - Glass Protected */}
@@ -208,7 +212,7 @@ export function NavBar() {
               className="absolute inset-0 bg-background/90 backdrop-blur-2xl"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <nav className="relative z-10 container flex flex-col items-center gap-6 p-8">
+            <nav aria-label="Mobile navigation" className="relative z-10 container flex flex-col items-center gap-3 p-8">
               {navItems.map((item, i) => (
                 <motion.a
                   key={item.href}
@@ -218,10 +222,10 @@ export function NavBar() {
                   transition={{ delay: i * 0.1 }}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
-                    "text-3xl font-black uppercase tracking-tighter transition-colors",
+                    "text-3xl font-black uppercase tracking-tighter transition-all duration-300 px-8 py-3 rounded-2xl w-full text-center",
                     activeSection === item.href
-                      ? "text-primary"
-                      : "text-muted-foreground",
+                      ? "text-primary bg-primary/10 border border-primary/20"
+                      : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
                   )}
                 >
                   {item.label}

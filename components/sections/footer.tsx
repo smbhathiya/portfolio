@@ -15,7 +15,9 @@ export function Footer() {
       <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-foreground/[0.02] blur-[100px] rounded-full pointer-events-none" />
 
       <Card className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10 bg-transparent">
-        <div className=" rounded-2xl p-8 md:p-20 border border-border/50 mb-12 md:mb-20">
+        <div className="glass-card rounded-2xl p-8 md:p-20 border border-foreground/10 mb-12 md:mb-20 relative overflow-hidden">
+          {/* Top accent line */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent pointer-events-none" />
           <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -23,7 +25,7 @@ export function Footer() {
               viewport={{ once: true }}
               className="space-y-6 md:space-y-8 max-w-sm"
             >
-              <h3 className="text-3xl font-black tracking-tighter uppercase">
+              <h3 className="text-3xl font-black tracking-tighter uppercase [text-shadow:0_0_30px_color-mix(in_oklch,var(--color-primary)_20%,transparent)]">
                 Bhathiya<span className="text-primary">.DEV</span>
               </h3>
               <p className="text-muted-foreground text-sm md:text-lg font-medium leading-relaxed uppercase tracking-tight opacity-60">
@@ -98,7 +100,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-4 opacity-30">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-4 opacity-50">
           <p className="text-[9px] font-black uppercase tracking-[0.6em] text-center md:text-left">
             © {currentYear} Bhathiya Lakshan
           </p>

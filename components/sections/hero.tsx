@@ -4,23 +4,18 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 import {
   IconBrandTwitter,
   IconBrandLinkedin,
   IconBrandGithub,
   IconBrandFacebook,
   IconArrowRight,
-  IconCircleFilled,
   IconWorld,
-  IconClock,
-  IconSearch,
 } from "@tabler/icons-react";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   const containerVariants = {
@@ -122,7 +117,9 @@ export function HeroSection() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
               className="relative aspect-square sm:aspect-[4/5] lg:aspect-square"
             >
-              <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-foreground/10 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-black/20">
+              {/* Primary color glow orb behind the image */}
+              <div className="absolute inset-[8%] bg-primary/30 blur-[70px] rounded-full pointer-events-none z-0" />
+              <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-primary/20 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-primary/15">
                 <div className="absolute inset-0 bg-transparent opacity-100 transition-all duration-1000 group-hover:scale-[1.03]">
                   <Image
                     src="/bhathiya-lakshan-2.png"

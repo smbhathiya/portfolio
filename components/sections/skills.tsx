@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import {
   IconBrandReact,
   IconBrandNextjs,
@@ -26,7 +25,6 @@ import {
   IconBrandFirebase,
   IconBrandStripe,
 } from "@tabler/icons-react";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 
 export function SkillsSection() {
@@ -123,7 +121,7 @@ export function SkillsSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 + catIndex * 0.1 }}
-                    className="flex flex-col items-center justify-center p-6 text-center rounded-2xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-all duration-500 hover:bg-foreground/[0.04] hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 group"
+                    className="flex flex-col items-center justify-center p-6 text-center rounded-2xl glass-card border border-foreground/10 transition-all duration-500 hover:bg-foreground/[0.04] hover:-translate-y-2 hover:border-primary/30 hover:shadow-[0_8px_32px_-8px] hover:shadow-primary/25 group"
                   >
                     <div className="text-foreground/50 mb-3 group-hover:text-primary transition-colors duration-500 group-hover:scale-110 transform">
                       {skill.icon}

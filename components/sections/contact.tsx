@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +14,7 @@ import {
 } from "@tabler/icons-react";
 
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
@@ -112,7 +110,7 @@ export function ContactSection() {
                     }}
                     className="flex items-center gap-6 group"
                   >
-                    <div className="w-14 h-14 rounded-[1.2rem] glass-card border border-foreground/10 bg-foreground/[0.02] flex items-center justify-center text-foreground/60 group-hover:text-foreground group-hover:border-foreground/30 transition-all duration-500 shadow-sm dark:shadow-none">
+                    <div className="w-14 h-14 rounded-[1.2rem] glass-card border border-primary/15 bg-primary/5 flex items-center justify-center text-primary/60 group-hover:text-primary group-hover:bg-primary/15 group-hover:border-primary/40 group-hover:shadow-[0_0_20px_-4px] group-hover:shadow-primary/30 transition-all duration-500">
                       {item.icon}
                     </div>
                     <div>
@@ -178,7 +176,9 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           >
-            <div className="p-8 md:p-14 glass-card rounded-3xl border border-foreground/10 bg-foreground/[0.01] shadow-2xl shadow-foreground/5 relative overflow-hidden">
+            <div className="p-8 md:p-14 glass-card rounded-3xl border border-foreground/10 shadow-2xl shadow-primary/10 relative overflow-hidden">
+              {/* Top gradient accent */}
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none" />
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">

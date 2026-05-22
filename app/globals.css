@@ -149,16 +149,21 @@
   }
 
   .glass {
-    @apply backdrop-blur-xl bg-background/40 border border-white/5;
+    @apply backdrop-blur-xl backdrop-saturate-150 bg-background/40 border border-white/5;
   }
 
   .glass-card {
-    @apply backdrop-blur-3xl bg-background/40 border border-foreground/10 shadow-xl;
+    @apply backdrop-blur-3xl backdrop-saturate-150 bg-background/40 border border-foreground/10;
     background-image: linear-gradient(
-      to bottom right,
-      rgba(255, 255, 255, 0.05),
-      transparent
+      135deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.025) 45%,
+      transparent 100%
     );
+    box-shadow:
+      0 8px 40px -8px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.06);
   }
 
   .text-highlight {
