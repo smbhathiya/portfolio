@@ -94,7 +94,7 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 transition-all duration-700 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px] hover:shadow-primary/20 hover:-translate-y-2">
+              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 transition-all duration-700 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px] hover:shadow-primary/20">
                 {/* Image Section */}
                 {!project.isInternal &&
                   project.images &&

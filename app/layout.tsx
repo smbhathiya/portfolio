@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
@@ -198,7 +187,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${playfair.variable} antialiased font-sans`}
+        className={`${inter.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider
