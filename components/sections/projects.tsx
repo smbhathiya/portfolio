@@ -2,242 +2,164 @@
 
 import projectsData from "@/data/projects";
 import Image from "next/image";
-import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
+import { IconBrandGithub, IconExternalLink, IconLock } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
+
 export function ProjectsSection() {
-  const mainProjects = projectsData.slice(0, 5);
-  const otherProjects = projectsData.slice(5);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as any,
-      },
-    },
-  };
+  // Show projects with images as featured, internal ones as professional work
+  const featuredProjects = projectsData.filter((p) => !p.isInternal && p.images && p.images.length > 0);
+  const internalProjects = projectsData.filter((p) => p.isInternal);
 
   return (
-    <section
-      id="projects"
-      className="py-24 md:py-32 relative overflow-hidden bg-background"
-    >
-      {/* Background large text & Glows */}
-      <div className="absolute top-[30%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
-      <div className="absolute top-[70%] right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
-
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30" aria-hidden="true">
-        <span className="text-[16vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-80">
-          MY WORKS
-        </span>
-      </div>
-
-      <div className="container px-4 md:px-6 max-w-8xl mx-auto relative z-10">
+    <section id="projects" className="py-24 md:py-32 bg-background">
+      <div className="container px-4 md:px-6 max-w-5xl mx-auto">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
-          className="flex flex-col items-center mb-32"
+          transition={{ duration: 0.5 }}
+          className="mb-20"
         >
-          <h2 className="font-bold text-4xl md:text-6xl tracking-widest text-center leading-tight uppercase">
-            FEATURED{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
-              PROJECTS
-            </span>
-          </h2>
+          <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">04 / Work</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Featured Projects</h2>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-48"
-        >
-          {mainProjects.map((project, index) => (
+        {/* Featured projects with images */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+          {featuredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="group relative flex flex-col h-full"
+              custom={index}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="group border border-border rounded-xl overflow-hidden hover:border-foreground/20 transition-colors duration-300 flex flex-col"
             >
-              {/* Index & Metadata Header */}
-              <div className="flex items-center gap-4 mb-6 opacity-40 group-hover:opacity-100 transition-opacity">
-                <span className="text-sm font-semibold tracking-wider leading-none">
-                  0{index + 1}
-                </span>
-                <div className="h-px flex-grow bg-foreground/10" />
-                <div className="flex gap-2.5">
-                  {project.tag?.slice(1, 3).map((t: string) => (
-                    <span
-                      key={t}
-                      className="text-[10px] font-semibold uppercase tracking-wider bg-foreground/5 px-2.5 py-1 rounded-full border border-foreground/10"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              {/* Image */}
+              <div className="aspect-[16/10] relative overflow-hidden bg-muted border-b border-border">
+                <Image
+                  src={project.images[0]}
+                  alt={project.title}
+                  fill
+                  className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+                />
               </div>
 
-              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 transition-all duration-700 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px] hover:shadow-primary/20">
-                {/* Image Section */}
-                {!project.isInternal &&
-                  project.images &&
-                  project.images.length > 0 && (
-                    <div className="w-full aspect-[16/10] rounded-xl overflow-hidden mb-8 border border-foreground/5 relative">
-                      <Image
-                        src={project.images[0]}
-                        alt={project.title}
-                        fill
-                        className="object-cover grayscale brightness-[0.8] transition-all duration-1000 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  )}
+              <div className="p-5 flex flex-col flex-grow">
+                <span className="text-[10px] font-bold tracking-widest text-muted-foreground/40 uppercase mb-2">
+                  0{index + 1}
+                </span>
 
-                <div className="px-2 md:px-4 flex flex-col flex-grow">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight uppercase mb-4 leading-tight">
-                    {project.title}
-                  </h3>
+                <h3 className="text-sm font-semibold tracking-tight mb-2 group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </h3>
 
-                  <p className="text-muted-foreground/90 font-light text-lg leading-relaxed mb-8 flex-grow">
-                    {project.description}
-                  </p>
-
-                  <div className="flex items-center gap-6 pt-6 border-t border-foreground/5 mt-auto">
-                    {project.gitUrl && (
-                      <a
-                        href={project.gitUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs uppercase font-semibold tracking-wide hover:text-primary transition-colors group/link"
-                      >
-                        <IconBrandGithub className="h-5 w-5 transition-transform group-hover/link:-translate-y-1" />
-                        Source
-                      </a>
-                    )}
-                    {project.previewUrl && project.previewUrl !== "#" && (
-                      <a
-                        href={project.previewUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs uppercase font-semibold tracking-wide px-6 py-3 bg-foreground text-background rounded-full hover:bg-primary transition-all shadow-lg"
-                      >
-                        <IconExternalLink className="h-4 w-4" />
-                        Live Demo
-                      </a>
-                    )}
-                    {project.isInternal && (
-                      <span className="text-xs font-semibold uppercase tracking-wide opacity-50">
-                        Internal System
+                {project.tag && project.tag.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {project.tag.slice(1, 3).map((t: string) => (
+                      <span key={t} className="text-[10px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                        {t}
                       </span>
-                    )}
+                    ))}
                   </div>
+                )}
+
+                <p className="text-xs text-muted-foreground leading-relaxed flex-grow mb-5">
+                  {project.description}
+                </p>
+
+                <div className="flex items-center gap-4 pt-4 border-t border-border">
+                  {project.gitUrl && (
+                    <a
+                      href={project.gitUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <IconBrandGithub className="h-3.5 w-3.5" />
+                      Source
+                    </a>
+                  )}
+                  {project.previewUrl && project.previewUrl !== "#" && (
+                    <a
+                      href={project.previewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <IconExternalLink className="h-3.5 w-3.5" />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Personal Projects Section */}
-        <div className="space-y-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center gap-4 text-center"
-          >
-            <h3 className="text-2xl md:text-4xl font-bold tracking-widest uppercase">
-              PERSONAL PROJECTS
-            </h3>
-            <p className="text-muted-foreground font-medium tracking-wide text-sm">
-              Selected previous works and experiments
-            </p>
-          </motion.div>
+        {/* Professional / Internal work */}
+        {internalProjects.length > 0 && (
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-10"
+            >
+              <h3 className="text-xl font-semibold tracking-tight">Professional Work</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Enterprise systems built under NDA — details available on request
+              </p>
+            </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
-          >
-            {otherProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                className="h-full"
-              >
-                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-2xl border border-foreground/10 hover:border-primary/25 p-4 hover:shadow-[0_8px_32px_-8px] hover:shadow-primary/15 hover:scale-[1.02]">
-                  {!project.isInternal &&
-                    project.images &&
-                    project.images.length > 0 && (
-                      <div className="aspect-[16/10] relative overflow-hidden rounded-xl mb-6">
-                        <Image
-                          src={project.images[0]}
-                          alt={project.title}
-                          fill
-                          className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
-                        />
-                      </div>
-                    )}
-
-                  <div className="px-2 flex flex-col flex-grow">
-                    <h4 className="text-lg font-bold tracking-tight uppercase mb-2 transition-colors">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {internalProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  custom={index}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4 p-5 border border-border rounded-xl hover:border-foreground/20 transition-colors duration-300 group"
+                >
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted border border-border flex items-center justify-center">
+                    <IconLock className="h-4 w-4 text-muted-foreground/50" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h4>
-                    <p className="line-clamp-3 text-muted-foreground/90 font-light text-sm leading-relaxed mb-6 flex-grow">
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
-
-                    <div className="pt-6 border-t border-foreground/5 flex items-center gap-4 transition-opacity mt-auto">
-                      {project.gitUrl && (
-                        <a
-                          href={project.gitUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-foreground/50 hover:text-primary transition-colors"
-                        >
-                          <IconBrandGithub className="h-5 w-5" />
-                        </a>
-                      )}
-                      {project.previewUrl && project.previewUrl !== "#" && (
-                        <a
-                          href={project.previewUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-foreground/50 hover:text-primary transition-colors"
-                        >
-                          <IconExternalLink className="h-5 w-5" />
-                        </a>
-                      )}
-                      {project.isInternal && (
-                        <span className="text-[10px] uppercase font-semibold tracking-wider opacity-40 ml-auto">
-                          INTERNAL
-                        </span>
-                      )}
-                    </div>
+                    {project.tag && (
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {project.tag.slice(1).map((t: string) => (
+                          <span key={t} className="text-[10px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

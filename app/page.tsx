@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { NavBar } from "@/components/nav-bar";
+import { NavBar } from "@/components/sections/nav-bar";
 import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
