@@ -3,7 +3,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
 const ModeToggle = dynamic(
-  () => import("./mode-toggle").then((mod) => mod.ModeToggle),
+  () => import("../mode-toggle").then((mod) => mod.ModeToggle),
   { ssr: false },
 );
 import Link from "next/link";
