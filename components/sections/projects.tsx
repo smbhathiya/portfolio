@@ -2,15 +2,6 @@
 
 import projectsData from "@/data/projects";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
@@ -49,10 +40,10 @@ export function ProjectsSection() {
       <div className="absolute top-[30%] left-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
       <div className="absolute top-[70%] right-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
 
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30">
-        <h2 className="text-[16vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-80">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden opacity-30" aria-hidden="true">
+        <span className="text-[16vw] font-bold text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-80">
           MY WORKS
-        </h2>
+        </span>
       </div>
 
       <div className="container px-4 md:px-6 max-w-8xl mx-auto relative z-10">
@@ -103,7 +94,7 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 bg-foreground/[0.02] shadow-sm dark:shadow-none transition-all duration-700 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1">
+              <div className="flex flex-col h-full w-full p-4 md:p-6 rounded-xl glass-card border border-foreground/10 transition-all duration-700 hover:border-primary/30 hover:shadow-[0_20px_60px_-15px] hover:shadow-primary/20">
                 {/* Image Section */}
                 {!project.isInternal &&
                   project.images &&
@@ -192,7 +183,7 @@ export function ProjectsSection() {
                 variants={itemVariants}
                 className="h-full"
               >
-                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-2xl border border-foreground/5 bg-foreground/[0.01] hover:border-foreground/20 p-4 shadow-sm dark:shadow-none hover:scale-[1.02]">
+                <div className="group glass-card transition-all duration-700 flex flex-col h-full overflow-hidden rounded-2xl border border-foreground/10 hover:border-primary/25 p-4 hover:shadow-[0_8px_32px_-8px] hover:shadow-primary/15 hover:scale-[1.02]">
                   {!project.isInternal &&
                     project.images &&
                     project.images.length > 0 && (

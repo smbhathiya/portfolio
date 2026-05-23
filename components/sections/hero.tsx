@@ -4,23 +4,18 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 import {
   IconBrandTwitter,
   IconBrandLinkedin,
   IconBrandGithub,
   IconBrandFacebook,
   IconArrowRight,
-  IconCircleFilled,
   IconWorld,
-  IconClock,
-  IconSearch,
 } from "@tabler/icons-react";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   const containerVariants = {
@@ -86,20 +81,23 @@ export function HeroSection() {
 
           {/* TITLE BLOCK (Order 2 on mobile, Top-Left on desktop) */}
           <div className="lg:col-span-7 order-2 flex flex-col space-y-6 lg:space-y-8 w-full z-10">
-            {/* <motion.div
+            <motion.div
               variants={itemVariants}
               className="hidden lg:flex items-center mb-6"
             >
-              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-lg shadow-primary/5 hover:bg-background/80 transition-all cursor-default group">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/20 bg-background/50 backdrop-blur-xl shadow-lg shadow-primary/5 hover:bg-background/80 transition-all cursor-default group"
+              >
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
                 </span>
                 <span className="text-sm uppercase font-semibold tracking-[0.2em] text-foreground/80">
                   AVAILABLE FOR NEW OPPORTUNITIES
                 </span>
-              </div>
-            </motion.div> */}
+              </motion.div>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
@@ -122,7 +120,9 @@ export function HeroSection() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
               className="relative aspect-square sm:aspect-[4/5] lg:aspect-square"
             >
-              <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-foreground/10 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-black/20">
+              {/* Primary color glow orb behind the image */}
+              <div className="absolute inset-[8%] bg-primary/30 blur-[70px] rounded-full pointer-events-none z-0" />
+              <div className="absolute inset-0 rounded-[2.5rem] lg:rounded-[3rem] border border-primary/20 bg-foreground/[0.01] backdrop-blur-3xl overflow-hidden group shadow-2xl shadow-primary/15">
                 <div className="absolute inset-0 bg-transparent opacity-100 transition-all duration-1000 group-hover:scale-[1.03]">
                   <Image
                     src="/bhathiya-lakshan-2.png"
@@ -144,9 +144,9 @@ export function HeroSection() {
                       SRI LANKA
                     </span>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2">
+                  <p className="text-2xl lg:text-3xl uppercase font-black tracking-tight text-foreground pt-2" aria-hidden="true">
                     BHATHIYA LAKSHAN
-                  </h3>
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -191,29 +191,36 @@ export function HeroSection() {
                   {
                     icon: <IconBrandGithub className="w-5 h-5" />,
                     href: "https://github.com/smbhathiya",
+                    label: "GitHub profile",
                   },
                   {
                     icon: <IconBrandLinkedin className="w-5 h-5" />,
                     href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                    label: "LinkedIn profile",
                   },
                   {
                     icon: <IconBrandTwitter className="w-5 h-5" />,
                     href: "https://x.com/smbhathiya",
+                    label: "X (Twitter) profile",
                   },
                   {
                     icon: <IconBrandFacebook className="w-5 h-5" />,
                     href: "https://www.facebook.com/smbhathiya/",
+                    label: "Facebook profile",
                   },
                 ].map((social, i) => (
-                  <a
+                  <motion.a
                     key={i}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-300"
+                    aria-label={social.label}
+                    whileHover={{ scale: 1.15, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-foreground/40 hover:text-primary hover:bg-primary/5 transition-colors duration-300"
                   >
                     {social.icon}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>

@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
@@ -131,38 +120,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Favicon and icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
-        <meta name="theme-color" content="#000000" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Bhathiya Lakshan" />
-        <meta name="application-name" content="Bhathiya Lakshan" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -176,29 +137,57 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Bhathiya Lakshan",
-              url: "https://bhathiya.dev",
-              image: "https://bhathiya.dev/bhathiya-lakshan-2.png",
-              jobTitle: "Full Stack Engineer & Infrastructure Specialist",
-              worksFor: {
-                "@type": "Organization",
-                name: "Ishara Madhushan Online School (IMOS)",
-              },
-              sameAs: [
-                "https://github.com/smbhathiya",
-                "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
-                "https://x.com/smbhathiya",
-                "https://www.facebook.com/smbhathiya",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://bhathiya.dev/#person",
+                  name: "Bhathiya Lakshan",
+                  url: "https://bhathiya.dev",
+                  image: "https://bhathiya.dev/bhathiya-lakshan-2.png",
+                  jobTitle: "Lead Software Engineer",
+                  worksFor: [
+                    {
+                      "@type": "Organization",
+                      name: "Ishara Madhushan Online School (IMOS)",
+                    },
+                    {
+                      "@type": "Organization",
+                      name: "Digi Pro Solutions",
+                    },
+                  ],
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Kadawatha",
+                    addressCountry: "LK",
+                  },
+                  email: "info@bhathiya.dev",
+                  sameAs: [
+                    "https://github.com/smbhathiya",
+                    "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                    "https://x.com/smbhathiya",
+                    "https://www.facebook.com/smbhathiya",
+                  ],
+                  description:
+                    "Bhathiya Lakshan is a Lead Software Engineer based in Sri Lanka, specializing in Next.js, React, TypeScript, and cloud architecture.",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://bhathiya.dev/#website",
+                  name: "Bhathiya Lakshan",
+                  url: "https://bhathiya.dev",
+                  description:
+                    "Professional portfolio of Bhathiya Lakshan - Lead Software Engineer and Full Stack Developer.",
+                  author: {
+                    "@id": "https://bhathiya.dev/#person",
+                  },
+                },
               ],
-              description:
-                "Bhathiya Lakshan is a Lead Software Engineer and Infrastructure Specialist based in Sri Lanka, specializing in Next.js, PostgreSQL, and cloud architecture.",
             }),
           }}
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${playfair.variable} antialiased font-sans`}
+        className={`${inter.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider

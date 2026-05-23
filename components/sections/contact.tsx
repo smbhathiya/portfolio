@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +14,7 @@ import {
 } from "@tabler/icons-react";
 
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
@@ -41,10 +39,10 @@ export function ContactSection() {
       <div className="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] bg-primary/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-primary/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
 
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[16vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-1">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
+        <span className="text-[16vw] font-black text-foreground/[0.03] tracking-tighter leading-none whitespace-nowrap transform -translate-y-1">
           CONNECT
-        </h2>
+        </span>
       </div>
 
       <div className="container px-4 md:px-6 max-w-7xl mx-auto relative z-10">
@@ -112,7 +110,7 @@ export function ContactSection() {
                     }}
                     className="flex items-center gap-6 group"
                   >
-                    <div className="w-14 h-14 rounded-[1.2rem] glass-card border border-foreground/10 bg-foreground/[0.02] flex items-center justify-center text-foreground/60 group-hover:text-foreground group-hover:border-foreground/30 transition-all duration-500 shadow-sm dark:shadow-none">
+                    <div className="w-14 h-14 rounded-[1.2rem] glass-card border border-primary/15 bg-primary/5 flex items-center justify-center text-primary/60 group-hover:text-primary group-hover:bg-primary/15 group-hover:border-primary/40 group-hover:shadow-[0_0_20px_-4px] group-hover:shadow-primary/30 transition-all duration-500">
                       {item.icon}
                     </div>
                     <div>
@@ -133,18 +131,22 @@ export function ContactSection() {
                 {
                   icon: <IconBrandLinkedin className="h-6 w-6" />,
                   href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
+                  label: "LinkedIn profile",
                 },
                 {
                   icon: <IconBrandGithub className="h-6 w-6" />,
                   href: "https://github.com/smbhathiya",
+                  label: "GitHub profile",
                 },
                 {
                   icon: <IconBrandTwitter className="h-6 w-6" />,
                   href: "https://x.com/smbhathiya",
+                  label: "X (Twitter) profile",
                 },
                 {
                   icon: <IconBrandFacebook className="h-6 w-6" />,
                   href: "https://www.facebook.com/smbhathiya/",
+                  label: "Facebook profile",
                 },
               ].map((social, i) => (
                 <Button
@@ -158,6 +160,7 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.label}
                   >
                     {social.icon}
                   </a>
@@ -173,14 +176,17 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           >
-            <div className="p-8 md:p-14 glass-card rounded-3xl border border-foreground/10 bg-foreground/[0.01] shadow-2xl shadow-foreground/5 relative overflow-hidden">
+            <div className="p-8 md:p-14 glass-card rounded-3xl border border-foreground/10 shadow-2xl shadow-primary/10 relative overflow-hidden">
+              {/* Top gradient accent */}
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none" />
               <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                    <label htmlFor="contact-name" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                       Full Name
                     </label>
                     <input
+                      id="contact-name"
                       required
                       name="name"
                       placeholder="e.g. John Doe"
@@ -188,10 +194,11 @@ export function ContactSection() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                    <label htmlFor="contact-email" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                       Email Address
                     </label>
                     <input
+                      id="contact-email"
                       required
                       name="email"
                       type="email"
@@ -201,10 +208,11 @@ export function ContactSection() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                  <label htmlFor="contact-subject" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                     Subject
                   </label>
                   <input
+                    id="contact-subject"
                     required
                     name="subject"
                     placeholder="Project Inquiry"
@@ -212,10 +220,11 @@ export function ContactSection() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
+                  <label htmlFor="contact-message" className="text-[10px] font-black uppercase tracking-[0.3em] ml-1 text-muted-foreground/40">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     required
                     name="message"
                     placeholder="Tell me about your project..."
