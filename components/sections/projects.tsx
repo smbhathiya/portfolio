@@ -47,7 +47,7 @@ export function ProjectsSection() {
               viewport={{ once: true, margin: "-60px" }}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative border border-border/80 rounded-xl overflow-hidden hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 flex flex-col bg-background/40 backdrop-blur-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_25px_50px_-12px_rgba(239,68,68,0.12)]"
+              className="group relative border border-border/80 rounded-xl overflow-hidden hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 flex flex-col bg-background/40 backdrop-blur-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.12)]"
             >
               {/* Subtle hover gradient glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.03] dark:to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
@@ -142,7 +142,7 @@ export function ProjectsSection() {
                   viewport={{ once: true }}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative overflow-hidden flex items-start gap-4 p-5 border border-border/80 rounded-xl hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 group bg-background/30 backdrop-blur-xs hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_15px_30px_-10px_rgba(239,68,68,0.06)]"
+                  className="relative overflow-hidden flex items-start gap-4 p-5 border border-border/80 rounded-xl hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 group bg-background/30 backdrop-blur-xs hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_15px_30px_-10px_rgba(16,185,129,0.06)]"
                 >
                   {/* Internal Glow Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />

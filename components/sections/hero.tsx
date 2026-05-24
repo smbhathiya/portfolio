@@ -77,7 +77,7 @@ export function HeroSection() {
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="block bg-gradient-to-r from-red-600 via-rose-500 to-red-500 bg-clip-text text-transparent dark:from-primary dark:via-rose-500 dark:to-red-500"
+                    className="block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]"
                   >
                     Lakshan
                   </motion.span>
@@ -143,7 +143,7 @@ export function HeroSection() {
               className="relative w-full max-w-[380px] lg:max-w-none group cursor-pointer"
             >
               {/* Pulse glowing backdrop */}
-              <div className="absolute -inset-3 bg-gradient-to-tr from-red-500/30 to-rose-600/25 dark:from-primary/25 dark:to-red-500/10 rounded-3xl blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500 scale-95 group-hover:scale-105" />
+              <div className="absolute -inset-3 bg-gradient-to-tr from-emerald-500/30 to-teal-600/25 dark:from-primary/25 dark:to-emerald-500/10 rounded-3xl blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500 scale-95 group-hover:scale-105" />
               
               <motion.div
                 animate={{ y: [0, -10, 0] }}

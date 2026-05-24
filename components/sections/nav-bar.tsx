@@ -66,7 +66,7 @@ export function NavBar() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-600 via-rose-500 to-red-500 origin-left z-55 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary to-[oklch(0.82_0.15_145)] origin-left z-55 pointer-events-none"
         style={{ scaleX }}
       />
       <header

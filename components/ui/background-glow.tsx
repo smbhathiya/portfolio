@@ -26,7 +26,7 @@ export function BackgroundGlow() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[-10%] left-[-10%] md:top-[5%] md:left-[10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full bg-red-500/6 dark:bg-primary/4 blur-[80px] md:blur-[140px]"
+        className="absolute top-[-10%] left-[-10%] md:top-[5%] md:left-[10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full bg-emerald-500/6 dark:bg-primary/4 blur-[80px] md:blur-[140px]"
       />
 
       {/* Ambient Blob 2 - Deep Rose Accent */}
@@ -41,7 +41,7 @@ export function BackgroundGlow() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute bottom-[-10%] right-[-10%] md:bottom-[10%] md:right-[15%] w-[350px] md:w-[550px] h-[350px] md:h-[550px] rounded-full bg-rose-500/6 dark:bg-rose-500/3 blur-[80px] md:blur-[130px]"
+        className="absolute bottom-[-10%] right-[-10%] md:bottom-[10%] md:right-[15%] w-[350px] md:w-[550px] h-[350px] md:h-[550px] rounded-full bg-teal-500/6 dark:bg-teal-500/3 blur-[80px] md:blur-[130px]"
       />
 
       {/* Ambient Blob 3 - Light Scarlet Accent */}
@@ -56,7 +56,7 @@ export function BackgroundGlow() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[35%] right-[20%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] rounded-full bg-red-600/4 dark:bg-red-600/2 blur-[85px] md:blur-[120px]"
+        className="absolute top-[35%] right-[20%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] rounded-full bg-green-600/4 dark:bg-green-600/2 blur-[85px] md:blur-[120px]"
       />
     </div>
   );
