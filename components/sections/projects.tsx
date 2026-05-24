@@ -6,11 +6,12 @@ import { IconBrandGithub, IconExternalLink, IconLock } from "@tabler/icons-react
 import { motion } from "framer-motion";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
+    scale: 1,
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
@@ -20,8 +21,8 @@ export function ProjectsSection() {
   const internalProjects = projectsData.filter((p) => p.isInternal);
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-background">
-      <div className="container px-4 md:px-6 max-w-5xl mx-auto">
+    <section id="projects" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="container px-4 md:px-6 max-w-5xl mx-auto relative z-10">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -44,19 +45,25 @@ export function ProjectsSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              className="group border border-border rounded-xl overflow-hidden hover:border-foreground/20 transition-colors duration-300 flex flex-col"
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="group relative border border-border/80 rounded-xl overflow-hidden hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 flex flex-col bg-background/40 backdrop-blur-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.12)]"
             >
+              {/* Subtle hover gradient glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.03] dark:to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
+
               {/* Image */}
-              <div className="aspect-[16/10] relative overflow-hidden bg-muted border-b border-border">
+              <div className="aspect-[16/10] relative overflow-hidden bg-muted border-b border-border/80">
                 <Image
                   src={project.images[0]}
                   alt={project.title}
                   fill
-                  className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+                  className="object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 scale-100 group-hover:scale-104"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
               </div>
 
-              <div className="p-5 flex flex-col flex-grow">
+              <div className="p-5 flex flex-col flex-grow relative z-10">
                 <span className="text-[10px] font-bold tracking-widest text-muted-foreground/40 uppercase mb-2">
                   0{index + 1}
                 </span>
@@ -68,7 +75,7 @@ export function ProjectsSection() {
                 {project.tag && project.tag.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tag.slice(1, 3).map((t: string) => (
-                      <span key={t} className="text-[10px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                      <span key={t} className="text-[10px] font-semibold text-muted-foreground/80 bg-muted/65 px-2 py-0.5 rounded">
                         {t}
                       </span>
                     ))}
@@ -79,13 +86,13 @@ export function ProjectsSection() {
                   {project.description}
                 </p>
 
-                <div className="flex items-center gap-4 pt-4 border-t border-border">
+                <div className="flex items-center gap-4 pt-4 border-t border-border/60">
                   {project.gitUrl && (
                     <a
                       href={project.gitUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
                       <IconBrandGithub className="h-3.5 w-3.5" />
                       Source
@@ -96,7 +103,7 @@ export function ProjectsSection() {
                       href={project.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
                       <IconExternalLink className="h-3.5 w-3.5" />
                       Live Demo
@@ -120,7 +127,7 @@ export function ProjectsSection() {
             >
               <h3 className="text-xl font-semibold tracking-tight">Professional Work</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                Enterprise systems built under NDA — details available on request
+                Enterprise systems
               </p>
             </motion.div>
 
@@ -133,12 +140,18 @@ export function ProjectsSection() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex items-start gap-4 p-5 border border-border rounded-xl hover:border-foreground/20 transition-colors duration-300 group"
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="relative overflow-hidden flex items-start gap-4 p-5 border border-border/80 rounded-xl hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 group bg-background/30 backdrop-blur-xs hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_15px_30px_-10px_rgba(16,185,129,0.06)]"
                 >
-                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted border border-border flex items-center justify-center">
-                    <IconLock className="h-4 w-4 text-muted-foreground/50" />
+                  {/* Internal Glow Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
+
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted border border-border/80 flex items-center justify-center relative z-10 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/5">
+                    <IconLock className="h-4 w-4 text-muted-foreground/60 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                   </div>
-                  <div className="min-w-0">
+                  
+                  <div className="min-w-0 relative z-10">
                     <h4 className="text-sm font-semibold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h4>
@@ -148,7 +161,7 @@ export function ProjectsSection() {
                     {project.tag && (
                       <div className="flex flex-wrap gap-1.5 mt-2">
                         {project.tag.slice(1).map((t: string) => (
-                          <span key={t} className="text-[10px] font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                          <span key={t} className="text-[10px] font-semibold text-muted-foreground bg-muted/80 px-2 py-0.5 rounded">
                             {t}
                           </span>
                         ))}

@@ -50,6 +50,15 @@ const projectsData = [
     isInternal: true,
   },
   {
+    id: 12,
+    title: "Green Planet",
+    description:
+      "A modern environmental awareness website focused on protecting nature and promoting eco-friendly living. Educates users about climate change, pollution, wildlife conservation, and sustainable habits through cinematic visuals and interactive content.",
+    images: ["/projects/greenplanet.png"],
+    tag: ["All", "Web"],
+    previewUrl: "https://greenplanet.bhathiya.dev",
+  },
+  {
     id: 9,
     title: "VantageCar - Car Dealership",
     description:
