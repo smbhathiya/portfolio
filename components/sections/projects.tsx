@@ -47,7 +47,7 @@ export function ProjectsSection() {
               viewport={{ once: true, margin: "-60px" }}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group relative border border-border/80 rounded-xl overflow-hidden hover:border-primary/20 dark:hover:border-primary/10 transition-all duration-300 flex flex-col bg-background/40 backdrop-blur-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_25px_50px_-12px_rgba(239,68,68,0.12)]"
+              className="group relative border border-border/80 rounded-xl overflow-hidden hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 flex flex-col bg-background/40 backdrop-blur-sm hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_25px_50px_-12px_rgba(239,68,68,0.12)]"
             >
               {/* Subtle hover gradient glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.03] dark:to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
@@ -127,7 +127,7 @@ export function ProjectsSection() {
             >
               <h3 className="text-xl font-semibold tracking-tight">Professional Work</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                Enterprise systems built under NDA &mdash; details available on request
+                Enterprise systems
               </p>
             </motion.div>
 
@@ -142,13 +142,10 @@ export function ProjectsSection() {
                   viewport={{ once: true }}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative overflow-hidden flex items-start gap-4 p-5 border border-border/80 rounded-xl hover:border-primary/20 dark:hover:border-primary/10 transition-all duration-300 group bg-background/30 backdrop-blur-xs hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_15px_30px_-10px_rgba(239,68,68,0.06)]"
+                  className="relative overflow-hidden flex items-start gap-4 p-5 border border-border/80 rounded-xl hover:border-primary/50 dark:hover:border-primary/35 transition-all duration-300 group bg-background/30 backdrop-blur-xs hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_15px_30px_-10px_rgba(239,68,68,0.06)]"
                 >
                   {/* Internal Glow Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
-
-                  {/* Left edge bar overlay */}
-                  <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-l-xl" />
 
                   <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted border border-border/80 flex items-center justify-center relative z-10 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/5">
                     <IconLock className="h-4 w-4 text-muted-foreground/60 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />

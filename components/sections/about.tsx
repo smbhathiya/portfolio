@@ -75,10 +75,8 @@ function ExperienceCard({ exp, index }: { exp: any; index: number }) {
       viewport={{ once: true, margin: "-40px" }}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="relative overflow-hidden group border border-border/80 rounded-xl p-6 md:p-8 hover:border-primary/20 dark:hover:border-primary/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_-15px_rgba(239,68,68,0.08)] transition-all duration-300 bg-background/40 backdrop-blur-sm"
+      className="relative overflow-hidden group border border-border/80 rounded-xl p-6 md:p-8 hover:border-primary/50 dark:hover:border-primary/35 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_-15px_rgba(239,68,68,0.08)] transition-all duration-300 bg-background/40 backdrop-blur-sm"
     >
-      {/* Dynamic hover left border highlight */}
-      <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-l-xl" />
 
       {/* Subtle hover internal gradient glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.02] dark:to-primary/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
