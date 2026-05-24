@@ -9,7 +9,7 @@ const ModeToggle = dynamic(
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const navItems = [
   { href: "#home", label: "Home" },
@@ -25,6 +25,13 @@ export function NavBar() {
   const [activeSection, setActiveSection] = useState("#home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +65,10 @@ export function NavBar() {
 
   return (
     <>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-600 via-rose-500 to-red-500 origin-left z-55 pointer-events-none"
+        style={{ scaleX }}
+      />
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 h-[72px] transition-all duration-300",
@@ -71,7 +82,7 @@ export function NavBar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-sm font-bold tracking-tight cursor-pointer"
+          className="text-sm font-bold tracking-tight uppercase cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Bhathiya<span className="text-primary">.dev</span>
@@ -161,51 +172,63 @@ export function NavBar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 md:hidden"
           >
+            {/* Dark glass backdrop overlay */}
             <div
-              className="absolute inset-0 bg-background/95 backdrop-blur-xl"
+              className="absolute inset-0 bg-background/50 backdrop-blur-sm"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            <nav
+            {/* Sliding Drawer Content */}
+            <motion.nav
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
               aria-label="Mobile navigation"
-              className="relative z-10 flex flex-col items-center justify-center h-full gap-2 px-6"
+              className="absolute top-0 right-0 w-[280px] sm:w-[320px] h-full bg-background/95 backdrop-blur-2xl border-l border-border flex flex-col justify-center gap-2 px-6 shadow-2xl z-10"
             >
               {navItems.map((item, i) => (
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 12 }}
+                  transition={{ delay: i * 0.04 + 0.1, duration: 0.3 }}
                   onClick={(e) => scrollTo(e, item.href)}
                   className={cn(
-                    "text-2xl font-semibold tracking-tight w-full text-center py-3 rounded-xl transition-colors duration-200",
+                    "text-xl font-bold tracking-tight w-full py-3 rounded-xl transition-all duration-200 flex items-center justify-between px-3 border border-transparent hover:border-border hover:bg-foreground/[0.02]",
                     activeSection === item.href
-                      ? "text-primary"
+                      ? "text-primary bg-primary/5 border-primary/10"
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {activeSection === item.href && (
+                    <motion.span
+                      layoutId="active-dot-mobile"
+                      className="w-1.5 h-1.5 rounded-full bg-primary"
+                    />
+                  )}
                 </motion.a>
               ))}
 
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mt-8 flex items-center gap-3"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.04 + 0.15 }}
+                className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-3 px-3"
               >
-                <Button size="sm" className="h-9 px-6 text-xs font-semibold" asChild>
+                <Button size="sm" className="h-9 px-6 text-xs font-semibold flex-grow cursor-pointer" asChild>
                   <a href="https://wa.me/94758041606" target="_blank" rel="noopener noreferrer">
                     Contact
                   </a>
                 </Button>
                 <ModeToggle className="h-9 w-9 rounded-lg border border-border" iconSize="h-4 w-4" />
               </motion.div>
-            </nav>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>

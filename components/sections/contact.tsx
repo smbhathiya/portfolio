@@ -105,7 +105,8 @@ export function ContactSection() {
           >
             <div>
               <h3 className="text-2xl font-semibold tracking-tight mb-3">
-c              </h3>
+                Let&apos;s Build Something Beautiful
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
                 I&apos;m always interested in hearing about new projects and
                 innovative ideas. Whether you have a question or just want to
@@ -158,8 +159,9 @@ c              </h3>
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="border border-border rounded-xl p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="border border-border/80 rounded-xl p-8 bg-background/40 backdrop-blur-sm shadow-xl relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] pointer-events-none" />
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label
@@ -173,7 +175,7 @@ c              </h3>
                       required
                       name="name"
                       placeholder="John Doe"
-                      className="w-full h-11 px-4 rounded-lg bg-background border border-border focus:border-foreground/30 outline-none transition-colors text-sm placeholder:text-muted-foreground/40"
+                      className="w-full h-11 px-4 rounded-lg bg-background/50 border border-border/80 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-sm placeholder:text-muted-foreground/40 shadow-inner"
                     />
                   </div>
                   <div className="space-y-2">
@@ -189,7 +191,7 @@ c              </h3>
                       name="email"
                       type="email"
                       placeholder="john@example.com"
-                      className="w-full h-11 px-4 rounded-lg bg-background border border-border focus:border-foreground/30 outline-none transition-colors text-sm placeholder:text-muted-foreground/40"
+                      className="w-full h-11 px-4 rounded-lg bg-background/50 border border-border/80 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-sm placeholder:text-muted-foreground/40 shadow-inner"
                     />
                   </div>
                 </div>
@@ -206,7 +208,7 @@ c              </h3>
                     required
                     name="subject"
                     placeholder="Project Inquiry"
-                    className="w-full h-11 px-4 rounded-lg bg-background border border-border focus:border-foreground/30 outline-none transition-colors text-sm placeholder:text-muted-foreground/40"
+                    className="w-full h-11 px-4 rounded-lg bg-background/50 border border-border/80 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-sm placeholder:text-muted-foreground/40 shadow-inner"
                   />
                 </div>
 
@@ -223,16 +225,16 @@ c              </h3>
                     name="message"
                     placeholder="Tell me about your project..."
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-foreground/30 outline-none transition-colors text-sm placeholder:text-muted-foreground/40 resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-background/50 border border-border/80 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-sm placeholder:text-muted-foreground/40 resize-none shadow-inner"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full h-12 text-sm font-semibold tracking-wide cursor-pointer"
+                  className="w-full h-12 text-sm font-semibold tracking-wide cursor-pointer group hover:opacity-95 transition-all active:scale-98"
                 >
                   Send Message
-                  <IconSend className="ml-2 h-4 w-4" />
+                  <IconSend className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                 </Button>
               </form>
             </div>

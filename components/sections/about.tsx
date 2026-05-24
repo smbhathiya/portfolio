@@ -5,11 +5,12 @@ import { IconSchool, IconBriefcase } from "@tabler/icons-react";
 import { workExperience, education } from "@/data/aboutData";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
+    scale: 1,
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
@@ -72,9 +73,17 @@ function ExperienceCard({ exp, index }: { exp: any; index: number }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      className="group border border-border rounded-xl p-6 md:p-8 hover:border-foreground/20 transition-colors duration-300 bg-background"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="relative overflow-hidden group border border-border/80 rounded-xl p-6 md:p-8 hover:border-primary/20 dark:hover:border-primary/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_-15px_rgba(239,68,68,0.08)] transition-all duration-300 bg-background/40 backdrop-blur-sm"
     >
-      <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+      {/* Dynamic hover left border highlight */}
+      <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top rounded-l-xl" />
+
+      {/* Subtle hover internal gradient glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.02] dark:to-primary/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
+
+      <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8 relative z-10">
         {/* Date */}
         <div className="flex-shrink-0 md:w-44">
           <span className="text-xs font-semibold tracking-wide text-primary uppercase">
@@ -82,7 +91,7 @@ function ExperienceCard({ exp, index }: { exp: any; index: number }) {
           </span>
           {exp.badge && (
             <div className="mt-2">
-              <span className="inline-block text-[10px] font-bold tracking-widest uppercase border border-primary/30 text-primary px-2 py-0.5 rounded">
+              <span className="inline-block text-[10px] font-bold tracking-widest uppercase border border-primary/30 text-primary px-2 py-0.5 rounded bg-primary/5">
                 {exp.badge}
               </span>
             </div>
@@ -96,7 +105,7 @@ function ExperienceCard({ exp, index }: { exp: any; index: number }) {
           </h4>
           <p className="text-sm font-medium text-muted-foreground mb-3">
             {exp.company || exp.institution}
-            {exp.location && <span> &middot; {exp.location}</span>}
+            {exp.location && <span className="opacity-80"> &middot; {exp.location}</span>}
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {exp.description}

@@ -71,10 +71,31 @@ const categories = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 220, damping: 20 },
+  },
+};
+
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 md:py-32 bg-background">
-      <div className="container px-4 md:px-6 max-w-5xl mx-auto">
+    <section id="skills" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="container px-4 md:px-6 max-w-5xl mx-auto relative z-10">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -88,29 +109,34 @@ export function SkillsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {categories.map((cat, catIdx) => (
+          {categories.map((cat) => (
             <motion.div
               key={cat.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: catIdx * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              className="flex flex-col"
             >
-              <div className="flex items-baseline gap-3 mb-6">
+              <motion.div
+                variants={itemVariants}
+                className="flex items-baseline gap-3 mb-6"
+              >
                 <span className="text-[10px] font-bold tracking-widest text-primary/60 uppercase">{cat.label}</span>
                 <h3 className="text-sm font-semibold tracking-wide uppercase text-muted-foreground">{cat.title}</h3>
-              </div>
+              </motion.div>
 
               <div className="grid grid-cols-2 gap-2.5">
                 {cat.skills.map(({ name, Icon }) => (
                   <motion.div
                     key={name}
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className="group flex items-center gap-3 p-3.5 rounded-lg border border-border hover:border-foreground/20 hover:bg-foreground/[0.02] transition-colors duration-200 cursor-default"
+                    variants={itemVariants}
+                    whileHover={{ y: -3, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 450, damping: 18 }}
+                    className="group flex items-center gap-3 p-3.5 rounded-lg border border-border/80 hover:border-primary/30 hover:bg-primary/5 hover:shadow-[0_6px_20px_-8px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_6px_20px_-8px_rgba(255,255,255,0.01)] transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs"
                   >
-                    <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                    <span className="text-xs font-medium tracking-wide">{name}</span>
+                    <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0" />
+                    <span className="text-xs font-medium tracking-wide group-hover:text-foreground transition-colors duration-200">{name}</span>
                   </motion.div>
                 ))}
               </div>
