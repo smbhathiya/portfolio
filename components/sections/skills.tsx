@@ -104,8 +104,8 @@ export function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="mb-20"
         >
-          <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">03 / Skills</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Technical Stack</h2>
+          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Skills</p>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Technical Stack</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
@@ -122,8 +122,8 @@ export function SkillsSection() {
                 variants={itemVariants}
                 className="flex items-baseline gap-3 mb-6"
               >
-                <span className="text-[10px] font-bold tracking-widest text-primary/60 uppercase">{cat.label}</span>
-                <h3 className="text-sm font-semibold tracking-wide uppercase text-muted-foreground">{cat.title}</h3>
+                <span className="text-[11px] md:text-xs font-bold tracking-widest text-primary/60 uppercase">{cat.label}</span>
+                <h3 className="text-base font-semibold tracking-wide uppercase text-muted-foreground">{cat.title}</h3>
               </motion.div>
 
               <div className="grid grid-cols-2 gap-2.5">
@@ -135,8 +135,8 @@ export function SkillsSection() {
                     transition={{ type: "spring", stiffness: 450, damping: 18 }}
                     className="group flex items-center gap-3 p-3.5 rounded-lg border border-border/80 hover:border-primary/30 hover:bg-primary/5 hover:shadow-[0_6px_20px_-8px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_6px_20px_-8px_rgba(255,255,255,0.01)] transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs"
                   >
-                    <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0" />
-                    <span className="text-xs font-medium tracking-wide group-hover:text-foreground transition-colors duration-200">{name}</span>
+                    <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0" />
+                    <span className="text-xs md:text-sm font-medium tracking-wide group-hover:text-foreground transition-colors duration-200">{name}</span>
                   </motion.div>
                 ))}
               </div>

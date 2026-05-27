@@ -59,6 +59,16 @@ const projectsData = [
     previewUrl: "https://greenplanet.bhathiya.dev",
   },
   {
+    id: 13,
+    title: "Life Plus",
+    description:
+      "A premium, interactive personal wellness companion designed to empower users to take control of their health. Features custom-built utility tools including a BMI calculator, water intake tracker, and calorie counter, integrated with daily habit tracking and nutrition guidance, all presented through a sleek, motion-driven dashboard.",
+    images: ["/projects/lifeplus.png"],
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/smbhathiya/life-plus-web.git",
+    previewUrl: "https://lifeplus.bhathiya.dev",
+  },
+  {
     id: 9,
     title: "VantageCar - Car Dealership",
     description:

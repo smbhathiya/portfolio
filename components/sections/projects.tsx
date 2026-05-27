@@ -31,8 +31,8 @@ export function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="mb-20"
         >
-          <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">04 / Work</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Featured Projects</h2>
+          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Work</p>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Featured Projects</h2>
         </motion.div>
 
         {/* Featured projects with images */}
@@ -64,25 +64,25 @@ export function ProjectsSection() {
               </div>
 
               <div className="p-5 flex flex-col flex-grow relative z-10">
-                <span className="text-[10px] font-bold tracking-widest text-muted-foreground/40 uppercase mb-2">
+                <span className="text-[11px] md:text-xs font-bold tracking-widest text-muted-foreground/40 uppercase mb-2">
                   0{index + 1}
                 </span>
 
-                <h3 className="text-sm font-semibold tracking-tight mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-base md:text-lg font-semibold tracking-tight mb-2 group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
 
                 {project.tag && project.tag.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tag.slice(1, 3).map((t: string) => (
-                      <span key={t} className="text-[10px] font-semibold text-muted-foreground/80 bg-muted/65 px-2 py-0.5 rounded">
+                      <span key={t} className="text-xs font-semibold text-muted-foreground/80 bg-muted/65 px-2 py-0.5 rounded">
                         {t}
                       </span>
                     ))}
                   </div>
                 )}
 
-                <p className="text-xs text-muted-foreground leading-relaxed flex-grow mb-5">
+                <p className="text-sm text-muted-foreground leading-relaxed flex-grow mb-5">
                   {project.description}
                 </p>
 
@@ -92,9 +92,9 @@ export function ProjectsSection() {
                       href={project.gitUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="flex items-center gap-1.5 text-xs md:text-sm font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
-                      <IconBrandGithub className="h-3.5 w-3.5" />
+                      <IconBrandGithub className="h-4 w-4" />
                       Source
                     </a>
                   )}
@@ -103,9 +103,9 @@ export function ProjectsSection() {
                       href={project.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="flex items-center gap-1.5 text-xs md:text-sm font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
-                      <IconExternalLink className="h-3.5 w-3.5" />
+                      <IconExternalLink className="h-4 w-4" />
                       Live Demo
                     </a>
                   )}
@@ -125,8 +125,8 @@ export function ProjectsSection() {
               transition={{ duration: 0.5 }}
               className="mb-10"
             >
-              <h3 className="text-xl font-semibold tracking-tight">Professional Work</h3>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h3 className="text-2xl font-semibold tracking-tight">Professional Work</h3>
+              <p className="text-sm md:text-base text-muted-foreground mt-1">
                 Enterprise systems
               </p>
             </motion.div>
@@ -147,21 +147,21 @@ export function ProjectsSection() {
                   {/* Internal Glow Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
 
-                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted border border-border/80 flex items-center justify-center relative z-10 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/5">
-                    <IconLock className="h-4 w-4 text-muted-foreground/60 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted border border-border/80 flex items-center justify-center relative z-10 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/5">
+                    <IconLock className="h-5 w-5 text-muted-foreground/60 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
                   </div>
                   
                   <div className="min-w-0 relative z-10">
-                    <h4 className="text-sm font-semibold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300">
+                    <h4 className="text-base font-semibold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
                     {project.tag && (
                       <div className="flex flex-wrap gap-1.5 mt-2">
                         {project.tag.slice(1).map((t: string) => (
-                          <span key={t} className="text-[10px] font-semibold text-muted-foreground bg-muted/80 px-2 py-0.5 rounded">
+                          <span key={t} className="text-xs font-semibold text-muted-foreground bg-muted/80 px-2 py-0.5 rounded">
                             {t}
                           </span>
                         ))}
