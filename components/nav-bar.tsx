@@ -83,7 +83,7 @@ export function NavBar() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           aria-label="Main navigation"
-          className="hidden md:flex items-center gap-1 bg-background/60 backdrop-blur-md border border-border rounded-full px-2 py-1.5"
+          className="hidden md:flex items-center gap-1"
         >
           {navItems.map((item) => (
             <Link
