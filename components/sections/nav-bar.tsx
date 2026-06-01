@@ -102,25 +102,20 @@ export function NavBar() {
               href={item.href}
               onClick={(e) => scrollTo(e as MouseEvent<HTMLAnchorElement>, item.href)}
               className={cn(
-                "relative px-4 py-1.5 text-xs font-medium tracking-wide rounded-full transition-colors duration-200",
+                "relative px-3 py-2 text-xs font-semibold tracking-wide transition-colors duration-200",
                 activeSection === item.href
-                  ? "text-primary-foreground"
+                  ? "text-primary"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
-              <AnimatePresence>
-                {activeSection === item.href && (
-                  <motion.div
-                    layoutId="active-pill"
-                    className="absolute inset-0 bg-primary rounded-full -z-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: "spring", duration: 0.4 }}
-                  />
-                )}
-              </AnimatePresence>
-              {item.label}
+              <span>{item.label}</span>
+              {activeSection === item.href && (
+                <motion.div
+                  layoutId="active-underline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
         </motion.nav>
@@ -199,19 +194,13 @@ export function NavBar() {
                   transition={{ delay: i * 0.04 + 0.1, duration: 0.3 }}
                   onClick={(e) => scrollTo(e, item.href)}
                   className={cn(
-                    "text-xl font-bold tracking-tight w-full py-3 rounded-xl transition-all duration-200 flex items-center justify-between px-3 border border-transparent hover:border-border hover:bg-foreground/[0.02]",
+                    "text-xl font-bold tracking-tight w-full py-3 rounded-xl transition-all duration-200 flex items-center px-3 border border-transparent hover:border-border hover:bg-foreground/[0.02]",
                     activeSection === item.href
                       ? "text-primary bg-primary/5 border-primary/10"
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  <span>{item.label}</span>
-                  {activeSection === item.href && (
-                    <motion.span
-                      layoutId="active-dot-mobile"
-                      className="w-1.5 h-1.5 rounded-full bg-primary"
-                    />
-                  )}
+                  {item.label}
                 </motion.a>
               ))}
 

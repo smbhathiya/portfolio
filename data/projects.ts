@@ -50,6 +50,15 @@ const projectsData = [
     isInternal: true,
   },
   {
+    id: 14,
+    title: "Web Toolkit",
+    description:
+      "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
+    images: ["/projects/toolkit.png"],
+    tag: ["All", "Web"],
+    previewUrl: "https://toolkit.bhathiya.dev",
+  },
+  {
     id: 12,
     title: "Green Planet",
     description:
