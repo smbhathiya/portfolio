@@ -194,19 +194,13 @@ export function NavBar() {
                   transition={{ delay: i * 0.04 + 0.1, duration: 0.3 }}
                   onClick={(e) => scrollTo(e, item.href)}
                   className={cn(
-                    "text-xl font-bold tracking-tight w-full py-3 rounded-xl transition-all duration-200 flex items-center justify-between px-3 border border-transparent hover:border-border hover:bg-foreground/[0.02]",
+                    "text-xl font-bold tracking-tight w-full py-3 rounded-xl transition-all duration-200 flex items-center px-3 border border-transparent hover:border-border hover:bg-foreground/[0.02]",
                     activeSection === item.href
                       ? "text-primary bg-primary/5 border-primary/10"
                       : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  <span>{item.label}</span>
-                  {activeSection === item.href && (
-                    <motion.span
-                      layoutId="active-dot-mobile"
-                      className="w-1.5 h-1.5 rounded-full bg-primary"
-                    />
-                  )}
+                  {item.label}
                 </motion.a>
               ))}
 
