@@ -114,7 +114,7 @@ export function ProjectsSection() {
                   src={project.images[0]}
                   alt={project.title}
                   fill
-                  className="object-cover md:grayscale transition-all duration-700 ease-out md:group-hover:grayscale-0 scale-100 group-hover:scale-104"
+                  className="object-cover transition-all duration-700 ease-out scale-100 group-hover:scale-104"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
               </div>
