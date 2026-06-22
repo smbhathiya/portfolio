@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import {
   IconBrandTwitter,
   IconBrandLinkedin,
@@ -13,6 +15,8 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 
+gsap.registerPlugin(useGSAP);
+
 const socials = [
   { icon: IconBrandGithub, href: "https://github.com/smbhathiya", label: "GitHub" },
   { icon: IconBrandLinkedin, href: "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/", label: "LinkedIn" },
@@ -20,94 +24,109 @@ const socials = [
   { icon: IconBrandFacebook, href: "https://www.facebook.com/smbhathiya/", label: "Facebook" },
 ];
 
+/* Matches the loader exit timing so hero content fades in as loader slides away */
+const HERO_START_DELAY = 1.2;
+
 export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  useGSAP(
+    () => {
+      /* Set initial hidden state */
+      gsap.set(".hero-char", { opacity: 0, y: 38 });
+      gsap.set(".hero-name-2", { opacity: 0, y: 38 });
+      gsap.set(".hero-desc", { opacity: 0, y: 20 });
+      gsap.set(".hero-cta", { opacity: 0, y: 20 });
+      gsap.set(".hero-social", { opacity: 0, y: 14 });
+      gsap.set(".hero-image", { opacity: 0, y: 28, scale: 0.96 });
+
+      const tl = gsap.timeline({ delay: HERO_START_DELAY });
+
+      tl.to(".hero-char", {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.04,
+        ease: "power3.out",
+      })
+        /* Gradient second word animates as a single unit to preserve bg-clip-text */
+        .to(
+          ".hero-name-2",
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          "-=0.35",
+        )
+        .to(
+          ".hero-image",
+          { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" },
+          "-=0.55",
+        )
+        .to(
+          ".hero-desc",
+          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+          "-=0.35",
+        )
+        .to(
+          ".hero-cta",
+          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+          "-=0.42",
+        )
+        .to(
+          ".hero-social",
+          { opacity: 1, y: 0, duration: 0.45, stagger: 0.07, ease: "power3.out" },
+          "-=0.38",
+        );
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <section
       id="home"
-      ref={containerRef}
+      ref={sectionRef}
       className="min-h-screen pt-24 pb-20 md:pt-32 flex items-center justify-center relative overflow-hidden bg-background"
     >
-      {/* Minimal subtle background accent */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Text block */}
           <div className="lg:col-span-7 flex flex-col gap-8 order-2 lg:order-1">
-            {/* Status */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="hidden lg:flex items-center gap-2.5 w-fit"
-            >
-              {/* <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase">
-                Available for new opportunities
-              </span> */}
-            </motion.div>
-
             {/* Name */}
-            <div className="text-center lg:text-left overflow-hidden">
+            <div className="text-center lg:text-left">
               <h1 className="text-6xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight leading-[0.95] flex flex-col gap-2">
-                <span className="block overflow-hidden py-1">
-                  <motion.span
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="block"
-                  >
-                    Bhathiya
-                  </motion.span>
+                {/* Line 1: character-by-character reveal */}
+                <span className="block">
+                  {"Bhathiya".split("").map((char, i) => (
+                    <span key={i} className="hero-char inline-block">
+                      {char}
+                    </span>
+                  ))}
                 </span>
-                <span className="block overflow-hidden py-1">
-                  <motion.span
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]"
-                  >
-                    Lakshan
-                  </motion.span>
+                {/* Line 2: whole-word reveal to keep gradient bg-clip-text intact */}
+                <span className="hero-name-2 block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]">
+                  Lakshan
                 </span>
               </h1>
             </div>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg text-center lg:text-left"
-            >
-              Lead Software Engineer architecting scalable web applications and managing robust cloud ecosystems. Currently driving digital innovation at IMOS and Digi Pro Solutions.
-            </motion.p>
+            <p className="hero-desc text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg text-center lg:text-left">
+              Lead Software Engineer architecting scalable web applications and
+              managing robust cloud ecosystems. Currently driving digital
+              innovation at IMOS and Digi Pro Solutions.
+            </p>
 
             {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row gap-4 items-center lg:items-start"
-            >
+            <div className="hero-cta flex flex-col sm:flex-row gap-4 items-center lg:items-start">
               <Button
                 size="lg"
                 className="w-full sm:w-auto h-12 px-8 text-sm font-semibold tracking-wide group cursor-pointer"
                 onClick={() => {
                   const el = document.getElementById("contact");
-                  if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
+                  if (el)
+                    window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
                 }}
               >
                 Let&apos;s Talk
@@ -122,36 +141,27 @@ export function HeroSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
+                    className="hero-social w-10 h-10 flex items-center justify-center rounded-lg border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
                     whileHover={{ y: -3, scale: 1.08 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="w-10 h-10 flex items-center justify-center rounded-lg border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
                   >
                     <Icon className="w-4 h-4" />
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Image block */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[380px] lg:max-w-none group cursor-pointer"
-            >
-              {/* Pulse glowing backdrop */}
+            <div className="hero-image relative w-full max-w-[380px] lg:max-w-none group cursor-pointer">
+              {/* Glowing backdrop */}
               <div className="absolute -inset-3 bg-gradient-to-tr from-emerald-500/30 to-teal-600/25 dark:from-primary/25 dark:to-emerald-500/10 rounded-3xl blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500 scale-95 group-hover:scale-105" />
-              
+
               <motion.div
                 animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 whileHover={{ scale: 1.02, rotate: 0.5 }}
                 className="relative aspect-square rounded-2xl overflow-hidden border border-border/80 bg-muted shadow-2xl transition-colors duration-300"
               >
@@ -174,9 +184,9 @@ export function HeroSection() {
                   </span>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}

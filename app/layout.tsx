@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BackgroundGlow } from "@/components/ui/background-glow";
+import { PageLoader } from "@/components/ui/page-loader";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-space-grotesk",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -188,7 +190,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} antialiased font-sans`}
+        className={`${spaceGrotesk.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -197,6 +199,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <PageLoader />
           <BackgroundGlow />
           {children}
         </ThemeProvider>

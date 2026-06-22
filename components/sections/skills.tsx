@@ -1,5 +1,10 @@
 "use client";
 
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   IconBrandReact,
   IconBrandNextjs,
@@ -25,7 +30,8 @@ import {
   IconBrandFirebase,
   IconBrandStripe,
 } from "@tabler/icons-react";
-import { motion } from "framer-motion";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const categories = [
   {
@@ -71,76 +77,99 @@ const categories = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring" as const, stiffness: 220, damping: 20 },
-  },
-};
-
 export function SkillsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.set(".skills-header", { opacity: 0, y: 24 });
+      gsap.set(".skills-category-label", { opacity: 0, x: -16 });
+      gsap.set(".skill-item", { opacity: 0, y: 20, scale: 0.95 });
+
+      ScrollTrigger.create({
+        trigger: ".skills-header",
+        start: "top 82%",
+        onEnter: () => {
+          gsap.to(".skills-header", {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power3.out",
+          });
+        },
+      });
+
+      document.querySelectorAll(".skills-category-label").forEach((el, i) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 88%",
+          onEnter: () => {
+            gsap.to(el, {
+              opacity: 1,
+              x: 0,
+              duration: 0.5,
+              delay: i * 0.08,
+              ease: "power3.out",
+            });
+          },
+        });
+      });
+
+      document.querySelectorAll(".skill-item").forEach((el, i) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 92%",
+          onEnter: () => {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.45,
+              delay: (i % 8) * 0.045,
+              ease: "back.out(1.4)",
+            });
+          },
+        });
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section id="skills" className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="py-24 md:py-32 bg-background relative overflow-hidden"
+    >
       <div className="container px-4 md:px-6 max-w-5xl mx-auto relative z-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-20"
-        >
+        <div className="skills-header mb-20">
           <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Skills</p>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Technical Stack</h2>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {categories.map((cat) => (
-            <motion.div
-              key={cat.title}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              className="flex flex-col"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-baseline gap-3 mb-6"
-              >
+            <div key={cat.title} className="flex flex-col">
+              <div className="skills-category-label flex items-baseline gap-3 mb-6">
                 <span className="text-[11px] md:text-xs font-bold tracking-widest text-primary/60 uppercase">{cat.label}</span>
                 <h3 className="text-base font-semibold tracking-wide uppercase text-muted-foreground">{cat.title}</h3>
-              </motion.div>
+              </div>
 
               <div className="grid grid-cols-2 gap-2.5">
                 {cat.skills.map(({ name, Icon }) => (
                   <motion.div
                     key={name}
-                    variants={itemVariants}
-                    whileHover={{ y: -3, scale: 1.02 }}
+                    whileHover={{ y: -3, scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 450, damping: 18 }}
-                    className="group flex items-center gap-3 p-3.5 rounded-lg border border-border/80 hover:border-primary/30 hover:bg-primary/5 hover:shadow-[0_6px_20px_-8px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_6px_20px_-8px_rgba(255,255,255,0.01)] transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs"
+                    className="skill-item group flex items-center gap-3 p-3.5 rounded-lg border border-border/80 hover:border-primary/30 hover:bg-primary/5 hover:shadow-[0_6px_20px_-8px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_6px_20px_-8px_rgba(255,255,255,0.01)] transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs"
                   >
                     <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0" />
                     <span className="text-xs md:text-sm font-medium tracking-wide group-hover:text-foreground transition-colors duration-200">{name}</span>
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
