@@ -85,7 +85,16 @@ export default function Home() {
         <ProjectsSection />
         <ContactSection />
       </main>
-      <Footer />
+      {/* Footer hidden on mobile — bottom nav is the primary navigation */}
+      <div className="hidden md:block">
+        <Footer />
+      </div>
+      {/* Mobile footer — minimal, above bottom nav */}
+      <div className="md:hidden pb-24 pt-8 px-5 border-t border-border text-center">
+        <p className="text-xs text-muted-foreground/50">
+          &copy; {new Date().getFullYear()} Bhathiya Lakshan
+        </p>
+      </div>
     </div>
   );
 }
