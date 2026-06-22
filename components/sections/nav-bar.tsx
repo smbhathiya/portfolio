@@ -174,13 +174,6 @@ export function NavBar() {
                   )}
                   aria-label={item.label}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="mobile-nav-pill"
-                      className="absolute inset-0 bg-primary/10 rounded-xl"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                   <Icon
                     className={cn(
                       "relative z-10 transition-all duration-200",
