@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://bhathiya.dev</loc><lastmod>2026-06-22T04:21:05.080Z</lastmod><changefreq>weekly</changefreq><priority>1</priority></url>
-<url><loc>https://bhathiya.dev/robots.txt</loc><lastmod>2026-06-22T04:21:05.081Z</lastmod><changefreq>weekly</changefreq><priority>1</priority></url>
-<url><loc>https://bhathiya.dev/sitemap.xml</loc><lastmod>2026-06-22T04:21:05.081Z</lastmod><changefreq>weekly</changefreq><priority>1</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+  <loc>https://bhathiya.dev</loc>
+  <lastmod>2026-06-22T00:00:00.000Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+  <image:image>
+    <image:loc>https://bhathiya.dev/cover.png</image:loc>
+    <image:title>Bhathiya Lakshan — Software Engineer &amp; Full Stack Developer Portfolio</image:title>
+  </image:image>
+</url>
 </urlset>
