@@ -206,12 +206,13 @@ export function HeroSection() {
           </div>
 
           <h1 className="text-[clamp(3.5rem,14vw,5rem)] font-black uppercase tracking-tight leading-[0.9]">
-            <span className="block">
+            <span className="sr-only">Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka</span>
+            <span aria-hidden="true" className="block">
               {"Bhathiya".split("").map((char, i) => (
                 <span key={i} className="hero-char inline-block">{char}</span>
               ))}
             </span>
-            <span className="hero-name-2 block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]">
+            <span aria-hidden="true" className="hero-name-2 block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]">
               Lakshan
             </span>
           </h1>
@@ -262,22 +263,23 @@ export function HeroSection() {
               </div>
 
               <h1 className="text-[clamp(4.5rem,8vw,7.5rem)] font-black uppercase tracking-tight leading-[0.9]">
-                <span className="block">
+                <span className="sr-only">Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka</span>
+                <span aria-hidden="true" className="block">
                   {"Bhathiya".split("").map((char, i) => (
                     <span key={i} className="hero-char inline-block">{char}</span>
                   ))}
                 </span>
-                <span className="hero-name-2 block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]">
+                <span aria-hidden="true" className="hero-name-2 block bg-gradient-to-r from-primary to-[oklch(0.48_0.15_145)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.82_0.15_145)]">
                   Lakshan
                 </span>
               </h1>
 
-              <div className="hero-desc flex items-center gap-4">
+              <h2 className="hero-desc flex items-center gap-4">
                 <div className="h-px w-12 bg-border" />
                 <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground/60">
                   Lead Software Engineer &nbsp;·&nbsp; Sri Lanka
                 </span>
-              </div>
+              </h2>
 
               <p className="hero-desc text-muted-foreground text-lg leading-relaxed max-w-lg">
                 Architecting scalable web applications and managing robust cloud ecosystems. Currently driving digital innovation at IMOS and Digi Pro Solutions.
