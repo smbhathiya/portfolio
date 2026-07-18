@@ -14,11 +14,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bhathiya.dev"),
   title: {
-    default: "Bhathiya Lakshan | Software Engineer & Full Stack Developer",
+    default: "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
     template: "%s | Bhathiya Lakshan",
   },
   description:
-    "Bhathiya Lakshan is a Software Engineer from Sri Lanka specialising in React, Next.js, TypeScript and Node.js — building scalable web applications and cloud systems.",
+    "Bhathiya Lakshan is a Software Engineer based in Sri Lanka specializing in React, Next.js, TypeScript, and Node.js — architecting custom LMS, payroll, CRM, and cloud systems.",
   authors: [{ name: "Bhathiya Lakshan", url: "https://bhathiya.dev" }],
   creator: "Bhathiya Lakshan",
   publisher: "Bhathiya Lakshan",
@@ -97,9 +97,9 @@ export default function RootLayout({
                   ],
                   address: {
                     "@type": "PostalAddress",
-                    addressLocality: "Kadawatha",
-                    addressRegion: "Western Province",
-                    addressCountry: "LK",
+                    "addressLocality": "Kadawatha",
+                    "addressRegion": "Western Province",
+                    "addressCountry": "LK",
                   },
                   email: "info@bhathiya.dev",
                   sameAs: [
@@ -123,7 +123,7 @@ export default function RootLayout({
                   description:
                     "Professional portfolio of Bhathiya Lakshan — Software Engineer and Full Stack Developer.",
                   author: { "@id": "https://bhathiya.dev/#person" },
-                  inLanguage: "en-US",
+                  inLanguage: "en-LK",
                 },
               ],
             }),
