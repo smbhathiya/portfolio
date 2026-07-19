@@ -94,7 +94,7 @@ const projectsData = [
     images: ["/projects/landingpage.png"],
     tag: ["All", "Web"],
     gitUrl: "https://github.com/smbhathiya/landing-page-2025.git",
-    previewUrl: "https://landing2025.bhathiya.dev",
+    previewUrl: "https://landing.bhathiya.dev",
   },
   {
     id: 5,
