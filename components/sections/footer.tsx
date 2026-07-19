@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 import { ScrollToTopButton } from "../ui/scroll-to-top-button";
 import { WhatsAppMessageButton } from "../ui/whatsapp-message-button";
 import {
@@ -45,6 +46,43 @@ const socials = [
   },
 ];
 
+function MagneticIcon({ children, href, label }: { children: React.ReactNode; href: string; label: string }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { width, height, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * 0.4, y: middleY * 0.4 });
+  };
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      whileHover={{ scale: 1.15 }}
+      whileTap={{ scale: 0.9 }}
+      className="w-10 h-10 flex items-center justify-center rounded-lg border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-colors duration-200 bg-background/50 backdrop-blur-sm"
+    >
+      {children}
+    </motion.a>
+  );
+}
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -80,21 +118,11 @@ export function Footer() {
               architecture, and a passion for great UX.
             </p>
             {/* Social icons */}
-            <div className="flex gap-2 pt-1">
+            <div className="flex gap-3 pt-2">
               {socials.map(({ icon: Icon, href, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-colors duration-200"
-                >
+                <MagneticIcon key={label} href={href} label={label}>
                   <Icon className="w-4 h-4" />
-                </motion.a>
+                </MagneticIcon>
               ))}
             </div>
           </div>

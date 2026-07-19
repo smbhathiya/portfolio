@@ -102,18 +102,18 @@ export function NavBar() {
               href={item.href}
               onClick={(e) => handleDesktopNavClick(e as MouseEvent<HTMLAnchorElement>, item.href)}
               className={cn(
-                "relative px-3 py-2 text-xs font-semibold tracking-wide transition-colors duration-200",
+                "relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-200 rounded-full",
                 activeSection === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
-              <span>{item.label}</span>
+              <span className="relative z-10">{item.label}</span>
               {activeSection === item.href && (
                 <motion.div
-                  layoutId="active-underline"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  layoutId="active-pill"
+                  className="absolute inset-0 bg-primary/15 rounded-full border border-primary/20"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
             </Link>
