@@ -9,7 +9,7 @@ const ModeToggle = dynamic(
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   IconHome2,
   IconUser,
@@ -32,12 +32,7 @@ export function NavBar() {
   const [activeSection, setActiveSection] = useState("#home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 25,
-    restDelta: 0.001,
-  });
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,11 +67,6 @@ export function NavBar() {
 
   return (
     <>
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary to-[oklch(0.82_0.15_145)] origin-left z-55 pointer-events-none"
-        style={{ scaleX }}
-      />
 
       {/* ─── Desktop / Mobile top header ─── */}
       <header

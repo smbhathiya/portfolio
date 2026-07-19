@@ -65,51 +65,29 @@ function useThemeColors() {
 function AbstractShapes() {
   const colors = useThemeColors();
 
-  const materialProps = {
-    roughness: 0.1,
-    transmission: 0.95,
-    thickness: 1.5,
-    ior: 1.5,
-    clearcoat: 1,
-    clearcoatRoughness: 0.1,
-    color: colors.primary,
-  };
-
-  const secondaryMaterialProps = {
-    ...materialProps,
-    color: colors.secondary,
-  };
-
   return (
-    <>
-      <Float speed={2.5} rotationIntensity={1.5} floatIntensity={2.2} position={[-1.4, 0.8, -0.5]}>
-        <mesh castShadow receiveShadow>
-          <torusKnotGeometry args={[0.35, 0.12, 100, 16]} />
-          <meshPhysicalMaterial {...materialProps} />
-        </mesh>
-      </Float>
-
-      <Float speed={1.8} rotationIntensity={2} floatIntensity={1.8} position={[1.5, -0.5, 0.2]}>
-        <mesh castShadow receiveShadow>
-          <icosahedronGeometry args={[0.45, 0]} />
-          <meshPhysicalMaterial {...secondaryMaterialProps} />
-        </mesh>
-      </Float>
-
-      <Float speed={3} rotationIntensity={1.2} floatIntensity={2.5} position={[1.1, 1.4, -1]}>
-        <mesh castShadow receiveShadow>
-          <octahedronGeometry args={[0.25, 0]} />
-          <meshPhysicalMaterial color={colors.accent} roughness={0.2} transmission={0.9} thickness={1} />
-        </mesh>
-      </Float>
-
-      <Float speed={2} rotationIntensity={2} floatIntensity={2} position={[-1.3, -1.2, 0.5]}>
-        <mesh castShadow receiveShadow>
-          <torusGeometry args={[0.25, 0.1, 16, 32]} />
-          <meshPhysicalMaterial color={colors.primary} roughness={0.15} transmission={0.8} thickness={0.5} />
-        </mesh>
-      </Float>
-    </>
+    <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1} position={[1.5, 0, -1]}>
+      {/* Outer wireframe */}
+      <mesh castShadow receiveShadow scale={2.2}>
+        <icosahedronGeometry args={[1, 1]} />
+        <meshStandardMaterial 
+          color={colors.primary} 
+          wireframe={true}
+          transparent
+          opacity={0.15}
+        />
+      </mesh>
+      
+      {/* Inner subtle core */}
+      <mesh scale={2.1}>
+        <icosahedronGeometry args={[1, 1]} />
+        <meshBasicMaterial 
+          color={colors.secondary} 
+          transparent
+          opacity={0.05}
+        />
+      </mesh>
+    </Float>
   );
 }
 
