@@ -19,6 +19,7 @@ import {
   IconAlertCircle,
   IconArrowUpRight,
 } from "@tabler/icons-react";
+import { ContactGlobe } from "@/components/3d/contact-globe";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -112,7 +113,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-24 md:py-32 bg-background relative overflow-x-clip overflow-y-visible">
 
       {/* ── Decorative shapes ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -141,11 +142,13 @@ export function ContactSection() {
 
         {/* Header */}
         <div className="contact-header mb-16 md:mb-20">
-          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Contact</p>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Let&apos;s Connect</h2>
-          <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-lg">
-            Have a project in mind or just want to say hello? I&apos;d love to hear from you.
-          </p>
+          <div className="max-w-xl">
+            <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Contact</p>
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Let&apos;s Connect</h2>
+            <p className="mt-4 text-muted-foreground text-sm md:text-base">
+              Have a project in mind or just want to say hello? I&apos;d love to hear from you.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
@@ -211,8 +214,13 @@ export function ContactSection() {
           </div>
 
           {/* ── Form column (3/5) ── */}
-          <div className="contact-form-col lg:col-span-3">
-            <div className="relative rounded-2xl border border-border/70 bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
+          <div className="contact-form-col lg:col-span-3 relative">
+            {/* Background Globe behind the form */}
+            <div className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[600px] md:w-[800px] md:h-[900px] opacity-60 z-0 pointer-events-auto">
+              <ContactGlobe />
+            </div>
+
+            <div className="relative z-10 rounded-2xl border border-border/70 bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
 
               {/* Top gradient accent */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />

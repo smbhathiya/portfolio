@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { IconSchool, IconBriefcase, IconArrowUpRight } from "@tabler/icons-react";
 import { workExperience, education } from "@/data/aboutData";
 import { useGSAP } from "@gsap/react";
@@ -12,6 +12,16 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Track scroll for the glowing timeline line
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"]
+  });
+  
+  // Smooth out the scroll progress
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 50, damping: 20 });
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   useGSAP(
     () => {
@@ -118,7 +128,14 @@ export function AboutSection() {
 
             {/* Desktop: timeline layout */}
             <div className="hidden md:block relative">
-              <div className="absolute left-[10.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-border via-border/60 to-transparent" />
+              {/* Background faded line */}
+              <div className="absolute left-[10.5rem] top-0 bottom-0 w-[2px] bg-border/40" />
+              {/* Animated glowing scroll line */}
+              <motion.div 
+                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0 transform-gpu will-change-transform" 
+                style={{ height: lineHeight }} 
+              />
+              
               {workExperience.map((exp, idx) => (
                 <DesktopTimelineCard key={idx} exp={exp} index={idx} />
               ))}
@@ -143,7 +160,13 @@ export function AboutSection() {
             </div>
 
             <div className="hidden md:block relative">
-              <div className="absolute left-[10.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-border via-border/60 to-transparent" />
+              {/* Background faded line */}
+              <div className="absolute left-[10.5rem] top-0 bottom-0 w-[2px] bg-border/40" />
+              {/* Animated glowing scroll line continues */}
+              <motion.div 
+                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0 transform-gpu will-change-transform" 
+                style={{ height: lineHeight }} 
+              />
               {education.map((edu, idx) => (
                 <DesktopTimelineCard key={idx} exp={edu} index={idx} />
               ))}
@@ -187,41 +210,63 @@ function MobileCard({ exp }: { exp: any }) {
 
 /* ─── Desktop timeline card ─── */
 function DesktopTimelineCard({ exp, index }: { exp: any; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
   return (
-    <div className="about-card relative flex gap-8 mb-6 pl-[12rem]">
+    <div className="about-card relative flex gap-8 mb-8 pl-[12rem] group">
       {/* Date in left column */}
-      <div className="absolute left-0 top-6 w-[10rem] text-right">
-        <span className="text-xs font-bold tracking-wide text-primary uppercase leading-relaxed">
+      <div className="absolute left-0 top-8 w-[10rem] text-right">
+        <span className="text-xs font-black tracking-widest text-primary uppercase leading-relaxed group-hover:text-primary transition-colors duration-300">
           {exp.duration}
         </span>
         {exp.badge && (
-          <div className="mt-1.5">
-            <span className="text-[9px] font-bold tracking-widest uppercase border border-primary/30 text-primary px-1.5 py-0.5 rounded bg-primary/5">
+          <div className="mt-2">
+            <span className="text-[9px] font-bold tracking-widest uppercase border border-primary/30 text-primary px-2 py-1 rounded bg-primary/5">
               {exp.badge}
             </span>
           </div>
         )}
       </div>
 
-      {/* Timeline dot */}
-      <div className="absolute left-[10.375rem] top-[1.6rem] w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-background border border-primary/40" />
+      {/* Timeline dot with glowing aura on hover */}
+      <div className="absolute left-[10.22rem] top-[2rem] w-3 h-3 rounded-full bg-background border-2 border-border/80 group-hover:border-primary group-hover:bg-primary group-hover:scale-125 group-hover:shadow-[0_0_20px_var(--color-primary)] transition-all duration-300 z-10" />
 
-      {/* Card */}
-      <motion.div
-        whileHover={{ y: -3 }}
-        transition={{ duration: 0.22, ease: "easeOut" }}
-        className="flex-1 group relative overflow-hidden border border-border/80 rounded-xl p-6 hover:border-primary/50 dark:hover:border-primary/35 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.08)] transition-all duration-300 bg-background/40 backdrop-blur-sm"
+      {/* Card with Mouse Spotlight Effect */}
+      <div 
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        className="flex-1 relative overflow-hidden rounded-2xl bg-background/20 backdrop-blur-md p-[1px] group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 transform-gpu will-change-transform"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none" />
-        <h4 className="text-lg font-semibold tracking-tight mb-1 group-hover:text-primary transition-colors duration-300">
-          {exp.title}
-        </h4>
-        <p className="text-sm font-medium text-muted-foreground mb-3">
-          {exp.company || exp.institution}
-          {exp.location && <span className="opacity-80"> &middot; {exp.location}</span>}
-        </p>
-        <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
-      </motion.div>
+        {/* Spotlight Gradient inside border */}
+        <div 
+          className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none mix-blend-overlay"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.08), transparent 40%)`
+          }}
+        />
+
+        {/* Inner Card Content */}
+        <div className="relative z-10 h-full w-full rounded-2xl border border-border/60 bg-background/60 p-7 group-hover:border-transparent transition-colors duration-500">
+          <h4 className="text-xl font-bold tracking-tight mb-1.5 group-hover:text-primary transition-colors duration-300">
+            {exp.title}
+          </h4>
+          <p className="text-sm font-semibold text-muted-foreground mb-4">
+            {exp.company || exp.institution}
+            {exp.location && <span className="opacity-70 font-normal"> &middot; {exp.location}</span>}
+          </p>
+          <p className="text-sm text-muted-foreground/90 leading-relaxed font-medium">{exp.description}</p>
+        </div>
+      </div>
     </div>
   );
 }

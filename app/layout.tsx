@@ -116,6 +116,34 @@ export default function RootLayout({
                     "Bhathiya Lakshan is a Software Engineer based in Sri Lanka, specialising in Next.js, React, TypeScript, and cloud architecture.",
                 },
                 {
+                  "@type": "ProfessionalService",
+                  "@id": "https://bhathiya.dev/#professionalService",
+                  name: "Bhathiya.dev - Custom Software Development",
+                  image: "https://bhathiya.dev/cover.png",
+                  url: "https://bhathiya.dev",
+                  telephone: "+94758041606",
+                  address: {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Kadawatha",
+                    "addressRegion": "Western Province",
+                    "addressCountry": "LK"
+                  },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    "latitude": "7.0016",
+                    "longitude": "79.9497"
+                  },
+                  openingHoursSpecification: {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+                    ],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                  },
+                  priceRange: "$$"
+                },
+                {
                   "@type": "WebSite",
                   "@id": "https://bhathiya.dev/#website",
                   name: "Bhathiya Lakshan",
