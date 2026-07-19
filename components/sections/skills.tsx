@@ -110,11 +110,9 @@ function ParticleNetwork() {
 
     let particles: Particle[] = [];
     let animationFrameId: number;
+    let isVisible = true;
     let w = canvas.width = window.innerWidth;
     
-    // We only want the canvas to cover the section, so we use parent height if possible,
-    // but window.innerHeight is a safe fallback for viewport-based coordinate mapping.
-    // For absolute positioning in a relative container, we use offsetWidth/Height.
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
       if (parent) {
@@ -165,6 +163,8 @@ function ParticleNetwork() {
     window.addEventListener("mouseout", handleMouseLeave);
 
     const animate = () => {
+      if (!isVisible) return; // Pause calculation when out of view
+
       ctx.clearRect(0, 0, w, h);
       
       for (let i = 0; i < particles.length; i++) {
@@ -208,10 +208,25 @@ function ParticleNetwork() {
       animationFrameId = requestAnimationFrame(animate);
     };
     
-    animate();
+    // Visibility Culling via Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          // Restart loop if it became visible
+          cancelAnimationFrame(animationFrameId);
+          animate();
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
     window.addEventListener("resize", resizeCanvas);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);

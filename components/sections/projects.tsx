@@ -47,7 +47,7 @@ function TiltProjectCard({ project, index }: { project: any; index: number }) {
         onMouseLeave={handleMouseLeave}
         whileHover={{ scale: 1.03 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-border/70 bg-background/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_32px_80px_-16px_rgba(16,185,129,0.15)] transition-colors duration-300"
+        className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-border/70 bg-background/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_32px_80px_-16px_rgba(16,185,129,0.15)] transition-colors duration-300 transform-gpu will-change-transform"
       >
         {/* Dynamic Interactive Glare */}
         <motion.div 
@@ -308,7 +308,7 @@ export function ProjectsSection() {
                   key={project.id}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="internal-card group relative overflow-hidden flex items-start gap-5 p-5 md:p-6 border border-border/70 rounded-2xl bg-background/40 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_32px_-8px_rgba(16,185,129,0.07)]"
+                  className="internal-card group relative overflow-hidden flex items-start gap-5 p-5 md:p-6 border border-border/70 rounded-2xl bg-background/40 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_32px_-8px_rgba(16,185,129,0.07)] transform-gpu will-change-transform"
                 >
                   {/* Left accent line on hover */}
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/50 rounded-l-2xl scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />

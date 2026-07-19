@@ -121,7 +121,11 @@ function Globe() {
 export function ContactGlobe() {
   return (
     <div className="w-full h-full cursor-grab active:cursor-grabbing">
-      <Canvas camera={{ position: [0, 0, 6.5], fov: 45 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 6.5], fov: 45 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
+      >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} />
         <Environment preset="city" />

@@ -132,7 +132,7 @@ export function AboutSection() {
               <div className="absolute left-[10.5rem] top-0 bottom-0 w-[2px] bg-border/40" />
               {/* Animated glowing scroll line */}
               <motion.div 
-                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0" 
+                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0 transform-gpu will-change-transform" 
                 style={{ height: lineHeight }} 
               />
               
@@ -164,7 +164,7 @@ export function AboutSection() {
               <div className="absolute left-[10.5rem] top-0 bottom-0 w-[2px] bg-border/40" />
               {/* Animated glowing scroll line continues */}
               <motion.div 
-                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0" 
+                className="absolute left-[10.5rem] top-0 w-[2px] bg-gradient-to-b from-primary/80 via-primary to-primary/80 shadow-[0_0_15px_var(--color-primary)] opacity-80 z-0 transform-gpu will-change-transform" 
                 style={{ height: lineHeight }} 
               />
               {education.map((edu, idx) => (
@@ -245,7 +245,7 @@ function DesktopTimelineCard({ exp, index }: { exp: any; index: number }) {
       <div 
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        className="flex-1 relative overflow-hidden rounded-2xl bg-background/20 backdrop-blur-md p-[1px] group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20"
+        className="flex-1 relative overflow-hidden rounded-2xl bg-background/20 backdrop-blur-md p-[1px] group transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 transform-gpu will-change-transform"
       >
         {/* Spotlight Gradient inside border */}
         <div 

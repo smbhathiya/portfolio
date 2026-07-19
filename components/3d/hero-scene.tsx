@@ -94,7 +94,11 @@ function AbstractShapes() {
 export function HeroScene() {
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] z-0 cursor-grab active:cursor-grabbing pointer-events-auto">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
+      >
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} />
