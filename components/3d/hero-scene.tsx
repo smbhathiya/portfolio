@@ -68,7 +68,7 @@ function AbstractShapes() {
   return (
     <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1} position={[1.5, 0, -1]}>
       {/* Outer wireframe */}
-      <mesh castShadow receiveShadow scale={2.2}>
+      <mesh castShadow receiveShadow scale={1.7}>
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial 
           color={colors.primary} 
@@ -79,7 +79,7 @@ function AbstractShapes() {
       </mesh>
       
       {/* Inner subtle core */}
-      <mesh scale={2.1}>
+      <mesh scale={1.65}>
         <icosahedronGeometry args={[1, 1]} />
         <meshBasicMaterial 
           color={colors.secondary} 
@@ -93,7 +93,7 @@ function AbstractShapes() {
 
 export function HeroScene() {
   return (
-    <div className="absolute -inset-32 md:-inset-48 z-0 cursor-grab active:cursor-grabbing">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] z-0 cursor-grab active:cursor-grabbing pointer-events-auto">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
@@ -109,15 +109,6 @@ export function HeroScene() {
           >
             <AbstractShapes />
           </PresentationControls>
-          
-          <ContactShadows
-            position={[0, -2.5, 0]}
-            opacity={0.3}
-            scale={15}
-            blur={2.5}
-            far={4}
-            color="#000000"
-          />
         </Suspense>
       </Canvas>
     </div>
