@@ -41,7 +41,7 @@ const floatingIcons = [
   { Icon: IconBrandAws,        pos: { bottom: "14%", right: "-12%" }, delay: 0.9, duration: 5.5 },
 ];
 
-const HERO_START_DELAY = 1.2;
+const HERO_START_DELAY = 0.3;
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -61,14 +61,14 @@ export function HeroSection() {
 
       const tl = gsap.timeline({ delay: HERO_START_DELAY });
 
-      tl.to(".hero-image", { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" })
-        .to(".hero-badge", { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "back.out(1.5)" }, "-=0.3")
-        .to(".hero-float-icon", { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: "back.out(1.8)" }, "-=0.2")
-        .to(".hero-char", { opacity: 1, y: 0, duration: 0.65, stagger: 0.04, ease: "power3.out" }, "-=0.25")
-        .to(".hero-name-2", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.35")
-        .to(".hero-desc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.35")
-        .to(".hero-cta", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.42")
-        .to(".hero-social", { opacity: 1, y: 0, duration: 0.45, stagger: 0.07, ease: "power3.out" }, "-=0.38");
+      tl.to(".hero-char", { opacity: 1, y: 0, duration: 0.65, stagger: 0.04, ease: "power3.out" }, 0)
+        .to(".hero-name-2", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3)
+        .to(".hero-desc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.5)
+        .to(".hero-cta", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.7)
+        .to(".hero-social", { opacity: 1, y: 0, duration: 0.45, stagger: 0.07, ease: "power3.out" }, 0.8)
+        .to(".hero-image", { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" }, 0.2)
+        .to(".hero-badge", { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "back.out(1.5)" }, 0.6)
+        .to(".hero-float-icon", { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: "back.out(1.8)" }, 0.8);
     },
     { scope: sectionRef },
   );

@@ -51,12 +51,12 @@ const projectsData = [
   },
   {
     id: 14,
-    title: "Web Toolkit",
+    title: "Omnitool",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
     images: ["/projects/toolkit.png"],
     tag: ["All", "Web"],
-    previewUrl: "https://toolkit.bhathiya.dev",
+    previewUrl: "https://omnitool.bhathiya.dev",
   },
   {
     id: 12,
