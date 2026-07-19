@@ -133,20 +133,24 @@ export function ProjectsSection() {
 
               {/* Image */}
               <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                <Image
-                  src={project.images[0]}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-
-                {/* Project number badge */}
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] font-black tracking-widest text-foreground/70 bg-background/80 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border/60">
-                    0{index + 1}
-                  </span>
-                </div>
+                {project.previewUrl && project.previewUrl !== "#" ? (
+                  <a href={project.previewUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-0">
+                    <Image
+                      src={project.images[0]}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    />
+                  </a>
+                ) : (
+                  <Image
+                    src={project.images[0]}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
 
                 {/* Quick action links on image hover */}
                 <div className="absolute top-3 right-3 flex gap-2 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
