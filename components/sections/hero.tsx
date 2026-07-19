@@ -14,13 +14,8 @@ import {
   IconArrowRight,
   IconMapPin,
   IconBriefcase,
-  IconBrandReact,
-  IconBrandNextjs,
-  IconBrandTypescript,
-  IconBrandNodejs,
-  IconBrandDocker,
-  IconBrandAws,
 } from "@tabler/icons-react";
+import { HeroScene } from "@/components/3d/hero-scene";
 
 gsap.registerPlugin(useGSAP);
 
@@ -31,15 +26,7 @@ const socials = [
   { icon: IconBrandFacebook, href: "https://www.facebook.com/smbhathiya/", label: "Facebook" },
 ];
 
-/* Floating tech icons around the desktop hero image */
-const floatingIcons = [
-  { Icon: IconBrandReact,      pos: { top: "8%",  left: "-14%" }, delay: 0,    duration: 5 },
-  { Icon: IconBrandNextjs,     pos: { top: "8%",  right: "-14%" }, delay: 0.7,  duration: 5.5 },
-  { Icon: IconBrandTypescript, pos: { top: "44%", left: "-16%" }, delay: 0.3,  duration: 4.5 },
-  { Icon: IconBrandNodejs,     pos: { top: "44%", right: "-16%" }, delay: 1.1,  duration: 6 },
-  { Icon: IconBrandDocker,     pos: { bottom: "14%", left: "-12%" }, delay: 0.5, duration: 5 },
-  { Icon: IconBrandAws,        pos: { bottom: "14%", right: "-12%" }, delay: 0.9, duration: 5.5 },
-];
+
 
 const HERO_START_DELAY = 0.3;
 
@@ -57,7 +44,6 @@ export function HeroSection() {
       gsap.set(".hero-social", { opacity: 0, y: 14 });
       gsap.set(".hero-image", { opacity: 0, y: 28, scale: 0.96 });
       gsap.set(".hero-badge", { opacity: 0, y: 10 });
-      gsap.set(".hero-float-icon", { opacity: 0, scale: 0.6 });
 
       const tl = gsap.timeline({ delay: HERO_START_DELAY });
 
@@ -67,8 +53,7 @@ export function HeroSection() {
         .to(".hero-cta", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.7)
         .to(".hero-social", { opacity: 1, y: 0, duration: 0.45, stagger: 0.07, ease: "power3.out" }, 0.8)
         .to(".hero-image", { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" }, 0.2)
-        .to(".hero-badge", { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "back.out(1.5)" }, 0.6)
-        .to(".hero-float-icon", { opacity: 1, scale: 1, duration: 0.4, stagger: 0.08, ease: "back.out(1.8)" }, 0.8);
+        .to(".hero-badge", { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "back.out(1.5)" }, 0.6);
     },
     { scope: sectionRef },
   );
@@ -119,25 +104,9 @@ export function HeroSection() {
       <div className="md:hidden flex flex-col min-h-screen pt-[72px] pb-24 relative z-10">
         {/* Profile image — 4 icons (2 per column) flanking image, badges inside at bottom */}
         <div className="hero-image relative w-full px-3 pt-6 pb-2">
-          <div className="flex items-center gap-3">
-
-            {/* Left icon column */}
-            <div className="flex flex-col gap-8 items-center flex-shrink-0">
-              <motion.div
-                className="hero-float-icon w-[44px] h-[44px] rounded-xl bg-background/90 backdrop-blur-md border border-border/60 shadow-lg flex items-center justify-center"
-                animate={{ y: [0, -9, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <IconBrandReact className="w-5 h-5 text-primary/80" />
-              </motion.div>
-              <motion.div
-                className="hero-float-icon w-[44px] h-[44px] rounded-xl bg-background/90 backdrop-blur-md border border-border/60 shadow-lg flex items-center justify-center"
-                animate={{ y: [0, -7, 0] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
-              >
-                <IconBrandNextjs className="w-5 h-5 text-primary/80" />
-              </motion.div>
-            </div>
+          <div className="flex items-center justify-center w-full max-w-[300px] mx-auto">
+            {/* 3D Scene Background */}
+            <HeroScene />
 
             {/* Center image */}
             <div className="flex-1 relative">
@@ -172,23 +141,7 @@ export function HeroSection() {
               </motion.div>
             </div>
 
-            {/* Right icon column */}
-            <div className="flex flex-col gap-8 items-center flex-shrink-0">
-              <motion.div
-                className="hero-float-icon w-[44px] h-[44px] rounded-xl bg-background/90 backdrop-blur-md border border-border/60 shadow-lg flex items-center justify-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              >
-                <IconBrandTypescript className="w-5 h-5 text-primary/80" />
-              </motion.div>
-              <motion.div
-                className="hero-float-icon w-[44px] h-[44px] rounded-xl bg-background/90 backdrop-blur-md border border-border/60 shadow-lg flex items-center justify-center"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-              >
-                <IconBrandNodejs className="w-5 h-5 text-primary/80" />
-              </motion.div>
-            </div>
+
 
           </div>
         </div>
@@ -321,18 +274,8 @@ export function HeroSection() {
                 {/* Glow */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-500/25 to-teal-600/20 dark:from-primary/20 dark:to-emerald-500/10 rounded-3xl blur-3xl opacity-60" />
 
-                {/* Floating tech icon badges */}
-                {floatingIcons.map(({ Icon, pos, delay, duration }, i) => (
-                  <motion.div
-                    key={i}
-                    className="hero-float-icon absolute z-20 w-11 h-11 rounded-xl bg-background/85 backdrop-blur-md border border-border/60 shadow-xl flex items-center justify-center"
-                    style={pos as React.CSSProperties}
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Icon className="w-5 h-5 text-primary/80" />
-                  </motion.div>
-                ))}
+                {/* 3D Scene Background */}
+                <HeroScene />
 
                 {/* Main image */}
                 <motion.div
