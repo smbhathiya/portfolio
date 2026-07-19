@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -13,6 +13,7 @@ import {
   IconBrandGit, IconBrandGithub, IconBrandVscode, IconBrandJavascript,
   IconBrandHtml5, IconBrandCss3, IconBrandSass, IconBrandFirebase, IconBrandStripe,
 } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -69,11 +70,160 @@ function SkillItem({ name, Icon }: { name: string; Icon: React.ComponentType<{ c
       whileHover={{ y: -3, scale: 1.03 }}
       whileTap={{ scale: 0.96 }}
       transition={{ type: "spring", stiffness: 450, damping: 18 }}
-      className="group flex items-center gap-3 p-3.5 rounded-xl border border-border/80 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs"
+      className="group flex items-center gap-3 p-3.5 rounded-xl border border-border/80 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs relative z-10"
     >
-      <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0" />
-      <span className="text-xs md:text-sm font-medium tracking-wide group-hover:text-foreground transition-colors duration-200 truncate">{name}</span>
+      <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 flex-shrink-0 relative z-10" />
+      <span className="text-xs md:text-sm font-medium tracking-wide group-hover:text-foreground transition-colors duration-200 truncate relative z-10">{name}</span>
     </motion.div>
+  );
+}
+
+function ParticleNetwork() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [rgbColor, setRgbColor] = useState("20, 184, 166"); // Default teal
+
+  useEffect(() => {
+    // Extract theme color
+    const el = document.createElement("div");
+    el.className = "text-primary absolute opacity-0 pointer-events-none";
+    document.body.appendChild(el);
+    const cssColor = getComputedStyle(el).color;
+    
+    const c = document.createElement("canvas");
+    c.width = 1; c.height = 1;
+    const ctx = c.getContext("2d", { willReadFrequently: true });
+    if (ctx) {
+      ctx.fillStyle = cssColor;
+      ctx.fillRect(0, 0, 1, 1);
+      const data = ctx.getImageData(0, 0, 1, 1).data;
+      setRgbColor(`${data[0]}, ${data[1]}, ${data[2]}`);
+    }
+    document.body.removeChild(el);
+  }, [resolvedTheme]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let particles: Particle[] = [];
+    let animationFrameId: number;
+    let w = canvas.width = window.innerWidth;
+    
+    // We only want the canvas to cover the section, so we use parent height if possible,
+    // but window.innerHeight is a safe fallback for viewport-based coordinate mapping.
+    // For absolute positioning in a relative container, we use offsetWidth/Height.
+    const resizeCanvas = () => {
+      const parent = canvas.parentElement;
+      if (parent) {
+        w = canvas.width = parent.offsetWidth;
+        let h = canvas.height = parent.offsetHeight;
+      }
+    };
+    resizeCanvas();
+    let h = canvas.height;
+
+    class Particle {
+      x: number; y: number; vx: number; vy: number; radius: number;
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+      }
+      draw() {
+        if (!ctx) return;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgbColor}, 0.4)`;
+        ctx.fill();
+      }
+    }
+
+    // Init
+    for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+    let mouse = { x: -1000, y: -1000 };
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+    const handleMouseLeave = () => { mouse.x = -1000; mouse.y = -1000; };
+    
+    // Attach to window to track mouse globally, but calculate relative to canvas
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseout", handleMouseLeave);
+
+    const animate = () => {
+      ctx.clearRect(0, 0, w, h);
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        
+        // Connect nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${rgbColor}, ${0.15 - dist/120 * 0.15})`;
+            ctx.lineWidth = 0.6;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+
+        // Connect to mouse
+        const dxMouse = p.x - mouse.x;
+        const dyMouse = p.y - mouse.y;
+        const distMouse = Math.sqrt(dxMouse*dxMouse + dyMouse*dyMouse);
+        if (distMouse < 180) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(${rgbColor}, ${0.4 - distMouse/180 * 0.4})`;
+          ctx.lineWidth = 1.2;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+          
+          // Gentle repel
+          p.x += dxMouse * 0.01;
+          p.y += dyMouse * 0.01;
+        }
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    animate();
+    window.addEventListener("resize", resizeCanvas);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseout", handleMouseLeave);
+    };
+  }, [rgbColor]);
+
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-70" 
+    />
   );
 }
 
@@ -117,37 +267,10 @@ export function SkillsSection() {
       className="py-24 md:py-32 bg-background relative overflow-hidden"
     >
       {/* ── Decorative shapes ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large faded code brackets — desktop right */}
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden lg:flex items-center gap-6 select-none">
-          <span className="text-[160px] font-black text-border/[0.06] leading-none">{"{"}</span>
-          <span className="text-[160px] font-black text-border/[0.06] leading-none">{"}"}</span>
-        </div>
-        {/* Rotating square — top left */}
-        <motion.div
-          className="absolute -top-10 -left-10 w-40 h-40 rounded-2xl border border-primary/[0.07] border-dashed"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-        />
-        {/* Small floating diamond */}
-        <motion.div
-          className="absolute top-1/3 left-8 w-8 h-8 border border-primary/20 rounded-lg"
-          animate={{ rotate: [45, 90, 45], y: [0, -12, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* Pulsing dot trio — bottom left */}
-        <div className="absolute bottom-16 left-8 flex gap-3">
-          {[0, 0.4, 0.8].map((delay, i) => (
-            <motion.div
-              key={i}
-              className="w-2 h-2 rounded-full bg-primary/25"
-              animate={{ scale: [1, 1.6, 1], opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 2.2, repeat: Infinity, delay, ease: "easeInOut" }}
-            />
-          ))}
-        </div>
-        {/* Gradient orb — bottom right */}
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/[0.04] blur-[80px] rounded-full" />
+      {/* ── Decorative Background ── */}
+      <ParticleNetwork />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/[0.04] blur-[120px] rounded-full" />
       </div>
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
