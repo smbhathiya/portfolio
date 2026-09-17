@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BackgroundGlow } from "@/components/ui/background-glow";
 import { PageLoader } from "@/components/ui/page-loader";
+import { NavBar } from "@/components/sections/nav-bar";
+import { Footer } from "@/components/sections/footer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -170,7 +172,20 @@ export default function RootLayout({
         >
           <PageLoader />
           <BackgroundGlow />
-          {children}
+          <div className="min-h-screen flex flex-col">
+            <NavBar />
+            {children}
+            {/* Footer hidden on mobile — bottom nav is the primary navigation */}
+            <div className="hidden md:block">
+              <Footer />
+            </div>
+            {/* Mobile footer — minimal, above bottom nav */}
+            <div className="md:hidden pb-24 pt-8 px-5 border-t border-border text-center">
+              <p className="text-xs text-muted-foreground/50">
+                &copy; {new Date().getFullYear()} Bhathiya Lakshan
+              </p>
+            </div>
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
@@ -126,9 +126,9 @@ export function ContactGlobe() {
         dpr={[1, 1.5]}
         gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} />
-        <Environment preset="city" />
+        <directionalLight position={[-10, -5, -5]} intensity={0.4} />
         <Globe />
         <OrbitControls 
           enableZoom={false} 

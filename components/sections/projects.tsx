@@ -1,187 +1,31 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects";
-import Image from "next/image";
-import { IconBrandGithub, IconExternalLink, IconLock, IconArrowUpRight } from "@tabler/icons-react";
-import { useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ProjectCard } from "@/components/projects/project-card";
+import { IconArrowUpRight } from "@tabler/icons-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-function TiltProjectCard({ project, index }: { project: any; index: number }) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  
-  const mouseXSpring = useSpring(x, { stiffness: 200, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 200, damping: 30 });
-  
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
-  const glareX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
-  const glareY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <div style={{ perspective: 1200 }} className="project-card h-full">
-      <motion.div
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        whileHover={{ scale: 1.03 }}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-border/70 bg-background/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_32px_80px_-16px_rgba(16,185,129,0.15)] transition-colors duration-300 transform-gpu will-change-transform"
-      >
-        {/* Dynamic Interactive Glare */}
-        <motion.div 
-          className="absolute inset-0 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-overlay"
-          style={{
-            background: "radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 60%)",
-            left: glareX,
-            top: glareY,
-            transform: "translate(-50%, -50%)",
-            width: "200%",
-            height: "200%",
-          }}
-        />
-
-        {/* Subtle top gradient stripe on hover */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
-
-        {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-muted" style={{ transform: "translateZ(30px)" }}>
-          {project.previewUrl && project.previewUrl !== "#" ? (
-            <a href={project.previewUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-0">
-              <Image
-                src={project.images[0]}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
-              />
-            </a>
-          ) : (
-            <Image
-              src={project.images[0]}
-              alt={project.title}
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
-
-          {/* Quick action links on image hover */}
-          <div className="absolute top-3 right-3 flex gap-2 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0" style={{ transform: "translateZ(40px)" }}>
-            {project.gitUrl && (
-              <a
-                href={project.gitUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-background/90 backdrop-blur-sm border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
-                aria-label="Source code"
-              >
-                <IconBrandGithub className="w-4 h-4" />
-              </a>
-            )}
-            {project.previewUrl && project.previewUrl !== "#" && (
-              <a
-                href={project.previewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-background/90 backdrop-blur-sm border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
-                aria-label="Live demo"
-              >
-                <IconExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-5 flex flex-col flex-grow relative z-10" style={{ transform: "translateZ(20px)" }}>
-          <h3 className="text-base md:text-[17px] font-semibold tracking-tight mb-2 group-hover:text-primary transition-colors duration-300">
-            {project.title}
-          </h3>
-
-          <p className="text-sm text-muted-foreground leading-relaxed flex-grow mb-4">
-            {project.description}
-          </p>
-
-          {project.tag && project.tag.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.tag.slice(0, 4).map((t: string) => (
-                <span
-                  key={t}
-                  className="text-[11px] font-semibold text-primary/70 bg-primary/8 border border-primary/15 px-2 py-0.5 rounded-md"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Bottom links row */}
-          <div className="flex items-center gap-4 pt-3 border-t border-border/50">
-            {project.gitUrl && (
-              <a
-                href={project.gitUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                <IconBrandGithub className="h-3.5 w-3.5" />
-                Source
-              </a>
-            )}
-            {project.previewUrl && project.previewUrl !== "#" && (
-              <a
-                href={project.previewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                <IconExternalLink className="h-3.5 w-3.5" />
-                Live Demo
-              </a>
-            )}
-            <span className="ml-auto">
-              <IconArrowUpRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary/50 transition-colors duration-300" />
-            </span>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
+const TEASER_COUNT = 3;
 
 export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  const featuredProjects = projectsData.filter((p) => !p.isInternal && p.images && p.images.length > 0);
-  const internalProjects = projectsData.filter((p) => p.isInternal);
+  const featuredProjects = projectsData
+    .filter((p) => !p.isInternal && p.images && p.images.length > 0)
+    .slice(0, TEASER_COUNT);
 
   useGSAP(
     () => {
       gsap.set(".projects-header", { opacity: 0, y: 24 });
       gsap.set(".project-card", { opacity: 0, y: 40, scale: 0.97 });
-      gsap.set(".professional-header", { opacity: 0, y: 20 });
-      gsap.set(".internal-card", { opacity: 0, x: -24 });
+      gsap.set(".projects-cta", { opacity: 0, y: 16 });
 
       ScrollTrigger.create({
         trigger: ".projects-header",
@@ -205,24 +49,11 @@ export function ProjectsSection() {
       });
 
       ScrollTrigger.create({
-        trigger: ".professional-header",
-        start: "top 85%",
+        trigger: ".projects-cta",
+        start: "top 90%",
         onEnter: () => {
-          gsap.to(".professional-header", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" });
+          gsap.to(".projects-cta", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" });
         },
-      });
-
-      document.querySelectorAll(".internal-card").forEach((el, i) => {
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top 90%",
-          onEnter: () => {
-            gsap.to(el, {
-              opacity: 1, x: 0, duration: 0.55,
-              delay: (i % 2) * 0.08, ease: "power3.out",
-            });
-          },
-        });
       });
     },
     { scope: sectionRef },
@@ -270,83 +101,33 @@ export function ProjectsSection() {
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
 
         {/* Header */}
-        <div className="projects-header mb-16 md:mb-20">
-          <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Work</p>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Featured Projects</h2>
-          <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-xl">
-            A selection of projects I&apos;ve designed and built — from solo experiments to production systems.
-          </p>
+        <div className="projects-header mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Work</p>
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Featured Projects</h2>
+            <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-xl">
+              A selection of projects I&apos;ve designed and built — from solo experiments to production systems.
+            </p>
+          </div>
         </div>
 
         {/* Featured project cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-28">
-          {featuredProjects.map((project, index) => (
-            <TiltProjectCard key={project.id} project={project} index={index} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        {/* Professional / internal work */}
-        {internalProjects.length > 0 && (
-          <div>
-            <div className="professional-header mb-10 flex items-end justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-2">Enterprise</p>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight">Professional Work</h3>
-                <p className="text-sm text-muted-foreground mt-1.5">
-                  Confidential systems built for production environments.
-                </p>
-              </div>
-              <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-                <IconLock className="w-4 h-4 text-muted-foreground/40" />
-                <span className="text-xs text-muted-foreground/40 font-medium">NDA Protected</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {internalProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="internal-card group relative overflow-hidden flex items-start gap-5 p-5 md:p-6 border border-border/70 rounded-2xl bg-background/40 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_32px_-8px_rgba(16,185,129,0.07)] transform-gpu will-change-transform"
-                >
-                  {/* Left accent line on hover */}
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/50 rounded-l-2xl scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />
-
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-
-                  {/* Index number */}
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-muted/80 border border-border/80 flex items-center justify-center relative z-10 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/8">
-                    <span className="text-xs font-black text-muted-foreground/50 group-hover:text-primary/60 transition-colors">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <div className="min-w-0 relative z-10 flex-1">
-                    <div className="flex items-start justify-between gap-3 mb-1">
-                      <h4 className="text-base font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
-                        {project.title}
-                      </h4>
-                      <IconLock className="w-3.5 h-3.5 text-muted-foreground/30 flex-shrink-0 mt-0.5" />
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
-                      {project.description}
-                    </p>
-                    {project.tag && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tag.slice(0, 4).map((t: string) => (
-                          <span key={t} className="text-[11px] font-semibold text-muted-foreground/60 bg-muted/70 px-2 py-0.5 rounded-md border border-border/50">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* View all CTA */}
+        <div className="projects-cta mt-14 flex justify-center">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/25 bg-primary/5 px-6 py-3 rounded-full hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+          >
+            View All Projects
+            <IconArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
       </div>
     </section>
   );

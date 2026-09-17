@@ -7,6 +7,7 @@ const ModeToggle = dynamic(
   { ssr: false },
 );
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -22,25 +23,31 @@ const navItems = [
   { href: "#home", label: "Home", icon: IconHome2 },
   { href: "#about", label: "About", icon: IconUser },
   { href: "#skills", label: "Skills", icon: IconCode },
-  { href: "#projects", label: "Projects", icon: IconLayoutGrid },
+  { href: "/projects", label: "Projects", icon: IconLayoutGrid },
   { href: "#contact", label: "Contact", icon: IconMail },
 ];
 
 const NAVBAR_HEIGHT = 80;
 
 export function NavBar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [activeSection, setActiveSection] = useState("#home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-
-
   useEffect(() => {
+    if (!isHome) {
+      setActiveSection(pathname.startsWith("/projects") ? "/projects" : "");
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
       let closestIdx = 0;
       let minDist = Number.POSITIVE_INFINITY;
       navItems.forEach((item, idx) => {
+        if (!item.href.startsWith("#")) return;
         const el = document.getElementById(item.href.replace("#", ""));
         if (el) {
           const dist = Math.abs(el.getBoundingClientRect().top - NAVBAR_HEIGHT - 20);
@@ -53,14 +60,25 @@ export function NavBar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome, pathname]);
+
+  useEffect(() => {
+    if (isHome) return;
+    setIsScrolled(true);
+  }, [isHome]);
 
   const scrollTo = (href: string) => {
     const el = document.getElementById(href.replace("#", ""));
     if (el) window.scrollTo({ top: el.offsetTop - NAVBAR_HEIGHT, behavior: "smooth" });
   };
 
+  const resolveHref = (href: string) => {
+    if (!href.startsWith("#")) return href;
+    return isHome ? href : `/${href}`;
+  };
+
   const handleDesktopNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#") || !isHome) return;
     e.preventDefault();
     scrollTo(href);
   };
@@ -78,15 +96,16 @@ export function NavBar() {
         )}
       >
         {/* Logo */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-sm font-bold tracking-tight uppercase cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          Bhathiya<span className="text-primary">.dev</span>
-        </motion.button>
+        <Link href="/" className="text-sm font-bold tracking-tight uppercase cursor-pointer">
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block"
+          >
+            Bhathiya<span className="text-primary">.dev</span>
+          </motion.span>
+        </Link>
 
         {/* Desktop nav */}
         <motion.nav
@@ -99,7 +118,7 @@ export function NavBar() {
           {navItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={resolveHref(item.href)}
               onClick={(e) => handleDesktopNavClick(e as MouseEvent<HTMLAnchorElement>, item.href)}
               className={cn(
                 "relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-200 rounded-full",
@@ -155,9 +174,15 @@ export function NavBar() {
               const Icon = item.icon;
               const isActive = activeSection === item.href;
               return (
-                <button
+                <Link
                   key={item.href}
-                  onClick={() => scrollTo(item.href)}
+                  href={resolveHref(item.href)}
+                  onClick={(e) => {
+                    if (item.href.startsWith("#") && isHome) {
+                      e.preventDefault();
+                      scrollTo(item.href);
+                    }
+                  }}
                   className={cn(
                     "relative flex flex-col items-center gap-[3px] px-3 py-1.5 rounded-xl min-w-[56px] transition-colors duration-200",
                     isActive ? "text-primary" : "text-muted-foreground",
@@ -173,7 +198,7 @@ export function NavBar() {
                   <span className="relative z-10 text-[10px] font-semibold tracking-wide">
                     {item.label}
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>

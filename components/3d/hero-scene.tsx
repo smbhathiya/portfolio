@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, PresentationControls, ContactShadows } from "@react-three/drei";
+import { Float, PresentationControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
@@ -100,10 +100,10 @@ export function HeroScene() {
         gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.6} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} />
-          <Environment preset="city" />
-          
+          <directionalLight position={[-10, -5, -5]} intensity={0.4} />
+
           <PresentationControls
             global
             snap={true}
