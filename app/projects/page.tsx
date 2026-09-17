@@ -14,6 +14,14 @@ export const metadata: Metadata = {
       "A complete showcase of software projects by Bhathiya Lakshan - full-stack web apps, LMS platforms, dashboards, and open-source templates.",
     url: "https://bhathiya.dev/projects",
     type: "website",
+    images: [
+      {
+        url: "/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Bhathiya Lakshan - Projects",
+      },
+    ],
   },
 };
 

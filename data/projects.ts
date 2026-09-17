@@ -68,7 +68,7 @@ const projectsData: Project[] = [
   },
   {
     id: 14,
-    slug: "UtilBee",
+    slug: "utilbee",
     title: "UtilBee",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
