@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -20,12 +19,6 @@ import {
   IconAlertCircle,
   IconArrowUpRight,
 } from "@tabler/icons-react";
-
-// Heavy three.js scene — code-split and deferred since it's below the fold.
-const ContactGlobe = dynamic(
-  () => import("@/components/3d/contact-globe").then((mod) => mod.ContactGlobe),
-  { ssr: false },
-);
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -221,10 +214,11 @@ export function ContactSection() {
 
           {/* ── Form column (3/5) ── */}
           <div className="contact-form-col lg:col-span-3 relative">
-            {/* Background Globe behind the form */}
-            <div className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[600px] md:w-[800px] md:h-[900px] opacity-60 z-0 pointer-events-auto">
-              <ContactGlobe />
-            </div>
+            {/* Decorative ambient glow behind the form */}
+            <div
+              className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-primary/10 dark:bg-primary/8 blur-[100px] z-0 pointer-events-none"
+              aria-hidden="true"
+            />
 
             <div className="relative z-10 rounded-2xl border border-border/70 bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
 
