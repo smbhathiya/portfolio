@@ -68,13 +68,13 @@ const projectsData: Project[] = [
   },
   {
     id: 14,
-    slug: "omnitool",
-    title: "Omnitool",
+    slug: "UtilBee",
+    title: "UtilBee",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
     images: ["/projects/toolkit.png"],
     tag: ["All", "Web"],
-    previewUrl: "https://omnitool.bhathiya.dev",
+    previewUrl: "https://utilbee.bhathiya.dev",
   },
   {
     id: 12,

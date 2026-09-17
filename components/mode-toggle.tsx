@@ -22,7 +22,7 @@ export function ModeToggle({
 
   return (
     <Button
-      variant="default"
+      variant="ghost"
       size="icon"
       className={`rounded-full bg-background hover:bg-background ${
         className || ""

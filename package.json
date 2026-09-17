@@ -2,6 +2,7 @@
   "name": "portfolio-v3",
   "version": "2.8.0",
   "private": true,
+  "packageManager": "pnpm@11.10.0",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
