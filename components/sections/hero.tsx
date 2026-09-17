@@ -157,21 +157,21 @@ export function HeroSection() {
           MOBILE LAYOUT  (below md)
       ═══════════════════════════════════════════ */}
       <div className="md:hidden flex flex-col min-h-screen pt-[72px] pb-24 relative z-10">
-        {/* Profile image — plain photo, no card frame */}
+        {/* Profile image - plain photo, no card frame */}
         <div className="hero-image relative w-full px-3 pt-6 pb-2">
           <div className="w-full max-w-[320px] mx-auto">
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              animate={{ y: [0, 0, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative aspect-[3/2] rounded-2xl overflow-hidden"
+              className="relative aspect-[3/4] rounded-lg overflow-hidden"
             >
               <Image
-                src="/bhathiya_1.png"
+                src="/bhathiya_2.png"
                 alt="Bhathiya Lakshan"
                 fill
                 sizes="320px"
                 quality={90}
-                className="object-cover object-center"
+                className="object-cover object-top"
                 priority
               />
             </motion.div>
@@ -214,10 +214,7 @@ export function HeroSection() {
                 </span>
               ))}
             </span>
-            <span
-              aria-hidden="true"
-              className="hero-name-2 block "
-            >
+            <span aria-hidden="true" className="hero-name-2 block ">
               Lakshan
             </span>
           </h1>
@@ -336,11 +333,11 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Image block — plain photo, no card frame */}
+            {/* Image block - plain photo, no card frame */}
             <div className="col-span-5 flex justify-center">
               <div className="hero-image relative w-full max-w-[440px]">
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
+                  animate={{ y: [0, 0, 0] }}
                   transition={{
                     duration: 6,
                     repeat: Infinity,
@@ -351,15 +348,15 @@ export function HeroSection() {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                    className="relative aspect-[3/2] rounded-2xl overflow-hidden"
+                    className="relative aspect-[3/4] rounded-lg overflow-hidden"
                   >
                     <Image
-                      src="/bhathiya_1.png"
+                      src="/bhathiya_2.png"
                       alt="Bhathiya Lakshan"
                       fill
                       sizes="440px"
                       quality={90}
-                      className="object-cover object-center transition-transform duration-700"
+                      className="object-cover object-top transition-transform duration-700"
                       priority
                     />
                   </motion.div>
@@ -368,8 +365,8 @@ export function HeroSection() {
                 {/* Badges below the image */}
                 <div className="flex items-center justify-center gap-3 mt-5">
                   <span className="hero-badge text-[10px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1.5">
-                    <IconBriefcase className="w-3 h-3 text-primary" />{" "}
-                    Software Engineer
+                    <IconBriefcase className="w-3 h-3 text-primary" /> Software
+                    Engineer
                   </span>
                   <span className="hero-badge text-[10px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border/80 shadow-sm flex items-center gap-1.5 text-foreground">
                     <IconMapPin className="w-3 h-3 text-primary" /> Sri Lanka
@@ -381,7 +378,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator — desktop only */}
+      {/* Scroll indicator - desktop only */}
       <motion.div
         style={{ opacity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-20"

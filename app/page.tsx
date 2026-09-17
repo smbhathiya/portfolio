@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
+  title:
+    "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
   description:
-    "Bhathiya Lakshan is a Software Engineer from Sri Lanka specializing in React, Next.js, TypeScript and Node.js — building custom LMS, payroll, CRM, and cloud systems.",
+    "Bhathiya Lakshan is a Software Engineer from Sri Lanka specializing in React, Next.js, TypeScript and Node.js - building custom LMS, payroll, CRM, and cloud systems.",
   keywords: [
     "Bhathiya Lakshan",
     "Software Engineer Sri Lanka",
@@ -26,9 +27,10 @@ export const metadata: Metadata = {
     "Sri Lanka Developer Portfolio",
   ],
   openGraph: {
-    title: "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
+    title:
+      "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
     description:
-      "Bhathiya Lakshan is a Software Engineer from Sri Lanka specializing in React, Next.js, TypeScript and Node.js — building custom LMS, payroll, CRM, and cloud systems.",
+      "Bhathiya Lakshan is a Software Engineer from Sri Lanka specializing in React, Next.js, TypeScript and Node.js - building custom LMS, payroll, CRM, and cloud systems.",
     url: "https://bhathiya.dev",
     siteName: "Bhathiya Lakshan",
     images: [
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
         url: "/cover.png",
         width: 1200,
         height: 630,
-        alt: "Bhathiya Lakshan — Software Engineer & Full Stack Developer Portfolio",
+        alt: "Bhathiya Lakshan - Software Engineer & Full Stack Developer Portfolio",
         type: "image/png",
       },
     ],
@@ -45,7 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
+    title:
+      "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
     description:
       "Software Engineer from Sri Lanka. React, Next.js, TypeScript & Node.js. Building custom LMS, payroll, CRM, and cloud systems.",
     site: "@smbhathiya",

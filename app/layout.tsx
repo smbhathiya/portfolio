@@ -16,11 +16,12 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bhathiya.dev"),
   title: {
-    default: "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
+    default:
+      "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
     template: "%s | Bhathiya Lakshan",
   },
   description:
-    "Bhathiya Lakshan is a Software Engineer based in Sri Lanka specializing in React, Next.js, TypeScript, and Node.js — architecting custom LMS, payroll, CRM, and cloud systems.",
+    "Bhathiya Lakshan is a Software Engineer based in Sri Lanka specializing in React, Next.js, TypeScript, and Node.js - architecting custom LMS, payroll, CRM, and cloud systems.",
   authors: [{ name: "Bhathiya Lakshan", url: "https://bhathiya.dev" }],
   creator: "Bhathiya Lakshan",
   publisher: "Bhathiya Lakshan",
@@ -45,7 +46,9 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   manifest: "/site.webmanifest",
   other: {
@@ -67,13 +70,28 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        {/* Theme color — adapts to light/dark */}
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0a0a0a" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
+        />
+        {/* Theme color - adapts to light/dark */}
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#ffffff"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#0a0a0a"
+        />
         {/* Preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -94,14 +112,17 @@ export default function RootLayout({
                   },
                   jobTitle: "Software Engineer",
                   worksFor: [
-                    { "@type": "Organization", name: "Ishara Madhushan Online School (IMOS)" },
+                    {
+                      "@type": "Organization",
+                      name: "Ishara Madhushan Online School (IMOS)",
+                    },
                     { "@type": "Organization", name: "Digi Pro Solutions" },
                   ],
                   address: {
                     "@type": "PostalAddress",
-                    "addressLocality": "Kadawatha",
-                    "addressRegion": "Western Province",
-                    "addressCountry": "LK",
+                    addressLocality: "Kadawatha",
+                    addressRegion: "Western Province",
+                    addressCountry: "LK",
                   },
                   email: "info@bhathiya.dev",
                   sameAs: [
@@ -111,8 +132,14 @@ export default function RootLayout({
                     "https://www.facebook.com/smbhathiya",
                   ],
                   knowsAbout: [
-                    "React", "Next.js", "TypeScript", "Node.js", "AWS",
-                    "Docker", "PostgreSQL", "Full Stack Web Development",
+                    "React",
+                    "Next.js",
+                    "TypeScript",
+                    "Node.js",
+                    "AWS",
+                    "Docker",
+                    "PostgreSQL",
+                    "Full Stack Web Development",
                   ],
                   description:
                     "Bhathiya Lakshan is a Software Engineer based in Sri Lanka, specialising in Next.js, React, TypeScript, and cloud architecture.",
@@ -126,24 +153,28 @@ export default function RootLayout({
                   telephone: "+94758041606",
                   address: {
                     "@type": "PostalAddress",
-                    "addressLocality": "Kadawatha",
-                    "addressRegion": "Western Province",
-                    "addressCountry": "LK"
+                    addressLocality: "Kadawatha",
+                    addressRegion: "Western Province",
+                    addressCountry: "LK",
                   },
                   geo: {
                     "@type": "GeoCoordinates",
-                    "latitude": "7.0016",
-                    "longitude": "79.9497"
+                    latitude: "7.0016",
+                    longitude: "79.9497",
                   },
                   openingHoursSpecification: {
                     "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": [
-                      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
                     ],
-                    "opens": "09:00",
-                    "closes": "18:00"
+                    opens: "09:00",
+                    closes: "18:00",
                   },
-                  priceRange: "$$"
+                  priceRange: "$$",
                 },
                 {
                   "@type": "WebSite",
@@ -151,7 +182,7 @@ export default function RootLayout({
                   name: "Bhathiya Lakshan",
                   url: "https://bhathiya.dev",
                   description:
-                    "Professional portfolio of Bhathiya Lakshan — Software Engineer and Full Stack Developer.",
+                    "Professional portfolio of Bhathiya Lakshan - Software Engineer and Full Stack Developer.",
                   author: { "@id": "https://bhathiya.dev/#person" },
                   inLanguage: "en-LK",
                 },
@@ -175,15 +206,9 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <NavBar />
             {children}
-            {/* Footer hidden on mobile — bottom nav is the primary navigation */}
+            {/* Footer hidden on mobile - bottom nav is the primary navigation */}
             <div className="hidden md:block">
               <Footer />
-            </div>
-            {/* Mobile footer — minimal, above bottom nav */}
-            <div className="md:hidden pb-24 pt-8 px-5 border-t border-border text-center">
-              <p className="text-xs text-muted-foreground/50">
-                &copy; {new Date().getFullYear()} Bhathiya Lakshan
-              </p>
             </div>
           </div>
         </ThemeProvider>

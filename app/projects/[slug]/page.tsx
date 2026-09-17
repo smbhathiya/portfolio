@@ -112,7 +112,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
 
         {/* Hero image */}
-        <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-border/70 bg-muted mb-10">
+        <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-border/70 bg-muted mb-10">
           <Image
             src={project.images[0]}
             alt={project.title}
@@ -130,7 +130,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               href={project.previewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground bg-primary px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground bg-primary px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors duration-200"
             >
               <IconExternalLink className="w-4 h-4" />
               Live Demo
@@ -141,7 +141,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               href={project.gitUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold border border-border px-5 py-2.5 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold border border-border px-5 py-2.5 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
             >
               <IconBrandGithub className="w-4 h-4" />
               Source Code
