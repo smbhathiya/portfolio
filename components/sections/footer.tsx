@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { ScrollToTopButton } from "../ui/scroll-to-top-button";
@@ -19,7 +20,7 @@ const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Projects", href: "/projects" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -85,6 +86,13 @@ function MagneticIcon({ children, href, label }: { children: React.ReactNode; hr
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const resolveHref = (href: string) => {
+    if (!href.startsWith("#")) return href;
+    return isHome ? href : `/${href}`;
+  };
 
   return (
     <footer className="relative bg-background border-t border-border overflow-hidden">
@@ -136,7 +144,7 @@ export function Footer() {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 w-fit group flex items-center gap-1"
                 >
                   <span className="w-0 group-hover:w-3 h-px bg-primary transition-all duration-200 overflow-hidden" />
@@ -173,13 +181,13 @@ export function Footer() {
             </div>
 
             {/* CTA */}
-            <a
-              href="#contact"
+            <Link
+              href={resolveHref("#contact")}
               className="inline-flex items-center gap-2 text-xs font-semibold text-primary border border-primary/25 bg-primary/5 px-4 py-2 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 mt-2"
             >
               Start a project
-              <ChevronRight />  
-            </a>
+              <ChevronRight />
+            </Link>
           </div>
         </motion.div>
 

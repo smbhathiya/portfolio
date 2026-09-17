@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import {
@@ -15,7 +16,13 @@ import {
   IconMapPin,
   IconBriefcase,
 } from "@tabler/icons-react";
-import { HeroScene } from "@/components/3d/hero-scene";
+
+// Heavy three.js scene — code-split out of the main bundle and only
+// hydrated on the client, since it's purely decorative.
+const HeroScene = dynamic(
+  () => import("@/components/3d/hero-scene").then((mod) => mod.HeroScene),
+  { ssr: false },
+);
 
 gsap.registerPlugin(useGSAP);
 
@@ -33,6 +40,18 @@ const HERO_START_DELAY = 0.3;
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Only one HeroScene (WebGL canvas) should ever be mounted at a time —
+  // both the mobile and desktop layouts exist in the DOM simultaneously
+  // (toggled via CSS), so without this both canvases render every frame.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   useGSAP(
@@ -106,7 +125,7 @@ export function HeroSection() {
         <div className="hero-image relative w-full px-3 pt-6 pb-2">
           <div className="flex items-center justify-center w-full max-w-[300px] mx-auto">
             {/* 3D Scene Background */}
-            <HeroScene />
+            {!isDesktop && <HeroScene />}
 
             {/* Center image */}
             <div className="flex-1 relative">
@@ -125,6 +144,7 @@ export function HeroSection() {
                   src="/bhathiya-lakshan-2.png"
                   alt="Bhathiya Lakshan"
                   fill
+                  sizes="300px"
                   className="object-cover object-top"
                   priority
                 />
@@ -275,7 +295,7 @@ export function HeroSection() {
                 <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-500/25 to-teal-600/20 dark:from-primary/20 dark:to-emerald-500/10 rounded-3xl blur-3xl opacity-60" />
 
                 {/* 3D Scene Background */}
-                <HeroScene />
+                {isDesktop && <HeroScene />}
 
                 {/* Main image */}
                 <motion.div
@@ -292,6 +312,7 @@ export function HeroSection() {
                       src="/bhathiya-lakshan-2.png"
                       alt="Bhathiya Lakshan"
                       fill
+                      sizes="360px"
                       className="object-cover object-top transition-all duration-700 group-hover:scale-105"
                       priority
                     />

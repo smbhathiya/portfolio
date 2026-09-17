@@ -57,35 +57,20 @@ export const metadata: Metadata = {
   },
 };
 
-import { NavBar } from "@/components/sections/nav-bar";
 import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
-import { Footer } from "@/components/sections/footer";
 import { HeroSection } from "@/components/sections/hero";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavBar />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-      {/* Footer hidden on mobile — bottom nav is the primary navigation */}
-      <div className="hidden md:block">
-        <Footer />
-      </div>
-      {/* Mobile footer — minimal, above bottom nav */}
-      <div className="md:hidden pb-24 pt-8 px-5 border-t border-border text-center">
-        <p className="text-xs text-muted-foreground/50">
-          &copy; {new Date().getFullYear()} Bhathiya Lakshan
-        </p>
-      </div>
-    </div>
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+    </main>
   );
 }

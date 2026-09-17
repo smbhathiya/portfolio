@@ -1,6 +1,19 @@
-const projectsData = [
+export interface Project {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  images: string[];
+  tag: string[];
+  previewUrl?: string;
+  gitUrl?: string;
+  isInternal?: boolean;
+}
+
+const projectsData: Project[] = [
   {
     id: 1,
+    slug: "enterprise-expense-management-system",
     title: "Enterprise Expense Management System",
     description:
       "A proprietary full-stack application designed to track and manage organizational expenditures. Features include real-time expense logging, category-based reporting, and approval workflows, engineered with Next.js and Neon PostgreSQL for robust data integrity.",
@@ -11,6 +24,7 @@ const projectsData = [
   },
   {
     id: 2,
+    slug: "hr-automated-payroll-platform",
     title: "HR & Automated Payroll Platform",
     description:
       "A specialized internal system for managing 50+ employees' lifecycles. Automates complex salary calculations, attendance tracking, and leave management, significantly streamlining HR operations at Ishara Madhushan Online School.",
@@ -21,6 +35,7 @@ const projectsData = [
   },
   {
     id: 3,
+    slug: "student-payment-enrollment-system",
     title: "Student Payment & Enrollment System",
     description:
       "A high-traffic system built to manage student class enrollments and payment tracking. Ensures secure handling of financial transactions and real-time access management for digital classes.",
@@ -31,6 +46,7 @@ const projectsData = [
   },
   {
     id: 10,
+    slug: "call-crm-management-system",
     title: "Call & CRM Management System",
     description:
       "An internal communication tool engineered to manage customer inquiries and call logs. Integrates with existing databases to provide staff with real-time student insights during calls.",
@@ -41,6 +57,7 @@ const projectsData = [
   },
   {
     id: 11,
+    slug: "inventory-store-logistics-system",
     title: "Inventory & Store Logistics System",
     description:
       "A tailored inventory management app for tracking physical educational materials, including tutes and books. Optimized for warehouse operations and distribution tracking.",
@@ -51,6 +68,7 @@ const projectsData = [
   },
   {
     id: 14,
+    slug: "omnitool",
     title: "Omnitool",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
@@ -60,6 +78,7 @@ const projectsData = [
   },
   {
     id: 12,
+    slug: "green-planet",
     title: "Green Planet",
     description:
       "A modern environmental awareness website focused on protecting nature and promoting eco-friendly living. Educates users about climate change, pollution, wildlife conservation, and sustainable habits through cinematic visuals and interactive content.",
@@ -69,6 +88,7 @@ const projectsData = [
   },
   {
     id: 13,
+    slug: "life-plus",
     title: "Life Plus",
     description:
       "A premium, interactive personal wellness companion designed to empower users to take control of their health. Features custom-built utility tools including a BMI calculator, water intake tracker, and calorie counter, integrated with daily habit tracking and nutrition guidance, all presented through a sleek, motion-driven dashboard.",
@@ -79,6 +99,7 @@ const projectsData = [
   },
   {
     id: 9,
+    slug: "vantagecar-car-dealership",
     title: "VantageCar - Car Dealership",
     description:
       "A modern car dealership platform with advanced vehicle search and filtering capabilities. Focused on performance and SEO for automotive e-commerce.",
@@ -88,6 +109,7 @@ const projectsData = [
   },
   {
     id: 8,
+    slug: "business-landing-page-template",
     title: "Business Landing Page - Open Source Template",
     description:
       "A clean, modern, and fully responsive single-page website template designed for businesses. Built using Next.js and Tailwind CSS, perfect for rapid deployment.",
@@ -98,6 +120,7 @@ const projectsData = [
   },
   {
     id: 5,
+    slug: "bliss-cafe-coffee-shop",
     title: "Bliss Café - Coffee Shop",
     description:
       "A modern and responsive coffee shop website built using Next.js and Tailwind CSS. Showcases sleek UI alignment and premium design aesthetics.",

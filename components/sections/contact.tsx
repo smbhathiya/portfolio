@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -19,7 +20,12 @@ import {
   IconAlertCircle,
   IconArrowUpRight,
 } from "@tabler/icons-react";
-import { ContactGlobe } from "@/components/3d/contact-globe";
+
+// Heavy three.js scene — code-split and deferred since it's below the fold.
+const ContactGlobe = dynamic(
+  () => import("@/components/3d/contact-globe").then((mod) => mod.ContactGlobe),
+  { ssr: false },
+);
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
