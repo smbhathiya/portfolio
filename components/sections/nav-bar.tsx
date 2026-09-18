@@ -50,8 +50,13 @@ export function NavBar() {
         if (!item.href.startsWith("#")) return;
         const el = document.getElementById(item.href.replace("#", ""));
         if (el) {
-          const dist = Math.abs(el.getBoundingClientRect().top - NAVBAR_HEIGHT - 20);
-          if (dist < minDist) { minDist = dist; closestIdx = idx; }
+          const dist = Math.abs(
+            el.getBoundingClientRect().top - NAVBAR_HEIGHT - 20,
+          );
+          if (dist < minDist) {
+            minDist = dist;
+            closestIdx = idx;
+          }
         }
       });
       setActiveSection(navItems[closestIdx].href);
@@ -69,7 +74,11 @@ export function NavBar() {
 
   const scrollTo = (href: string) => {
     const el = document.getElementById(href.replace("#", ""));
-    if (el) window.scrollTo({ top: el.offsetTop - NAVBAR_HEIGHT, behavior: "smooth" });
+    if (el)
+      window.scrollTo({
+        top: el.offsetTop - NAVBAR_HEIGHT,
+        behavior: "smooth",
+      });
   };
 
   const resolveHref = (href: string) => {
@@ -77,7 +86,10 @@ export function NavBar() {
     return isHome ? href : `/${href}`;
   };
 
-  const handleDesktopNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleDesktopNavClick = (
+    e: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     if (!href.startsWith("#") || !isHome) return;
     e.preventDefault();
     scrollTo(href);
@@ -85,7 +97,6 @@ export function NavBar() {
 
   return (
     <>
-
       {/* ─── Desktop / Mobile top header ─── */}
       <header
         className={cn(
@@ -96,7 +107,10 @@ export function NavBar() {
         )}
       >
         {/* Logo */}
-        <Link href="/" className="text-sm font-bold tracking-tight uppercase cursor-pointer">
+        <Link
+          href="/"
+          className="text-sm font-bold tracking-tight uppercase cursor-pointer"
+        >
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -119,9 +133,14 @@ export function NavBar() {
             <Link
               key={item.href}
               href={resolveHref(item.href)}
-              onClick={(e) => handleDesktopNavClick(e as MouseEvent<HTMLAnchorElement>, item.href)}
+              onClick={(e) =>
+                handleDesktopNavClick(
+                  e as MouseEvent<HTMLAnchorElement>,
+                  item.href,
+                )
+              }
               className={cn(
-                "relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-200 rounded-full",
+                "relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-200 rounded-lg",
                 activeSection === item.href
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground",
@@ -131,7 +150,7 @@ export function NavBar() {
               {activeSection === item.href && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 bg-primary/15 rounded-full border border-primary/20"
+                  className="absolute inset-0 bg-primary/15 rounded-lg border border-primary/20"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -148,18 +167,26 @@ export function NavBar() {
         >
           {/* Desktop: Contact button */}
           <div className="hidden md:block">
-            <Button size="sm" className="h-9 px-5 text-xs font-semibold tracking-wide" asChild>
-              <a href="https://wa.me/94758041606" target="_blank" rel="noopener noreferrer">
+            <Button
+              size="sm"
+              className="h-9 px-5 text-xs font-semibold tracking-wide"
+              asChild
+            >
+              <a
+                href="https://wa.me/94758041606"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Contact
               </a>
             </Button>
           </div>
 
           <ModeToggle
-            className="h-9 w-9 rounded-lg border border-border bg-background/50 hover:bg-foreground/5 transition-colors"
+            className="h-9 w-9 rounded-lg bg-background/50 hover:bg-foreground/5 transition-colors"
             iconSize="h-4 w-4"
           />
-          {/* No hamburger on mobile — bottom nav handles navigation */}
+          {/* No hamburger on mobile - bottom nav handles navigation */}
         </motion.div>
       </header>
 

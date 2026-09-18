@@ -31,7 +31,12 @@ export function ProjectsSection() {
         trigger: ".projects-header",
         start: "top 82%",
         onEnter: () => {
-          gsap.to(".projects-header", { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" });
+          gsap.to(".projects-header", {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power3.out",
+          });
         },
       });
 
@@ -41,8 +46,12 @@ export function ProjectsSection() {
           start: "top 88%",
           onEnter: () => {
             gsap.to(el, {
-              opacity: 1, y: 0, scale: 1,
-              duration: 0.6, delay: (i % 3) * 0.1, ease: "power3.out",
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              delay: (i % 3) * 0.1,
+              ease: "power3.out",
             });
           },
         });
@@ -52,7 +61,12 @@ export function ProjectsSection() {
         trigger: ".projects-cta",
         start: "top 90%",
         onEnter: () => {
-          gsap.to(".projects-cta", { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" });
+          gsap.to(".projects-cta", {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            ease: "power3.out",
+          });
         },
       });
     },
@@ -78,10 +92,12 @@ export function ProjectsSection() {
           transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
         />
         <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block select-none">
-          <span className="text-[130px] font-black text-border/[0.05] leading-none">{"</>"}</span>
+          <span className="text-[130px] font-black text-border/[0.05] leading-none">
+            {"</>"}
+          </span>
         </div>
         <motion.div
-          className="absolute bottom-16 -right-6 w-24 h-24 rounded-2xl border border-primary/[0.1]"
+          className="absolute bottom-16 -right-6 w-24 h-24 rounded-lg border border-primary/[0.1]"
           animate={{ rotate: [20, 40, 20], y: [0, -16, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -91,7 +107,12 @@ export function ProjectsSection() {
               key={i}
               className="w-[3px] h-[3px] rounded-full bg-primary/20"
               animate={{ opacity: [0.2, 0.7, 0.2] }}
-              transition={{ duration: 2.8, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
+              transition={{
+                duration: 2.8,
+                repeat: Infinity,
+                delay: i * 0.15,
+                ease: "easeInOut",
+              }}
             />
           ))}
         </div>
@@ -99,14 +120,18 @@ export function ProjectsSection() {
       </div>
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-
         {/* Header */}
         <div className="projects-header mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">Work</p>
-            <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Featured Projects</h2>
+            <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">
+              Work
+            </p>
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+              Featured Projects
+            </h2>
             <p className="mt-4 text-muted-foreground text-sm md:text-base max-w-xl">
-              A selection of projects I&apos;ve designed and built — from solo experiments to production systems.
+              A selection of projects I&apos;ve designed and built - from solo
+              experiments to production systems.
             </p>
           </div>
         </div>
@@ -122,7 +147,7 @@ export function ProjectsSection() {
         <div className="projects-cta mt-14 flex justify-center">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/25 bg-primary/5 px-6 py-3 rounded-full hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/25 bg-primary/5 px-6 py-3 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
           >
             View All Projects
             <IconArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

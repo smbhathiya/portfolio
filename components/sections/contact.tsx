@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -21,18 +20,12 @@ import {
   IconArrowUpRight,
 } from "@tabler/icons-react";
 
-// Heavy three.js scene — code-split and deferred since it's below the fold.
-const ContactGlobe = dynamic(
-  () => import("@/components/3d/contact-globe").then((mod) => mod.ContactGlobe),
-  { ssr: false },
-);
-
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const contactInfo = [
   { icon: IconMail,          label: "Email",     value: "info@bhathiya.dev",    href: "mailto:info@bhathiya.dev" },
   { icon: IconBrandWhatsapp, label: "WhatsApp",  value: "+94 75 804 1606",      href: "https://wa.me/94758041606" },
-  { icon: IconMapPin,        label: "Location",  value: "Kadawatha, Sri Lanka", href: "#" },
+  { icon: IconMapPin,        label: "Location",  value: "Kadawatha, Sri Lanka", href: "https://maps.google.com/?q=Kadawatha,+Sri+Lanka" },
 ];
 
 const socials = [
@@ -168,9 +161,11 @@ export function ContactSection() {
                 <a
                   key={i}
                   href={href}
-                  className="contact-info-item group flex items-center gap-4 p-4 rounded-xl border border-border/70 bg-background/40 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-300"
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  className="contact-info-item group flex items-center gap-4 p-4 rounded-xl border border-border bg-background/40 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-lg border border-border/80 bg-background flex items-center justify-center text-muted-foreground group-hover:border-primary/30 group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground group-hover:border-primary/30 group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 flex-shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
                   <div className="min-w-0">
@@ -196,7 +191,7 @@ export function ContactSection() {
                     whileHover={{ y: -3, scale: 1.08 }}
                     whileTap={{ scale: 0.92 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="contact-social w-11 h-11 flex items-center justify-center rounded-xl border border-border/70 bg-background/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-colors duration-200"
+                    className="contact-social w-11 h-11 flex items-center justify-center rounded-xl border border-border bg-background/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-colors duration-200"
                   >
                     <Icon className="h-4 w-4" />
                   </motion.a>
@@ -205,7 +200,7 @@ export function ContactSection() {
             </div>
 
             {/* Status blurb */}
-            <div className="flex items-start gap-3 p-4 rounded-xl border border-border/50 bg-primary/[0.02]">
+            <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-primary/[0.02]">
               <span className="relative flex h-2 w-2 mt-1.5 flex-shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -221,15 +216,14 @@ export function ContactSection() {
 
           {/* ── Form column (3/5) ── */}
           <div className="contact-form-col lg:col-span-3 relative">
-            {/* Background Globe behind the form */}
-            <div className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[600px] md:w-[800px] md:h-[900px] opacity-60 z-0 pointer-events-auto">
-              <ContactGlobe />
-            </div>
+            {/* Decorative ambient glow behind the form */}
+            <div
+              className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-primary/10 dark:bg-primary/8 blur-[100px] z-0 pointer-events-none"
+              aria-hidden="true"
+            />
 
-            <div className="relative z-10 rounded-2xl border border-border/70 bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
+            <div className="relative z-10 rounded-lg border border-border bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
 
-              {/* Top gradient accent */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.02] pointer-events-none" />
 
               <div className="p-6 md:p-8">
@@ -271,7 +265,7 @@ export function ContactSection() {
                           required
                           name="name"
                           placeholder="John Doe"
-                          className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border/70 focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
+                          className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
                         />
                       </div>
                       <div className="space-y-1.5">
@@ -284,7 +278,7 @@ export function ContactSection() {
                           name="email"
                           type="email"
                           placeholder="john@example.com"
-                          className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border/70 focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
+                          className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
                         />
                       </div>
                     </div>
@@ -298,7 +292,7 @@ export function ContactSection() {
                         required
                         name="subject"
                         placeholder="Project Inquiry"
-                        className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border/70 focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
+                        className="w-full h-11 px-4 rounded-xl bg-background/70 border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35"
                       />
                     </div>
 
@@ -312,7 +306,7 @@ export function ContactSection() {
                         name="message"
                         placeholder="Tell me about your project or idea..."
                         rows={5}
-                        className="w-full px-4 py-3 rounded-xl bg-background/70 border border-border/70 focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35 resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-background/70 border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/15 outline-none transition-all duration-200 text-sm placeholder:text-muted-foreground/35 resize-none"
                       />
                     </div>
 

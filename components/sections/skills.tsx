@@ -303,7 +303,7 @@ export function SkillsSection() {
                 key={cat.title}
                 onClick={() => setActiveCat(i)}
                 className={cn(
-                  "flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 border",
+                  "flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 border",
                   activeCat === i
                     ? "bg-primary text-primary-foreground border-primary shadow-sm shadow-primary/20"
                     : "bg-background/50 text-muted-foreground border-border/60 hover:border-primary/30 hover:text-foreground",
