@@ -25,7 +25,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const contactInfo = [
   { icon: IconMail,          label: "Email",     value: "info@bhathiya.dev",    href: "mailto:info@bhathiya.dev" },
   { icon: IconBrandWhatsapp, label: "WhatsApp",  value: "+94 75 804 1606",      href: "https://wa.me/94758041606" },
-  { icon: IconMapPin,        label: "Location",  value: "Kadawatha, Sri Lanka", href: "#" },
+  { icon: IconMapPin,        label: "Location",  value: "Kadawatha, Sri Lanka", href: "https://maps.google.com/?q=Kadawatha,+Sri+Lanka" },
 ];
 
 const socials = [
@@ -161,6 +161,8 @@ export function ContactSection() {
                 <a
                   key={i}
                   href={href}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                   className="contact-info-item group flex items-center gap-4 p-4 rounded-xl border border-border bg-background/40 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-300"
                 >
                   <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground group-hover:border-primary/30 group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 flex-shrink-0">
