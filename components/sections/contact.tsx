@@ -134,7 +134,7 @@ export function ContactSection() {
           animate={{ rotate: [30, 55, 30], y: [0, -14, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-primary/[0.03] blur-[80px] rounded-full" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-64 from-primary/[0.03] rounded-full bg-radial to-transparent to-70%" />
       </div>
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
@@ -218,7 +218,7 @@ export function ContactSection() {
           <div className="contact-form-col lg:col-span-3 relative">
             {/* Decorative ambient glow behind the form */}
             <div
-              className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-primary/10 dark:bg-primary/8 blur-[100px] z-0 pointer-events-none"
+              className="absolute top-1/2 right-0 translate-x-[20%] md:translate-x-[35%] -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-radial to-transparent to-70% from-primary/10 dark:from-primary/8 z-0 pointer-events-none"
               aria-hidden="true"
             />
 

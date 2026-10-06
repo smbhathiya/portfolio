@@ -134,8 +134,8 @@ export function HeroSection() {
           }}
         />
         {/* Gradient orbs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/3 -left-32 w-[400px] h-[400px] bg-primary/3 blur-[100px] rounded-full" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] from-primary/5 rounded-full bg-radial to-transparent to-70%" />
+        <div className="absolute bottom-1/3 -left-32 w-[400px] h-[400px] from-primary/3 rounded-full bg-radial to-transparent to-70%" />
         {/* Animated accent ring (desktop only) */}
         <motion.div
           className="absolute right-[8%] top-1/2 -translate-y-1/2 hidden lg:block"

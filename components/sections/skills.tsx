@@ -285,7 +285,7 @@ export function SkillsSection() {
       {/* ── Decorative Background ── */}
       <ParticleNetwork />
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/[0.04] blur-[120px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] from-primary/[0.04] rounded-full bg-radial to-transparent to-70%" />
       </div>
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">

@@ -82,7 +82,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.03] blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 from-primary/[0.03] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
 
       <div className="container px-4 md:px-8 max-w-4xl mx-auto relative z-10">
         {/* Back link */}
