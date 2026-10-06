@@ -49,7 +49,13 @@ export function PageLoader({ onComplete }: { onComplete?: () => void }) {
         }, "-=0.05");
     }, loaderRef);
 
-    return () => ctx.revert();
+    // Never let a stalled animation (e.g. slow mobile GPU) trap the page behind the overlay
+    const fallback = window.setTimeout(() => setVisible(false), 4000);
+
+    return () => {
+      window.clearTimeout(fallback);
+      ctx.revert();
+    };
   }, [onComplete]);
 
   if (!visible) return null;

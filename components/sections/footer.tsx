@@ -100,7 +100,7 @@ export function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       {/* Background orb */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 bg-primary/[0.025] blur-[80px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 from-primary/[0.025] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         {/* Main footer body */}

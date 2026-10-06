@@ -116,7 +116,7 @@ export function ProjectsSection() {
             />
           ))}
         </div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.03] blur-[100px] rounded-full" />
+        <div className="absolute top-0 right-0 w-96 h-96 from-primary/[0.03] rounded-full bg-radial to-transparent to-70%" />
       </div>
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
