@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -62,6 +62,16 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,28 +80,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
-        />
-        {/* Theme color - adapts to light/dark */}
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#ffffff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#0a0a0a"
-        />
-        {/* Preconnect */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -106,9 +94,9 @@ export default function RootLayout({
                   url: "https://bhathiya.dev",
                   image: {
                     "@type": "ImageObject",
-                    url: "https://bhathiya.dev/bhathiya-lakshan-2.png",
-                    width: 800,
-                    height: 800,
+                    url: "https://bhathiya.dev/bhathiya_2.png",
+                    width: 1086,
+                    height: 1448,
                   },
                   jobTitle: "Software Engineer",
                   worksFor: [

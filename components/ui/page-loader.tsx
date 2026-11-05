@@ -5,7 +5,7 @@ import gsap from "gsap";
 
 const NAME = "Bhathiya";
 
-export function PageLoader({ onComplete }: { onComplete?: () => void }) {
+export function PageLoader() {
   const loaderRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -20,10 +20,7 @@ export function PageLoader({ onComplete }: { onComplete?: () => void }) {
       gsap.set(barRef.current, { scaleX: 0, transformOrigin: "left center" });
 
       const tl = gsap.timeline({
-        onComplete: () => {
-          setVisible(false);
-          onComplete?.();
-        },
+        onComplete: () => setVisible(false),
       });
 
       tl.to(".loader-char", {
@@ -56,7 +53,7 @@ export function PageLoader({ onComplete }: { onComplete?: () => void }) {
       window.clearTimeout(fallback);
       ctx.revert();
     };
-  }, [onComplete]);
+  }, []);
 
   if (!visible) return null;
 

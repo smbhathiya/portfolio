@@ -12,9 +12,8 @@ import {
   IconBrandTwitter,
   IconBrandFacebook,
   IconMail,
-  IconHeart,
+  IconChevronRight,
 } from "@tabler/icons-react";
-import { ChevronRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -97,7 +96,7 @@ export function Footer() {
   return (
     <footer className="relative bg-background border-t border-border overflow-hidden">
       {/* Decorative top accent */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
       {/* Background orb */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 from-primary/[0.025] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
@@ -164,7 +163,7 @@ export function Footer() {
                 href="mailto:info@bhathiya.dev"
                 className="group flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
               >
-                <IconMail className="w-4 h-4 flex-shrink-0 group-hover:text-primary transition-colors" />
+                <IconMail className="w-4 h-4 shrink-0 group-hover:text-primary transition-colors" />
                 info@bhathiya.dev
               </a>
               <a
@@ -186,7 +185,7 @@ export function Footer() {
               className="inline-flex items-center gap-2 text-xs font-semibold text-primary border border-primary/25 bg-primary/5 px-4 py-2 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 mt-2"
             >
               Start a project
-              <ChevronRight />
+              <IconChevronRight />
             </Link>
           </div>
         </motion.div>

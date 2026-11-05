@@ -165,14 +165,14 @@ export function ContactSection() {
                   rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                   className="contact-info-item group flex items-center gap-4 p-4 rounded-xl border border-border bg-background/40 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground group-hover:border-primary/30 group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground group-hover:border-primary/30 group-hover:text-primary group-hover:bg-primary/5 transition-all duration-300 shrink-0">
                     <Icon className="h-4 w-4" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-muted-foreground/40 mb-0.5">{label}</p>
                     <p className="text-sm md:text-[15px] font-medium group-hover:text-primary transition-colors truncate">{value}</p>
                   </div>
-                  <IconArrowUpRight className="w-4 h-4 text-muted-foreground/20 group-hover:text-primary/50 transition-colors ml-auto flex-shrink-0" />
+                  <IconArrowUpRight className="w-4 h-4 text-muted-foreground/20 group-hover:text-primary/50 transition-colors ml-auto shrink-0" />
                 </a>
               ))}
             </div>
@@ -201,7 +201,7 @@ export function ContactSection() {
 
             {/* Status blurb */}
             <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-primary/[0.02]">
-              <span className="relative flex h-2 w-2 mt-1.5 flex-shrink-0">
+              <span className="relative flex h-2 w-2 mt-1.5 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
@@ -224,7 +224,7 @@ export function ContactSection() {
 
             <div className="relative z-10 rounded-lg border border-border bg-background/50 backdrop-blur-sm shadow-2xl overflow-hidden">
 
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.02] pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-primary/[0.02] pointer-events-none" />
 
               <div className="p-6 md:p-8">
 
@@ -312,7 +312,7 @@ export function ContactSection() {
 
                     {status === "error" && (
                       <div className="flex items-center gap-2.5 text-sm text-destructive bg-destructive/8 border border-destructive/20 rounded-xl px-4 py-3">
-                        <IconAlertCircle className="h-4 w-4 flex-shrink-0" />
+                        <IconAlertCircle className="h-4 w-4 shrink-0" />
                         <span>{errorMsg}</span>
                       </div>
                     )}

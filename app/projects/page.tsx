@@ -72,7 +72,7 @@ export default function ProjectsPage() {
                   Confidential systems built for production environments.
                 </p>
               </div>
-              <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+              <div className="hidden md:flex items-center gap-2 shrink-0">
                 <IconLock className="w-4 h-4 text-muted-foreground/40" />
                 <span className="text-xs text-muted-foreground/40 font-medium">
                   NDA Protected
@@ -89,10 +89,10 @@ export default function ProjectsPage() {
                   {/* Left accent line on hover */}
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/50 rounded-l-2xl scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />
 
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
+                  <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-primary/[0.015] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
 
                   {/* Index number */}
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-muted/80 border border-border/80 flex items-center justify-center relative z-10 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/8">
+                  <div className="shrink-0 w-10 h-10 rounded-xl bg-muted/80 border border-border/80 flex items-center justify-center relative z-10 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/8">
                     <span className="text-xs font-black text-muted-foreground/50 group-hover:text-primary/60 transition-colors">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
                       <h3 className="text-base font-semibold tracking-tight group-hover:text-primary transition-colors duration-300">
                         {project.title}
                       </h3>
-                      <IconLock className="w-3.5 h-3.5 text-muted-foreground/30 flex-shrink-0 mt-0.5" />
+                      <IconLock className="w-3.5 h-3.5 text-muted-foreground/30 shrink-0 mt-0.5" />
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
                       {project.description}

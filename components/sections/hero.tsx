@@ -179,11 +179,11 @@ export function HeroSection() {
             {/* Badges below the image */}
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className="hero-badge text-[9px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-2 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1">
-                <IconBriefcase className="w-3 h-3 text-primary flex-shrink-0" />{" "}
+                <IconBriefcase className="w-3 h-3 text-primary shrink-0" />{" "}
                 Software Engineer
               </span>
               <span className="hero-badge text-[9px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-2 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1">
-                <IconMapPin className="w-3 h-3 text-primary flex-shrink-0" />{" "}
+                <IconMapPin className="w-3 h-3 text-primary shrink-0" />{" "}
                 Sri Lanka
               </span>
             </div>
