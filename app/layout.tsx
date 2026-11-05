@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
       <head>
         {/* JSON-LD Structured Data */}
         <script
@@ -180,7 +180,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} antialiased font-sans`}
+        className="antialiased font-sans"
         suppressHydrationWarning
       >
         <ThemeProvider
