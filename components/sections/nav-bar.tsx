@@ -33,7 +33,6 @@ export function NavBar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [activeSection, setActiveSection] = useState("#home");
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     if (!isHome) {
@@ -42,8 +41,6 @@ export function NavBar() {
     }
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
       let closestIdx = 0;
       let minDist = Number.POSITIVE_INFINITY;
       navItems.forEach((item, idx) => {
@@ -66,11 +63,6 @@ export function NavBar() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome, pathname]);
-
-  useEffect(() => {
-    if (isHome) return;
-    setIsScrolled(true);
-  }, [isHome]);
 
   const scrollTo = (href: string) => {
     const el = document.getElementById(href.replace("#", ""));
@@ -101,9 +93,7 @@ export function NavBar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 h-[72px] transition-all duration-300",
-          isScrolled
-            ? "bg-background/90 backdrop-blur-md border-b border-border"
-            : "bg-transparent",
+          "glass-frosted glass-edge-b",
         )}
       >
         {/* Logo */}
@@ -183,7 +173,7 @@ export function NavBar() {
           </div>
 
           <ModeToggle
-            className="h-9 w-9 rounded-lg bg-background/50 hover:bg-foreground/5 transition-colors"
+            className="h-9 w-9 rounded-lg glass-subtle hover:bg-foreground/5 transition-colors"
             iconSize="h-4 w-4"
           />
           {/* No hamburger on mobile - bottom nav handles navigation */}
@@ -195,7 +185,7 @@ export function NavBar() {
         className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
         aria-label="Mobile navigation"
       >
-        <div className="bg-background/92 backdrop-blur-2xl border-t border-border/80 px-1 pt-2 pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
+        <div className="glass-frosted glass-edge-t relative px-1 pt-2 pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
           <div className="flex items-center justify-around">
             {navItems.map((item) => {
               const Icon = item.icon;

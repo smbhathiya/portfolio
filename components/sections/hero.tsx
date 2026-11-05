@@ -120,37 +120,19 @@ export function HeroSection() {
     <section
       id="home"
       ref={sectionRef}
-      className="min-h-screen bg-background relative overflow-hidden"
+      className="min-h-screen relative overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Dot grid */}
         <div
-          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.04]"
+          className="absolute inset-0 mask-fade opacity-[0.06] dark:opacity-[0.08]"
           style={{
             backgroundImage:
               "radial-gradient(circle, currentColor 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />
-        {/* Gradient orbs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] from-primary/5 rounded-full bg-radial to-transparent to-70%" />
-        <div className="absolute bottom-1/3 -left-32 w-[400px] h-[400px] from-primary/3 rounded-full bg-radial to-transparent to-70%" />
-        {/* Animated accent ring (desktop only) */}
-        <motion.div
-          className="absolute right-[8%] top-1/2 -translate-y-1/2 hidden lg:block"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="w-[520px] h-[520px] rounded-full border border-primary/[0.06] border-dashed" />
-        </motion.div>
-        <motion.div
-          className="absolute right-[8%] top-1/2 -translate-y-1/2 hidden lg:block"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="w-[620px] h-[620px] rounded-full border border-border/30 border-dashed" />
-        </motion.div>
       </div>
 
       {/* ═══════════════════════════════════════════
@@ -163,7 +145,7 @@ export function HeroSection() {
             <motion.div
               animate={{ y: [0, 0, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative aspect-[3/4] rounded-lg overflow-hidden"
+              className="relative aspect-[3/4] rounded-lg overflow-hidden glass"
             >
               <Image
                 src="/bhathiya_2.png"
@@ -171,18 +153,18 @@ export function HeroSection() {
                 fill
                 sizes="320px"
                 quality={90}
-                className="object-cover object-top"
+                className="object-cover object-top p-1.5 rounded-lg"
                 priority
               />
             </motion.div>
 
             {/* Badges below the image */}
             <div className="flex items-center justify-center gap-2 mt-3">
-              <span className="hero-badge text-[9px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-2 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1">
+              <span className="hero-badge text-[9px] font-bold tracking-widest uppercase glass px-2 py-1.5 rounded-lg text-foreground flex items-center gap-1">
                 <IconBriefcase className="w-3 h-3 text-primary shrink-0" />{" "}
                 Software Engineer
               </span>
-              <span className="hero-badge text-[9px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-2 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1">
+              <span className="hero-badge text-[9px] font-bold tracking-widest uppercase glass px-2 py-1.5 rounded-lg text-foreground flex items-center gap-1">
                 <IconMapPin className="w-3 h-3 text-primary shrink-0" />{" "}
                 Sri Lanka
               </span>
@@ -192,7 +174,7 @@ export function HeroSection() {
 
         {/* Text content */}
         <div className="flex flex-col gap-5 px-5 pt-7">
-          <div className="hero-badge flex items-center gap-2">
+          <div className="hero-badge glass flex items-center gap-2 w-fit rounded-lg px-3.5 py-1.5">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -227,7 +209,7 @@ export function HeroSection() {
           <div className="hero-cta flex items-center gap-3">
             <Button
               size="lg"
-              className="flex-1 h-12 text-sm font-semibold tracking-wide group cursor-pointer"
+              className="flex-1 h-12 text-sm font-semibold tracking-wide group cursor-pointer shadow-lg shadow-foreground/10"
               onClick={scrollToContact}
             >
               Let&apos;s Talk
@@ -241,7 +223,7 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="hero-social w-11 h-11 flex items-center justify-center rounded-xl border border-border/60 text-muted-foreground active:bg-primary/5 transition-all duration-200"
+                  className="hero-social w-11 h-11 flex items-center justify-center rounded-xl glass text-muted-foreground active:bg-primary/5 transition-all duration-200"
                   whileTap={{ scale: 0.88 }}
                 >
                   <Icon className="w-4 h-4" />
@@ -260,7 +242,7 @@ export function HeroSection() {
           <div className="grid grid-cols-12 gap-12 items-center">
             {/* Text block */}
             <div className="col-span-7 flex flex-col gap-7">
-              <div className="hero-badge flex items-center gap-2.5 w-fit">
+              <div className="hero-badge glass flex items-center gap-2.5 w-fit rounded-lg px-4 py-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -303,7 +285,7 @@ export function HeroSection() {
               <div className="hero-cta flex flex-row gap-4 items-center">
                 <Button
                   size="lg"
-                  className="h-12 px-8 text-sm font-semibold tracking-wide group cursor-pointer"
+                  className="h-12 px-8 text-sm font-semibold tracking-wide group cursor-pointer shadow-lg shadow-foreground/10"
                   onClick={scrollToContact}
                 >
                   Let&apos;s Talk
@@ -317,7 +299,7 @@ export function HeroSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="hero-social w-10 h-10 flex items-center justify-center rounded-lg border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
+                      className="hero-social w-10 h-10 flex items-center justify-center rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
                       whileHover={{ y: -3, scale: 1.08 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{
@@ -348,7 +330,7 @@ export function HeroSection() {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                    className="relative aspect-[3/4] rounded-lg overflow-hidden"
+                    className="relative aspect-[3/4] rounded-lg overflow-hidden glass"
                   >
                     <Image
                       src="/bhathiya_2.png"
@@ -356,7 +338,7 @@ export function HeroSection() {
                       fill
                       sizes="440px"
                       quality={90}
-                      className="object-cover object-top transition-transform duration-700"
+                      className="object-cover object-top p-1.5 rounded-lg"
                       priority
                     />
                   </motion.div>
@@ -364,11 +346,11 @@ export function HeroSection() {
 
                 {/* Badges below the image */}
                 <div className="flex items-center justify-center gap-3 mt-5">
-                  <span className="hero-badge text-[10px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border/80 shadow-sm text-foreground flex items-center gap-1.5">
+                  <span className="hero-badge text-[10px] font-bold tracking-widest uppercase glass px-3 py-1.5 rounded-lg text-foreground flex items-center gap-1.5">
                     <IconBriefcase className="w-3 h-3 text-primary" /> Software
                     Engineer
                   </span>
-                  <span className="hero-badge text-[10px] font-bold tracking-widest uppercase bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border/80 shadow-sm flex items-center gap-1.5 text-foreground">
+                  <span className="hero-badge text-[10px] font-bold tracking-widest uppercase glass px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-foreground">
                     <IconMapPin className="w-3 h-3 text-primary" /> Sri Lanka
                   </span>
                 </div>

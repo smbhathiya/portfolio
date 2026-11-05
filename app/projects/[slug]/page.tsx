@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="py-28 md:py-36 bg-background relative overflow-hidden">
+    <main className="py-28 md:py-36 relative overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -101,7 +101,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               {project.tag.map((t) => (
                 <span
                   key={t}
-                  className="text-[11px] font-semibold text-primary/70 bg-primary/8 border border-primary/15 px-2 py-0.5 rounded-md"
+                  className="text-[11px] font-semibold text-foreground/70 bg-foreground/5 border border-foreground/10 px-2 py-0.5 rounded-md"
                 >
                   {t}
                 </span>
@@ -112,15 +112,17 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
 
         {/* Hero image */}
-        <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-border/70 bg-muted mb-10">
-          <Image
-            src={project.images[0]}
-            alt={project.title}
-            fill
-            sizes="(max-width: 896px) 100vw, 896px"
-            priority
-            className="object-cover"
-          />
+        <div className="rounded-lg glass p-1.5 mb-10">
+          <div className="relative aspect-[16/10] rounded-md overflow-hidden bg-muted">
+            <Image
+              src={project.images[0]}
+              alt={project.title}
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
+              priority
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Actions */}
@@ -170,7 +172,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <Link
                   key={p.id}
                   href={`/projects/${p.slug}`}
-                  className="group flex flex-col rounded-xl overflow-hidden border border-border/70 bg-background/50 hover:border-primary/40 transition-colors duration-200"
+                  className="group flex flex-col rounded-xl overflow-hidden glass hover:border-primary/30 transition-colors duration-200"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                     <Image

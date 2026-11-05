@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -77,48 +76,8 @@ export function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-background relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
-      {/* ── Decorative shapes ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          className="absolute -top-20 -left-20 w-64 h-64 rounded-full border border-primary/[0.07] border-dashed"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute -top-8 -left-8 w-40 h-40 rounded-full border border-border/20"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-        />
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block select-none">
-          <span className="text-[130px] font-black text-border/[0.05] leading-none">
-            {"</>"}
-          </span>
-        </div>
-        <motion.div
-          className="absolute bottom-16 -right-6 w-24 h-24 rounded-lg border border-primary/[0.1]"
-          animate={{ rotate: [20, 40, 20], y: [0, -16, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <div className="absolute bottom-20 left-6 grid grid-cols-3 gap-[10px] hidden md:grid">
-          {Array.from({ length: 9 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-[3px] h-[3px] rounded-full bg-primary/20"
-              animate={{ opacity: [0.2, 0.7, 0.2] }}
-              transition={{
-                duration: 2.8,
-                repeat: Infinity,
-                delay: i * 0.15,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
-        <div className="absolute top-0 right-0 w-96 h-96 from-primary/[0.03] rounded-full bg-radial to-transparent to-70%" />
-      </div>
-
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="projects-header mb-16 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -147,7 +106,7 @@ export function ProjectsSection() {
         <div className="projects-cta mt-14 flex justify-center">
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/25 bg-primary/5 px-6 py-3 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+            className="group inline-flex items-center gap-2 text-sm font-semibold glass px-6 py-3 rounded-lg hover:border-primary/30 transition-all duration-200"
           >
             View All Projects
             <IconArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

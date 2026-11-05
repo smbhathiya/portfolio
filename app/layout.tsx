@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   other: {
-    "msapplication-TileColor": "#10b981",
+    "msapplication-TileColor": "#000000",
     "msapplication-config": "/browserconfig.xml",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",

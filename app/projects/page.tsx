@@ -32,7 +32,7 @@ export default function ProjectsPage() {
   const internalProjects = projectsData.filter((p) => p.isInternal);
 
   return (
-    <main className="py-28 md:py-36 bg-background relative overflow-hidden">
+    <main className="py-28 md:py-36 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 from-primary/[0.03] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
               {internalProjects.map((project, index) => (
                 <div
                   key={project.id}
-                  className="group relative overflow-hidden flex items-start gap-5 p-5 md:p-6 border border-border rounded-lg bg-background/40 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_32px_-8px_rgba(16,185,129,0.07)]"
+                  className="group relative overflow-hidden flex items-start gap-5 p-5 md:p-6 rounded-lg glass hover:border-primary/30 transition-all duration-300 hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_12px_32px_-8px_rgba(255,255,255,0.06)]"
                 >
                   {/* Left accent line on hover */}
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/50 rounded-l-2xl scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center" />

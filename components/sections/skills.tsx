@@ -70,7 +70,7 @@ function SkillItem({ name, Icon }: { name: string; Icon: React.ComponentType<{ c
       whileHover={{ y: -3, scale: 1.03 }}
       whileTap={{ scale: 0.96 }}
       transition={{ type: "spring", stiffness: 450, damping: 18 }}
-      className="group flex items-center gap-3 p-3.5 rounded-xl border border-border/80 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default bg-background/20 backdrop-blur-xs relative z-10"
+      className="group flex items-center gap-3 p-3.5 rounded-xl glass-subtle hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default relative z-10"
     >
       <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:scale-110 shrink-0 relative z-10" />
       <span className="text-xs md:text-sm font-medium tracking-wide group-hover:text-foreground transition-colors duration-200 truncate relative z-10">{name}</span>
@@ -279,7 +279,7 @@ export function SkillsSection() {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-background relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden"
     >
       {/* ── Decorative shapes ── */}
       {/* ── Decorative Background ── */}
@@ -306,7 +306,7 @@ export function SkillsSection() {
                   "shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 border",
                   activeCat === i
                     ? "bg-primary text-primary-foreground border-primary shadow-sm shadow-primary/20"
-                    : "bg-background/50 text-muted-foreground border-border/60 hover:border-primary/30 hover:text-foreground",
+                    : "glass-subtle text-muted-foreground hover:border-primary/30 hover:text-foreground",
                 )}
               >
                 <span className="text-[10px] font-bold tracking-widest opacity-60">{cat.label}</span>

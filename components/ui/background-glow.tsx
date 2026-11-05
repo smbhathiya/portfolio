@@ -3,6 +3,27 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const blobs = [
+  {
+    className:
+      "top-[-15%] left-[-15%] md:top-[0%] md:left-[5%] w-[420px] md:w-[640px] h-[420px] md:h-[640px] from-foreground/10 dark:from-foreground/8",
+    animate: { x: [0, 60, -40, 0], y: [0, -60, 40, 0], scale: [1, 1.1, 0.95, 1] },
+    duration: 24,
+  },
+  {
+    className:
+      "bottom-[-15%] right-[-15%] md:bottom-[5%] md:right-[5%] w-[420px] md:w-[600px] h-[420px] md:h-[600px] from-foreground/8 dark:from-foreground/6",
+    animate: { x: [0, -70, 40, 0], y: [0, 50, -60, 0], scale: [1, 0.9, 1.12, 1] },
+    duration: 28,
+  },
+  {
+    className:
+      "top-[40%] right-[25%] w-[300px] md:w-[460px] h-[300px] md:h-[460px] from-foreground/6 dark:from-foreground/5",
+    animate: { x: [0, 40, -50, 0], y: [0, 60, -30, 0], scale: [1, 1.08, 0.9, 1] },
+    duration: 32,
+  },
+];
+
 export function BackgroundGlow() {
   const [mounted, setMounted] = useState(false);
 
@@ -13,51 +34,18 @@ export function BackgroundGlow() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
-      {/* Ambient Blob 1 - Sunset Red Primary Accent */}
-      <motion.div
-        animate={{
-          x: [0, 60, -40, 0],
-          y: [0, -80, 50, 0],
-          scale: [1, 1.12, 0.92, 1],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-[-10%] left-[-10%] md:top-[5%] md:left-[10%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full bg-radial to-transparent to-70% from-emerald-500/6 dark:from-primary/4"
-      />
-
-      {/* Ambient Blob 2 - Deep Rose Accent */}
-      <motion.div
-        animate={{
-          x: [0, -80, 50, 0],
-          y: [0, 60, -70, 0],
-          scale: [1, 0.88, 1.15, 1],
-        }}
-        transition={{
-          duration: 26,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-[-10%] right-[-10%] md:bottom-[10%] md:right-[15%] w-[350px] md:w-[550px] h-[350px] md:h-[550px] rounded-full bg-radial to-transparent to-70% from-teal-500/6 dark:from-teal-500/3"
-      />
-
-      {/* Ambient Blob 3 - Light Scarlet Accent */}
-      <motion.div
-        animate={{
-          x: [0, 40, -50, 0],
-          y: [0, 70, -30, 0],
-          scale: [1, 1.1, 0.85, 1],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-[35%] right-[20%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] rounded-full bg-radial to-transparent to-70% from-green-600/4 dark:from-green-600/2"
-      />
+    <div
+      className="fixed inset-0 -z-50 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
+      {blobs.map((blob, i) => (
+        <motion.div
+          key={i}
+          animate={blob.animate}
+          transition={{ duration: blob.duration, repeat: Infinity, ease: "easeInOut" }}
+          className={`absolute rounded-full bg-radial to-transparent to-70% blur-2xl ${blob.className}`}
+        />
+      ))}
     </div>
   );
 }

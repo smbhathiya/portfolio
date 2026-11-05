@@ -76,7 +76,7 @@ function MagneticIcon({ children, href, label }: { children: React.ReactNode; hr
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.9 }}
-      className="w-10 h-10 flex items-center justify-center rounded-lg border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-colors duration-200 bg-background/50 backdrop-blur-sm"
+      className="w-10 h-10 flex items-center justify-center rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
     >
       {children}
     </motion.a>
@@ -94,7 +94,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-background border-t border-border overflow-hidden">
+    <footer className="relative glass-subtle glass-edge-t overflow-hidden">
       {/* Decorative top accent */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
@@ -182,7 +182,7 @@ export function Footer() {
             {/* CTA */}
             <Link
               href={resolveHref("#contact")}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-primary border border-primary/25 bg-primary/5 px-4 py-2 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 mt-2"
+              className="inline-flex items-center gap-2 text-xs font-semibold glass px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-200 mt-2"
             >
               Start a project
               <IconChevronRight />
