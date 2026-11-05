@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import projectsData from "@/data/projects";
+import { getPublicProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/project-card";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
@@ -16,9 +16,7 @@ const TEASER_COUNT = 3;
 export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  const featuredProjects = projectsData
-    .filter((p) => !p.isInternal && p.images && p.images.length > 0)
-    .slice(0, TEASER_COUNT);
+  const featuredProjects = getPublicProjects().slice(0, TEASER_COUNT);
 
   useGSAP(
     () => {

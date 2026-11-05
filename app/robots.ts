@@ -1,14 +1,9 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/private/"],
-      },
-    ],
-    sitemap: "https://bhathiya.dev/sitemap.xml",
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
+    sitemap: absoluteUrl("/sitemap.xml"),
   };
 }

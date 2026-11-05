@@ -1,29 +1,21 @@
-import { MetadataRoute } from 'next'
-import projectsData from '@/data/projects'
+import type { MetadataRoute } from "next";
+import { getPublicProjects } from "@/data/projects";
+import { OG_IMAGE, PERSON, absoluteUrl } from "@/lib/site";
 
+// lastModified is intentionally omitted: a fake "now" date on every build
+// teaches search engines to ignore it. Add real dates here if you track them.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const projectRoutes: MetadataRoute.Sitemap = projectsData
-    .filter((p) => !p.isInternal && p.images && p.images.length > 0)
-    .map((p) => ({
-      url: `https://bhathiya.dev/projects/${p.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    }))
-
   return [
     {
-      url: 'https://bhathiya.dev',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
+      url: absoluteUrl("/"),
+      images: [absoluteUrl(PERSON.image), absoluteUrl(OG_IMAGE.url)],
     },
     {
-      url: 'https://bhathiya.dev/projects',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      url: absoluteUrl("/projects"),
     },
-    ...projectRoutes,
-  ]
+    ...getPublicProjects().map((p) => ({
+      url: absoluteUrl(`/projects/${p.slug}`),
+      images: p.images.map((img) => absoluteUrl(img)),
+    })),
+  ];
 }

@@ -1,38 +1,71 @@
 import type { Metadata } from "next";
 import { IconLock } from "@tabler/icons-react";
-import projectsData from "@/data/projects";
+import projectsData, { getPublicProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/project-card";
+import { JsonLd } from "@/components/json-ld";
+import { OG_IMAGE, SITE_URL, absoluteUrl } from "@/lib/site";
+
+const TITLE = "Projects & Case Studies";
+const DESCRIPTION =
+  "Web apps, business websites and open-source templates by Bhathiya Lakshan, built with React, Next.js and TypeScript - plus enterprise systems for clients.";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "A complete showcase of software projects by Bhathiya Lakshan - full-stack web apps, LMS platforms, dashboards, and open-source templates built with React, Next.js, and TypeScript.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: "Projects | Bhathiya Lakshan",
-    description:
-      "A complete showcase of software projects by Bhathiya Lakshan - full-stack web apps, LMS platforms, dashboards, and open-source templates.",
-    url: "https://bhathiya.dev/projects",
+    title: `${TITLE} | Bhathiya Lakshan`,
+    description: DESCRIPTION,
+    url: "/projects",
     type: "website",
-    images: [
-      {
-        url: "/cover.png",
-        width: 1200,
-        height: 630,
-        alt: "Bhathiya Lakshan - Projects",
-      },
-    ],
+    images: [{ ...OG_IMAGE, alt: "Projects by Bhathiya Lakshan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${TITLE} | Bhathiya Lakshan`,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 
 export default function ProjectsPage() {
-  const featuredProjects = projectsData.filter(
-    (p) => !p.isInternal && p.images && p.images.length > 0,
-  );
+  const featuredProjects = getPublicProjects();
   const internalProjects = projectsData.filter((p) => p.isInternal);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/projects#page`,
+        url: `${SITE_URL}/projects`,
+        name: TITLE,
+        description: DESCRIPTION,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        author: { "@id": `${SITE_URL}/#person` },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: featuredProjects.map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: absoluteUrl(`/projects/${p.slug}`),
+            name: p.title,
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+        ],
+      },
+    ],
+  };
 
   return (
     <main className="py-28 md:py-36 relative overflow-hidden">
+      <JsonLd data={jsonLd} />
       <div className="absolute top-0 right-0 w-96 h-96 from-primary/[0.03] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
 
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
@@ -51,6 +84,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Featured project cards */}
+        <h2 className="sr-only">Featured projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-28">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
@@ -93,7 +127,7 @@ export default function ProjectsPage() {
 
                   {/* Index number */}
                   <div className="shrink-0 w-10 h-10 rounded-xl bg-muted/80 border border-border/80 flex items-center justify-center relative z-10 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/8">
-                    <span className="text-xs font-black text-muted-foreground/50 group-hover:text-primary/60 transition-colors">
+                    <span className="text-xs font-black text-muted-foreground group-hover:text-primary transition-colors">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -110,10 +144,10 @@ export default function ProjectsPage() {
                     </p>
                     {project.tag && (
                       <div className="flex flex-wrap gap-1.5">
-                        {project.tag.slice(0, 4).map((t: string) => (
+                        {project.tag.filter((t) => t !== "All").slice(0, 4).map((t) => (
                           <span
                             key={t}
-                            className="text-[11px] font-semibold text-muted-foreground/60 bg-muted/70 px-2 py-0.5 rounded-md border border-border/50"
+                            className="text-[11px] font-semibold text-muted-foreground bg-muted/70 px-2 py-0.5 rounded-md border border-border/50"
                           >
                             {t}
                           </span>

@@ -74,7 +74,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <Link href={caseStudyHref} className="absolute inset-0 z-0 block">
             <Image
               src={project.images[0]}
-              alt={project.title}
+              alt={`${project.title} screenshot`}
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"

@@ -113,9 +113,9 @@ export function Footer() {
           {/* Brand column */}
           <div className="space-y-5 md:col-span-1">
             <div>
-              <h3 className="text-2xl font-black tracking-tight">
+              <p className="text-2xl font-black tracking-tight">
                 Bhathiya<span className="text-primary">.</span>dev
-              </h3>
+              </p>
               <p className="text-xs font-semibold tracking-widest uppercase text-primary/60 mt-1">
                 Software Engineer
               </p>
@@ -136,9 +136,9 @@ export function Footer() {
 
           {/* Nav links */}
           <div className="space-y-5">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
               Sitemap
-            </h4>
+            </p>
             <nav className="flex flex-col space-y-3">
               {navLinks.map((link) => (
                 <Link
@@ -155,9 +155,9 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-5">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
               Get in Touch
-            </h4>
+            </p>
             <div className="flex flex-col space-y-4">
               <a
                 href="mailto:info@bhathiya.dev"
@@ -191,7 +191,7 @@ export function Footer() {
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border/60 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="border-t border-border/60 pt-6 pb-28 md:pb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground/50">
             &copy; {currentYear} Bhathiya Lakshan. All rights reserved.
           </p>
