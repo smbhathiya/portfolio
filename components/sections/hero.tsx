@@ -147,7 +147,7 @@ export function HeroSection() {
               <p className="hero-desc flex items-center gap-4">
                 <span className="h-px w-12 bg-border" aria-hidden="true" />
                 <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground/60">
-                  Lead Software Engineer &nbsp;·&nbsp; Sri Lanka
+                  Full Stack Software Engineer &nbsp;·&nbsp; Sri Lanka
                 </span>
               </p>
 

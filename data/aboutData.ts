@@ -1,10 +1,10 @@
 export const workExperience = [
   {
-    title: "Lead Software Engineer",
+    title: "Software Engineer",
     company: "Ishara Madhushan Online School (IMOS)",
     duration: "April 2025 - Present",
     description:
-      "Software Engineer for a leading online education academy with 50+ employees. Architecting and maintaining the entire digital ecosystem, including mission-critical internal software and full-stack web applications using Next.js and PostgreSQL. Managing cloud infrastructure on Vercel and Cloudflare while overseeing IT operations.",
+      "Software Engineer for a leading online education academy with 50+ employees. Architecting and maintaining the entire digital ecosystem, including mission-critical internal software and full-stack web applications using Next.js and PostgreSQL. Managing all IT solutions, networks and systems, plus cloud infrastructure on Vercel and Cloudflare.",
   },
   {
     title: "Software Engineer",
