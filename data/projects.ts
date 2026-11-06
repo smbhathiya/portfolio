@@ -7,6 +7,8 @@ export interface Project {
   tag: string[];
   /** Short descriptive phrase used in page titles, e.g. "Coffee Shop Website". */
   tagline?: string;
+  /** Search-result description (max ~155 chars). Falls back to a truncated description. */
+  metaDescription?: string;
   /** Technologies used - shown on the case study page. */
   stack?: string[];
   /** Key features - shown on the case study page. */
@@ -75,6 +77,8 @@ const projectsData: Project[] = [
   {
     id: 14,
     slug: "utilbee",
+    metaDescription:
+      "UtilBee is a free collection of simple, fast online utility tools that run right in your browser, made for everyday developer and general tasks.",
     title: "UtilBee",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
@@ -86,6 +90,8 @@ const projectsData: Project[] = [
   {
     id: 12,
     slug: "green-planet",
+    metaDescription:
+      "Green Planet is an eco awareness website on climate change, pollution, wildlife conservation and sustainable living, with cinematic visuals.",
     title: "Green Planet",
     description:
       "A modern environmental awareness website focused on protecting nature and promoting eco-friendly living. Educates users about climate change, pollution, wildlife conservation, and sustainable habits through cinematic visuals and interactive content.",
@@ -102,6 +108,8 @@ const projectsData: Project[] = [
   {
     id: 13,
     slug: "life-plus",
+    metaDescription:
+      "Life Plus is a personal wellness web app with a BMI calculator, water intake tracker, calorie counter, habit tracking and nutrition guidance.",
     title: "Life Plus",
     description:
       "A premium, interactive personal wellness companion designed to empower users to take control of their health. Features custom-built utility tools including a BMI calculator, water intake tracker, and calorie counter, integrated with daily habit tracking and nutrition guidance, all presented through a sleek, motion-driven dashboard.",
@@ -121,6 +129,8 @@ const projectsData: Project[] = [
   {
     id: 9,
     slug: "vantagecar-car-dealership",
+    metaDescription:
+      "VantageCar is a modern car dealership website with advanced vehicle search and filtering, built for performance and SEO in automotive e-commerce.",
     title: "VantageCar - Car Dealership",
     description:
       "A modern car dealership platform with advanced vehicle search and filtering capabilities. Focused on performance and SEO for automotive e-commerce.",
@@ -136,6 +146,8 @@ const projectsData: Project[] = [
   {
     id: 8,
     slug: "business-landing-page-template",
+    metaDescription:
+      "Free, open-source business landing page template built with Next.js and Tailwind CSS. Clean, fully responsive single-page layout, ready to deploy.",
     title: "Business Landing Page - Open Source Template",
     description:
       "A clean, modern, and fully responsive single-page website template designed for businesses. Built using Next.js and Tailwind CSS, perfect for rapid deployment.",
@@ -154,6 +166,8 @@ const projectsData: Project[] = [
   {
     id: 5,
     slug: "bliss-cafe-coffee-shop",
+    metaDescription:
+      "Bliss Café is a modern, responsive coffee shop website built with Next.js and Tailwind CSS, featuring a sleek layout and premium design.",
     title: "Bliss Café - Coffee Shop",
     description:
       "A modern and responsive coffee shop website built using Next.js and Tailwind CSS. Showcases sleek UI alignment and premium design aesthetics.",

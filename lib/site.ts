@@ -7,7 +7,8 @@ export const SITE_NAME = "Bhathiya Lakshan";
 
 export const PERSON = {
   name: "Bhathiya Lakshan",
-  jobTitle: "Software Engineer",
+  jobTitle: "Full Stack Software Engineer",
+  alternateName: ["smbhathiya", "Bhathiya"],
   email: "info@bhathiya.dev",
   telephone: "+94758041606",
   image: "/bhathiya-lakshan.jpg",

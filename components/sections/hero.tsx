@@ -194,7 +194,7 @@ export function HeroSection() {
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="relative aspect-[3/4] rounded-lg overflow-hidden glass"
+                  className="relative aspect-[3/4] rounded-lg overflow-hidden"
                 >
                   <Image
                     src={heroPhoto}
@@ -203,7 +203,7 @@ export function HeroSection() {
                     sizes="(max-width: 767px) 320px, 440px"
                     placeholder="blur"
                     preload
-                    className="object-cover object-top p-1.5 rounded-lg"
+                    className="object-cover object-top"
                   />
                 </motion.div>
 

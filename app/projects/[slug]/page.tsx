@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {};
 
   const title = pageTitle(project);
-  const description = truncate(project.description);
+  const description = project.metaDescription ?? truncate(project.description);
   const image = project.images[0];
 
   return {
@@ -244,7 +244,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                     <Image
                       src={p.images[0]}
-                      alt={`${p.title} screenshot`}
+                      alt={`${p.title}${p.tagline ? ` - ${p.tagline}` : ""} screenshot`}
                       fill
                       sizes="(max-width: 639px) 100vw, 280px"
                       className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
