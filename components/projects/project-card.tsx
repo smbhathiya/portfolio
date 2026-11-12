@@ -47,7 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
         onMouseLeave={handleMouseLeave}
         whileHover={{ scale: 1.03 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="group relative flex flex-col h-full rounded-lg overflow-hidden border border-border bg-background/50 backdrop-blur-sm hover:border-primary/40 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_32px_80px_-16px_rgba(16,185,129,0.15)] transition-colors duration-300 transform-gpu will-change-transform"
+        className="group relative flex flex-col h-full rounded-lg overflow-hidden glass hover:border-primary/30 hover:shadow-[0_32px_80px_-16px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_32px_80px_-16px_rgba(255,255,255,0.08)] transition-colors duration-300 transform-gpu will-change-transform"
       >
         {/* Dynamic Interactive Glare */}
         <motion.div
@@ -64,7 +64,7 @@ export function ProjectCard({ project }: { project: Project }) {
         />
 
         {/* Subtle top gradient stripe on hover */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
 
         {/* Image - links to the case study page */}
         <div
@@ -74,12 +74,12 @@ export function ProjectCard({ project }: { project: Project }) {
           <Link href={caseStudyHref} className="absolute inset-0 z-0 block">
             <Image
               src={project.images[0]}
-              alt={project.title}
+              alt={`${project.title}${project.tagline ? ` - ${project.tagline}` : ""} screenshot`}
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
           </Link>
 
           {/* Quick action links on image hover */}
@@ -92,7 +92,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 href={project.gitUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-background/90 backdrop-blur-sm border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                className="w-8 h-8 flex items-center justify-center rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
                 aria-label="Source code"
               >
                 <IconBrandGithub className="w-4 h-4" />
@@ -103,7 +103,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 href={project.previewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-background/90 backdrop-blur-sm border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                className="w-8 h-8 flex items-center justify-center rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
                 aria-label="Live demo"
               >
                 <IconExternalLink className="w-4 h-4" />
@@ -114,7 +114,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         {/* Content */}
         <div
-          className="p-5 flex flex-col flex-grow relative z-10"
+          className="p-5 flex flex-col grow relative z-10"
           style={{ transform: "translateZ(20px)" }}
         >
           <Link href={caseStudyHref}>
@@ -123,7 +123,7 @@ export function ProjectCard({ project }: { project: Project }) {
             </h3>
           </Link>
 
-          <p className="text-sm text-muted-foreground leading-relaxed flex-grow mb-4">
+          <p className="text-sm text-muted-foreground leading-relaxed grow mb-4">
             {project.description}
           </p>
 
@@ -132,7 +132,7 @@ export function ProjectCard({ project }: { project: Project }) {
               {project.tag.slice(0, 4).map((t: string) => (
                 <span
                   key={t}
-                  className="text-[11px] font-semibold text-primary/70 bg-primary/8 border border-primary/15 px-2 py-0.5 rounded-md"
+                  className="text-[11px] font-semibold text-foreground/70 bg-foreground/5 border border-foreground/10 px-2 py-0.5 rounded-md"
                 >
                   {t}
                 </span>

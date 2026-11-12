@@ -12,9 +12,8 @@ import {
   IconBrandTwitter,
   IconBrandFacebook,
   IconMail,
-  IconHeart,
+  IconChevronRight,
 } from "@tabler/icons-react";
-import { ChevronRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -77,7 +76,7 @@ function MagneticIcon({ children, href, label }: { children: React.ReactNode; hr
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.9 }}
-      className="w-10 h-10 flex items-center justify-center rounded-lg border border-border/70 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-colors duration-200 bg-background/50 backdrop-blur-sm"
+      className="w-10 h-10 flex items-center justify-center rounded-lg glass text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors duration-200"
     >
       {children}
     </motion.a>
@@ -95,9 +94,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-background border-t border-border overflow-hidden">
+    <footer className="relative glass-subtle glass-edge-t overflow-hidden">
       {/* Decorative top accent */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
       {/* Background orb */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 from-primary/[0.025] rounded-full bg-radial to-transparent to-70% pointer-events-none" />
@@ -114,9 +113,9 @@ export function Footer() {
           {/* Brand column */}
           <div className="space-y-5 md:col-span-1">
             <div>
-              <h3 className="text-2xl font-black tracking-tight">
+              <p className="text-2xl font-black tracking-tight">
                 Bhathiya<span className="text-primary">.</span>dev
-              </h3>
+              </p>
               <p className="text-xs font-semibold tracking-widest uppercase text-primary/60 mt-1">
                 Software Engineer
               </p>
@@ -137,9 +136,9 @@ export function Footer() {
 
           {/* Nav links */}
           <div className="space-y-5">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
               Sitemap
-            </h4>
+            </p>
             <nav className="flex flex-col space-y-3">
               {navLinks.map((link) => (
                 <Link
@@ -156,15 +155,15 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-5">
-            <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
               Get in Touch
-            </h4>
+            </p>
             <div className="flex flex-col space-y-4">
               <a
                 href="mailto:info@bhathiya.dev"
                 className="group flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
               >
-                <IconMail className="w-4 h-4 flex-shrink-0 group-hover:text-primary transition-colors" />
+                <IconMail className="w-4 h-4 shrink-0 group-hover:text-primary transition-colors" />
                 info@bhathiya.dev
               </a>
               <a
@@ -183,16 +182,16 @@ export function Footer() {
             {/* CTA */}
             <Link
               href={resolveHref("#contact")}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-primary border border-primary/25 bg-primary/5 px-4 py-2 rounded-lg hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 mt-2"
+              className="inline-flex items-center gap-2 text-xs font-semibold glass px-4 py-2 rounded-lg hover:border-primary/30 transition-all duration-200 mt-2"
             >
               Start a project
-              <ChevronRight />
+              <IconChevronRight />
             </Link>
           </div>
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border/60 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="border-t border-border/60 pt-6 pb-28 md:pb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground/50">
             &copy; {currentYear} Bhathiya Lakshan. All rights reserved.
           </p>

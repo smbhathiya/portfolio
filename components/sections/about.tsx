@@ -59,7 +59,7 @@ export function AboutSection() {
   );
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 md:py-32 bg-background">
+    <section id="about" ref={sectionRef} className="py-24 md:py-32">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
         <div className="about-header mb-16 md:mb-20">
           <p className="text-xs md:text-sm font-semibold tracking-widest text-primary uppercase mb-3">About</p>
@@ -103,7 +103,7 @@ function JourneyGroup({
 
 function JourneyRow({ entry }: { entry: JourneyEntry }) {
   return (
-    <div className="about-row group grid grid-cols-1 md:grid-cols-[160px_1fr] gap-1.5 md:gap-8 rounded-lg border border-border/70 bg-background/40 backdrop-blur-sm p-6 transition-colors duration-300 hover:border-primary/40">
+    <div className="about-row group grid grid-cols-1 md:grid-cols-[160px_1fr] gap-1.5 md:gap-8 rounded-lg glass p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30">
       <span className="text-xs font-semibold tracking-wide text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground">
         {entry.duration}
       </span>

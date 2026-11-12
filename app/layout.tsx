@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BackgroundGlow } from "@/components/ui/background-glow";
-import { PageLoader } from "@/components/ui/page-loader";
 import { NavBar } from "@/components/sections/nav-bar";
 import { Footer } from "@/components/sections/footer";
+import { JsonLd } from "@/components/json-ld";
+import { education } from "@/data/aboutData";
+import { OG_IMAGE, PERSON, SITE_NAME, SITE_URL, absoluteUrl } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -13,32 +15,57 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const DEFAULT_TITLE = "Bhathiya Lakshan | Full Stack Software Engineer, Sri Lanka";
+const DEFAULT_DESCRIPTION =
+  "Software Engineer in Sri Lanka specializing in React, Next.js, TypeScript and Node.js. I build custom LMS, payroll, CRM and cloud systems for businesses.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bhathiya.dev"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "Bhathiya Lakshan | Software Engineer & Full Stack Developer Sri Lanka",
-    template: "%s | Bhathiya Lakshan",
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Bhathiya Lakshan is a Software Engineer based in Sri Lanka specializing in React, Next.js, TypeScript, and Node.js - architecting custom LMS, payroll, CRM, and cloud systems.",
-  authors: [{ name: "Bhathiya Lakshan", url: "https://bhathiya.dev" }],
-  creator: "Bhathiya Lakshan",
-  publisher: "Bhathiya Lakshan",
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: PERSON.name, url: SITE_URL }],
+  creator: PERSON.name,
+  publisher: PERSON.name,
   formatDetection: { email: false, address: false, telephone: false },
-  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  // Defaults inherited by every page; pages override with their own values.
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_US",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+    images: [{ ...OG_IMAGE, type: "image/jpeg" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@smbhathiya",
+    creator: "@smbhathiya",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [OG_IMAGE.url],
+  },
+  // Set these env vars in Vercel after adding the site to Search Console / Bing.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
   },
   icons: {
     icon: [
@@ -51,15 +78,113 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+  appleWebApp: { title: SITE_NAME, statusBarStyle: "default" },
   other: {
-    "msapplication-TileColor": "#10b981",
+    "msapplication-TileColor": "#000000",
     "msapplication-config": "/browserconfig.xml",
-    "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "Bhathiya Lakshan",
-    "application-name": "Bhathiya Lakshan",
     "mobile-web-app-capable": "yes",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#e6e4dc" },
+    { media: "(prefers-color-scheme: dark)", color: "#111111" },
+  ],
+};
+
+const address = {
+  "@type": "PostalAddress",
+  addressLocality: PERSON.locality,
+  addressRegion: PERSON.region,
+  addressCountry: PERSON.country,
+};
+
+const siteGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: PERSON.name,
+      alternateName: PERSON.alternateName,
+      url: SITE_URL,
+      image: {
+        "@type": "ImageObject",
+        url: absoluteUrl(PERSON.image),
+        width: PERSON.imageWidth,
+        height: PERSON.imageHeight,
+      },
+      jobTitle: PERSON.jobTitle,
+      worksFor: [
+        { "@type": "Organization", name: "Ishara Madhushan Online School (IMOS)" },
+        { "@type": "Organization", name: "Digi Pro Solutions" },
+      ],
+      alumniOf: [
+        ...new Set(education.map((e) => e.institution)),
+      ].map((name) => ({ "@type": "CollegeOrUniversity", name })),
+      address,
+      email: PERSON.email,
+      sameAs: PERSON.sameAs,
+      knowsAbout: [
+        "Full Stack Web Development",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Node.js",
+        ".NET",
+        "C#",
+        "Python",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+        "Docker",
+        "AWS",
+        "Vercel",
+        "Stripe",
+      ],
+      description:
+        "Bhathiya Lakshan is a Full Stack Software Engineer in Sri Lanka building web apps and business systems (LMS, payroll, CRM) with React, Next.js, TypeScript and .NET.",
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#professionalService`,
+      name: "Bhathiya.dev - Custom Software Development",
+      image: absoluteUrl(OG_IMAGE.url),
+      url: SITE_URL,
+      telephone: PERSON.telephone,
+      email: PERSON.email,
+      founder: { "@id": `${SITE_URL}/#person` },
+      address,
+      geo: { "@type": "GeoCoordinates", latitude: "7.0016", longitude: "79.9497" },
+      areaServed: ["LK", "Worldwide"],
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+      priceRange: "$$",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      alternateName: "bhathiya.dev",
+      url: SITE_URL,
+      description:
+        "Portfolio of Bhathiya Lakshan, a Full Stack Software Engineer in Sri Lanka: projects, case studies, skills and contact.",
+      author: { "@id": `${SITE_URL}/#person` },
+      publisher: { "@id": `${SITE_URL}/#person` },
+      inLanguage: "en",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -68,148 +193,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
       <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
-        />
-        {/* Theme color - adapts to light/dark */}
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#ffffff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#0a0a0a"
-        />
-        {/* Preconnect */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* JSON-LD Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Person",
-                  "@id": "https://bhathiya.dev/#person",
-                  name: "Bhathiya Lakshan",
-                  url: "https://bhathiya.dev",
-                  image: {
-                    "@type": "ImageObject",
-                    url: "https://bhathiya.dev/bhathiya-lakshan-2.png",
-                    width: 800,
-                    height: 800,
-                  },
-                  jobTitle: "Software Engineer",
-                  worksFor: [
-                    {
-                      "@type": "Organization",
-                      name: "Ishara Madhushan Online School (IMOS)",
-                    },
-                    { "@type": "Organization", name: "Digi Pro Solutions" },
-                  ],
-                  address: {
-                    "@type": "PostalAddress",
-                    addressLocality: "Kadawatha",
-                    addressRegion: "Western Province",
-                    addressCountry: "LK",
-                  },
-                  email: "info@bhathiya.dev",
-                  sameAs: [
-                    "https://github.com/smbhathiya",
-                    "https://www.linkedin.com/in/bhathiya-lakshan-91579722a/",
-                    "https://x.com/smbhathiya",
-                    "https://www.facebook.com/smbhathiya",
-                  ],
-                  knowsAbout: [
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Node.js",
-                    "AWS",
-                    "Docker",
-                    "PostgreSQL",
-                    "Full Stack Web Development",
-                  ],
-                  description:
-                    "Bhathiya Lakshan is a Software Engineer based in Sri Lanka, specialising in Next.js, React, TypeScript, and cloud architecture.",
-                },
-                {
-                  "@type": "ProfessionalService",
-                  "@id": "https://bhathiya.dev/#professionalService",
-                  name: "Bhathiya.dev - Custom Software Development",
-                  image: "https://bhathiya.dev/cover.png",
-                  url: "https://bhathiya.dev",
-                  telephone: "+94758041606",
-                  address: {
-                    "@type": "PostalAddress",
-                    addressLocality: "Kadawatha",
-                    addressRegion: "Western Province",
-                    addressCountry: "LK",
-                  },
-                  geo: {
-                    "@type": "GeoCoordinates",
-                    latitude: "7.0016",
-                    longitude: "79.9497",
-                  },
-                  openingHoursSpecification: {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: [
-                      "Monday",
-                      "Tuesday",
-                      "Wednesday",
-                      "Thursday",
-                      "Friday",
-                    ],
-                    opens: "09:00",
-                    closes: "18:00",
-                  },
-                  priceRange: "$$",
-                },
-                {
-                  "@type": "WebSite",
-                  "@id": "https://bhathiya.dev/#website",
-                  name: "Bhathiya Lakshan",
-                  url: "https://bhathiya.dev",
-                  description:
-                    "Professional portfolio of Bhathiya Lakshan - Software Engineer and Full Stack Developer.",
-                  author: { "@id": "https://bhathiya.dev/#person" },
-                  inLanguage: "en-LK",
-                },
-              ],
-            }),
-          }}
-        />
+        <JsonLd data={siteGraph} />
       </head>
-      <body
-        className={`${spaceGrotesk.variable} antialiased font-sans`}
-        suppressHydrationWarning
-      >
+      <body className="antialiased font-sans" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <PageLoader />
           <BackgroundGlow />
           <div className="min-h-screen flex flex-col">
             <NavBar />
             {children}
-            {/* Footer hidden on mobile - bottom nav is the primary navigation */}
-            <div className="hidden md:block">
-              <Footer />
-            </div>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

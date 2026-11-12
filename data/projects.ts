@@ -5,6 +5,14 @@ export interface Project {
   description: string;
   images: string[];
   tag: string[];
+  /** Short descriptive phrase used in page titles, e.g. "Coffee Shop Website". */
+  tagline?: string;
+  /** Search-result description (max ~155 chars). Falls back to a truncated description. */
+  metaDescription?: string;
+  /** Technologies used - shown on the case study page. */
+  stack?: string[];
+  /** Key features - shown on the case study page. */
+  features?: string[];
   previewUrl?: string;
   gitUrl?: string;
   isInternal?: boolean;
@@ -69,30 +77,51 @@ const projectsData: Project[] = [
   {
     id: 14,
     slug: "utilbee",
+    metaDescription:
+      "UtilBee is a free collection of simple, fast online utility tools that run right in your browser, made for everyday developer and general tasks.",
     title: "UtilBee",
     description:
       "Simple, fast, and free tools for your everyday tasks right in your browser. Features a collection of useful utilities crafted for daily developer and general workflows.",
-    images: ["/projects/toolkit.png"],
+    images: ["/projects/toolkit.jpg"],
+    tagline: "Free Online Utility Tools",
     tag: ["All", "Web"],
     previewUrl: "https://utilbee.bhathiya.dev",
   },
   {
     id: 12,
     slug: "green-planet",
+    metaDescription:
+      "Green Planet is an eco awareness website on climate change, pollution, wildlife conservation and sustainable living, with cinematic visuals.",
     title: "Green Planet",
     description:
       "A modern environmental awareness website focused on protecting nature and promoting eco-friendly living. Educates users about climate change, pollution, wildlife conservation, and sustainable habits through cinematic visuals and interactive content.",
-    images: ["/projects/greenplanet.png"],
+    images: ["/projects/greenplanet.jpg"],
+    tagline: "Eco Awareness Website",
+    features: [
+      "Educational content on climate change, pollution and wildlife conservation",
+      "Cinematic visuals and interactive sections",
+      "Practical tips for sustainable, eco-friendly living",
+    ],
     tag: ["All", "Web"],
     previewUrl: "https://greenplanet.bhathiya.dev",
   },
   {
     id: 13,
     slug: "life-plus",
+    metaDescription:
+      "Life Plus is a personal wellness web app with a BMI calculator, water intake tracker, calorie counter, habit tracking and nutrition guidance.",
     title: "Life Plus",
     description:
       "A premium, interactive personal wellness companion designed to empower users to take control of their health. Features custom-built utility tools including a BMI calculator, water intake tracker, and calorie counter, integrated with daily habit tracking and nutrition guidance, all presented through a sleek, motion-driven dashboard.",
-    images: ["/projects/lifeplus.png"],
+    images: ["/projects/lifeplus.jpg"],
+    tagline: "Personal Wellness Web App",
+    features: [
+      "BMI calculator",
+      "Water intake tracker",
+      "Calorie counter",
+      "Daily habit tracking and nutrition guidance",
+      "Motion-driven dashboard UI",
+    ],
     tag: ["All", "Web"],
     gitUrl: "https://github.com/smbhathiya/life-plus-web.git",
     previewUrl: "https://lifeplus.bhathiya.dev",
@@ -100,20 +129,36 @@ const projectsData: Project[] = [
   {
     id: 9,
     slug: "vantagecar-car-dealership",
+    metaDescription:
+      "VantageCar is a modern car dealership website with advanced vehicle search and filtering, built for performance and SEO in automotive e-commerce.",
     title: "VantageCar - Car Dealership",
     description:
       "A modern car dealership platform with advanced vehicle search and filtering capabilities. Focused on performance and SEO for automotive e-commerce.",
-    images: ["/projects/vantagecar.png"],
+    images: ["/projects/vantagecar.jpg"],
+    tagline: "Car Dealership Website",
+    features: [
+      "Advanced vehicle search and filtering",
+      "Performance- and SEO-focused build for automotive e-commerce",
+    ],
     tag: ["All", "Web"],
     previewUrl: "https://vantagecar.bhathiya.dev",
   },
   {
     id: 8,
     slug: "business-landing-page-template",
+    metaDescription:
+      "Free, open-source business landing page template built with Next.js and Tailwind CSS. Clean, fully responsive single-page layout, ready to deploy.",
     title: "Business Landing Page - Open Source Template",
     description:
       "A clean, modern, and fully responsive single-page website template designed for businesses. Built using Next.js and Tailwind CSS, perfect for rapid deployment.",
-    images: ["/projects/landingpage.png"],
+    images: ["/projects/landingpage.jpg"],
+    tagline: "Next.js Template",
+    stack: ["Next.js", "Tailwind CSS"],
+    features: [
+      "Clean, modern single-page layout for businesses",
+      "Fully responsive across devices",
+      "Ready for rapid deployment",
+    ],
     tag: ["All", "Web"],
     gitUrl: "https://github.com/smbhathiya/landing-page-2025.git",
     previewUrl: "https://landing.bhathiya.dev",
@@ -121,13 +166,26 @@ const projectsData: Project[] = [
   {
     id: 5,
     slug: "bliss-cafe-coffee-shop",
+    metaDescription:
+      "Bliss Café is a modern, responsive coffee shop website built with Next.js and Tailwind CSS, featuring a sleek layout and premium design.",
     title: "Bliss Café - Coffee Shop",
     description:
       "A modern and responsive coffee shop website built using Next.js and Tailwind CSS. Showcases sleek UI alignment and premium design aesthetics.",
-    images: ["/projects/blisscafe.png"],
+    images: ["/projects/blisscafe.jpg"],
+    tagline: "Coffee Shop Website",
+    stack: ["Next.js", "Tailwind CSS"],
     tag: ["All", "Web"],
     previewUrl: "https://blisscafe.bhathiya.dev",
   },
 ];
 
 export default projectsData;
+
+/** Projects with a public case study page (not under NDA, has a screenshot). */
+export function getPublicProjects() {
+  return projectsData.filter((p) => !p.isInternal && p.images.length > 0);
+}
+
+export function getProject(slug: string) {
+  return getPublicProjects().find((p) => p.slug === slug);
+}
